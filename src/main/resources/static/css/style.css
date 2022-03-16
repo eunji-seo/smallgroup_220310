@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+body{
+	background-color:#e5ecf4;
+}
+header{height:100px;}
+section{}
+footer{height:100px;}
+
+a{color:#000; text-decoration: none;}
+a:hover {color:#000; text-decoration: none;}
+
+/* join */
+
+
+/* login */
+.login {
+	margin:100px 0;
+}
+
+/* user_favorite */
+.form-check{
+	margin: 40px 40px;
+}
+.check-box{
+	
+}
+.favorite-subject{
+	margin-left:100px; 
+}

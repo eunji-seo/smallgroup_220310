@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.smallgroup.user.dao.UserDAO">
+ 	<select id="selectDuplicatedId" parameterType="String" resultType="boolean">
+ 		SELECT
+ 			COUNT(1)
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`loginId` = #{loginId}
+ 	</select>
+ 
+ 	<insert id="insertJoin" parameterType="String">
+ 		INSERT INTO `user`
+ 		(
+ 			`loginId`
+			,`password`
+			,`name`
+			,`birth`
+			,`address`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
+ 			
+ 		)
+ 		VALUES
+ 		(
+ 			#{loginId}
+ 			, #{password}
+ 			, #{name}
+ 			, #{birth}
+ 			, #{address}
+ 			, #{email}
+ 			,NOW()
+ 			,NOW()
+ 		)
+ 	</insert>
+ 	<select id="selectLoginIdAndPassword" parameterType="String" resultType="com.smallgroup.user.model.User">
+ 		SELECT
+ 			`id`
+ 			,`loginId`
+			,`password`
+			,`name`
+			,`birth`
+			,`address`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`loginId` = #{loginId}
+	 		AND	`password` = #{password}
+ 	</select>
+ 		<select id="selectMemberCreateById" parameterType="String" resultType="com.smallgroup.user.model.User">
+ 		SELECT
+ 			`id`
+ 			,`loginId`
+			,`password`
+			,`name`
+			,`birth`
+			,`address`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`loginId` = #{loginId}
+ 	</select>
+ 	<update id="memberUpdate" parameterType="String">
+ 		UPDATE `user`
+ 		SET
+ 			`password` = #{password}
+ 			,`name` = #{name}
+			,`birth` = #{birth}
+			,`address` = #{address}
+			,`email` = #{email}
+			,`updatedAt` = NOW()
+		WHERE
+			`id` = #{id}
+			AND `loginId` = #{loginId}
+
+ 	</update>
+ </mapper>
