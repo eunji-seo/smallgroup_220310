@@ -70,7 +70,7 @@
  		WHERE
  			`loginId` = #{loginId}
  	</select>
- 	<update id="memberUpdate" parameterType="String">
+ 	<update id="memberUpdate" parameterType="map">
  		UPDATE `user`
  		SET
  			`password` = #{password}
