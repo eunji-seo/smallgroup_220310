@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smallgroup.common.EncryptUtils;
 import com.smallgroup.user.bo.UserBO;
 import com.smallgroup.user.model.User;
 
@@ -40,13 +40,19 @@ public class UserRestController {
 	
 	@PostMapping("/join")
 	public Map<String, Object> join(
-			@ModelAttribute  User user //@Valid
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password,
+			@RequestParam("name") String name,
+			@RequestParam("birth") String birth,
+			@RequestParam("address") String address,
+			@RequestParam("email") String email   //@Valid
 			){
+		String encryptPassword = EncryptUtils.md5(password);
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
-		int row = userBO.addJoin(user);
+		int row = userBO.addJoin(loginId, encryptPassword, name, birth, address, email);
 		
 		if(row < 1) {
 			result.put("result", "error");
@@ -60,18 +66,26 @@ public class UserRestController {
 
 	@PostMapping("/login")
 	public Map<String, Object> login(
-			@ModelAttribute  User user,			
+			@RequestParam("loginId") String loginId,			
+			@RequestParam("password") String password,			
 			HttpServletRequest request){
+		
+		
+		String encryptPassword = EncryptUtils.md5(password);
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
-		User memberUser = userBO.getLoginIdAndPassword(user);
+		
+		
+		User memberUser = userBO.getLoginIdAndPassword(loginId, encryptPassword);
+		
+		
 		
 		if(memberUser != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("loginId", user.getLoginId());
-			session.setAttribute("id", user.getId());
-			session.setAttribute("name", user.getName());
+			session.setAttribute("loginId", memberUser.getLoginId());
+			session.setAttribute("id", memberUser.getId());
+			session.setAttribute("name", memberUser.getName());
 		} else {
 			result.put("result", "error");
 			result.put("errorMessage", "로그인을 다시 시도해주세요.");

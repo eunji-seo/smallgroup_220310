@@ -1,5 +1,7 @@
 package com.smallgroup.user;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.smallgroup.user.bo.UserBO;
+import com.smallgroup.user.model.Favorite;
 import com.smallgroup.user.model.User;
 
 @RequestMapping("/user")
@@ -34,8 +37,15 @@ public class UserController {
 	
 	@RequestMapping("/user_favorite_view")
 	public String favoriteView(
+			HttpServletRequest request,
 			Model model) {
+		 
+		HttpSession session = request.getSession();
+		int id = (int) session.getAttribute("id");
+		
+		List<Favorite> favoriteList = userBO.getFavoriteById(id);
 		model.addAttribute("viewName", "user/user_favorite");
+		model.addAttribute("favoriteList", favoriteList);
 		return "template/layout";
 	}
 	
@@ -54,5 +64,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "template/layout";
 	}
+	
+	
 
 }
