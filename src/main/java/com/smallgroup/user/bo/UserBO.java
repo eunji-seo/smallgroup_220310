@@ -19,7 +19,7 @@ public class UserBO {
 		return userDAO.selectDuplicatedId(loginId);
 	}
 
-	public int addJoin(String loginId, String password,  String name,String birth,String address, String email) {
+	public User addJoin(String loginId, String password,  String name,String birth,String address, String email) {
 		return userDAO.insertJoin(loginId, password, name, birth, address, email);
 	}
 	
@@ -35,8 +35,12 @@ public class UserBO {
 		return userDAO.memberUpdate(id, loginId, password, name, birth, address, email);
 	}
 	
-	public List<Favorite> getFavoriteById(int id) {
-		return userDAO.selectFavoriteById(id);
+	public List<Favorite> getFavoriteById() {
+		return userDAO.selectFavoriteById();
+	}
+	
+	public int addUserFavorite(int userId ,int favoriteId) {
+		return userDAO.insertUserFavorite(userId, favoriteId);
 	}
 	
 }

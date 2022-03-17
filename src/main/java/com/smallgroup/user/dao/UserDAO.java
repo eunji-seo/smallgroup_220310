@@ -13,7 +13,7 @@ public interface UserDAO {
 	
 	public boolean selectDuplicatedId(String loginId); 
 	
-	public int insertJoin(
+	public User insertJoin(
 			@Param("loginId") String loginId, 
 			@Param("password") String password, 
 			@Param("name") String name, 
@@ -36,6 +36,10 @@ public interface UserDAO {
 			@Param("address") String address, 
 			@Param("email") String email);
 	
-	public List<Favorite> selectFavoriteById(int id);
+	public List<Favorite> selectFavoriteById();
+	
+	public int insertUserFavorite(
+			@Param("userId") int userId, 
+			@Param("favoriteId") int favoriteId);
 	
 }

@@ -46,10 +46,26 @@ $(document).ready(function(){
 		
 		}); 
 		
-		
-		console.log(favoriteId);
+		// console.log(favoriteId);
 	
-		$.ajax()
+		$.ajax({
+			Type:"GET"
+			,url:"/user/is_user_favorite"
+			,data:{
+				"id":favoriteId
+			}
+			,success: function(data){
+				if(data.result == 'success'){
+					alert("관심사 선택이 완료 되었습니다.");
+					location.href="/meet/main_view";
+				}else{
+					alert(data.errorMessage);		
+				}
+			}
+			,error: function(e){
+				alert("관심사 선택에 실패하였습니다. 관리자에 문의해주세요.")
+			}
+		});
 	
 	});	
 	

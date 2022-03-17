@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,20 +45,24 @@ public class UserRestController {
 			@RequestParam("name") String name,
 			@RequestParam("birth") String birth,
 			@RequestParam("address") String address,
-			@RequestParam("email") String email   //@Valid
-			){
+			@RequestParam("email") String email,   //@Valid
+			HttpServletRequest request){
 		String encryptPassword = EncryptUtils.md5(password);
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
-		int row = userBO.addJoin(loginId, encryptPassword, name, birth, address, email);
+		User memberUser  = userBO.addJoin(loginId, encryptPassword, name, birth, address, email);
 		
-		if(row < 1) {
+		if(memberUser != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("loginId", memberUser.getLoginId());
+			session.setAttribute("id", memberUser.getId());
+			session.setAttribute("name", memberUser.getName());
+		} else {
 			result.put("result", "error");
-			result.put("errorMessage", "회원가입을 다시 시도해주세요.");
+			result.put("errorMessage", "로그인을 다시 시도해주세요.");
 		}
-		
 		return result;
 		
 	}
@@ -118,6 +122,28 @@ public class UserRestController {
 			result.put("errorMessage", "회원수정을 다시 시도해주세요.");
 		}
 		
+		return result;
+		
+	}
+	
+	@GetMapping("/is_user_favorite")
+	public Map<String, Object> isUserFavorite(
+			@RequestParam("id") int favoriteId,
+			HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		int userId = (int) session.getAttribute("id");
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
+		
+		int row = userBO.addUserFavorite(userId, favoriteId);
+		
+		if(row <1) {
+			result.put("result", "error");
+			result.put("errorMessage", "관심사 선택을 다시 시도해 주세요.");
+		}
+			
 		return result;
 		
 	}

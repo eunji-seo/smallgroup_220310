@@ -93,4 +93,20 @@
  		FROM
  			`favorite`
  	</select>
+ 	<insert id="insertUserFavorite" parameterType="map">
+ 	 	INSERT INTO `user_favorite`
+ 	 	(
+			`userId`
+			`favoriteId`
+			`createdAt`
+			`updatedAt`
+		)
+	 	VALUES 
+	 	(
+	 		#{userId}
+	 		, #{favoriteId}
+	 		,NOW()
+	 		,NOW()	 		
+	 	)
+ 	</insert>
  </mapper>
