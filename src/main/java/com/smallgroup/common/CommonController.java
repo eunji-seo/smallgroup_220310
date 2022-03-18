@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -15,5 +16,10 @@ public class CommonController {
 		viewName = viewName.substring(1, viewName.length()-5);
 		model.addAttribute("viewName", viewName);
 		return "template/layout";
+	}
+	
+	@GetMapping("/")
+	public String goHome(Model model) {
+		return "redirect:/user/favorite_view";
 	}
 }

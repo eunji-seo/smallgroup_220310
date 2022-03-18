@@ -33,6 +33,11 @@ public class Favorite {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	@Override
+	public String toString() {
+		return "Favorite [id=" + id + ", favoriteName=" + favoriteName + ", createdAt=" + createdAt + ", updatedAt="
+				+ updatedAt + "]";
+	}
 	
 	
 

@@ -14,8 +14,8 @@
 		<div class="check-box d-flex flex-wrap ">
 			<c:forEach var="favorite" items="${favoriteList}">
 				<div class="form-check">
-					<input type="checkbox" name="checkList" class="form-check-input"value="${favorite.favoriteName}" data-favorite-id="${favorite.id}">
-					<label for="trip" class="form-check-label">${favorite.favoriteName}</label>
+					<input type="checkbox" name="checkList" class="form-check-input"value="${favorite.favoriteName}" data-favorite-id="${favorite.id}" id="favor${favorite.id}">
+					<label for="favor${favorite.id}" class="form-check-label">${favorite.favoriteName}</label>
 				</div>
 			</c:forEach>
 		</div>
@@ -39,20 +39,21 @@ $(document).ready(function(){
 		}
 		
 		
-		let favoriteId = [];
+		let favoriteIds = [];
 		
 		$('input:checkbox[name=checkList]:checked').each(function(){
-			favoriteId.push($(this).data('favorite-id'));
+			favoriteIds.push($(this).data('favorite-id'));
 		
 		}); 
 		
-		console.log(favoriteId);
+		console.log(favoriteIds);
 	
 		$.ajax({
 			Type:"GET"
 			,url:"/user/is_user_favorite"
+			,traditional : true
 			,data:{
-				"favoriteId":favoriteId
+				"favoriteIds":favoriteIds
 			}
 			,success: function(data){
 				if(data.result == 'success'){

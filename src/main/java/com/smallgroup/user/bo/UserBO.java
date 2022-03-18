@@ -20,7 +20,10 @@ public class UserBO {
 	}
 
 	public User addJoin(String loginId, String password,  String name,String birth,String address, String email) {
-		return userDAO.insertJoin(loginId, password, name, birth, address, email);
+		if(userDAO.insertJoin(loginId, password, name, birth, address, email)==1) {
+			return userDAO.selectMemberCreateById(loginId);
+		}
+		return null;
 	}
 	
 	public User getLoginIdAndPassword(String loginId, String password) {

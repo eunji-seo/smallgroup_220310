@@ -130,7 +130,7 @@ public class UserRestController {
 	
 	@GetMapping("/is_user_favorite")
 	public Map<String, Object> isUserFavorite(
-			@RequestParam(required = false, value = "favoriteId") List<Integer> favoriteId,
+			@RequestParam(required = false, value = "favoriteIds") List<Integer> favoriteId,
 			// @RequestParam("id") int favoriteId,
 			HttpServletRequest request){
 		
