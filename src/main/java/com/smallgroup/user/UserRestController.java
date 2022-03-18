@@ -48,18 +48,19 @@ public class UserRestController {
 			@RequestParam("address") String address,
 			@RequestParam("email") String email,   //@Valid
 			HttpServletRequest request){
+		
 		String encryptPassword = EncryptUtils.md5(password);
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
-		User memberUser  = userBO.addJoin(loginId, encryptPassword, name, birth, address, email);
+		User membersUser  = userBO.addJoin(loginId, encryptPassword, name, birth, address, email);
 		
-		if(memberUser != null) {
+		if(membersUser != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("loginId", memberUser.getLoginId());
-			session.setAttribute("id", memberUser.getId());
-			session.setAttribute("name", memberUser.getName());
+			session.setAttribute("loginId", membersUser.getLoginId());
+			session.setAttribute("id", membersUser.getId());
+			session.setAttribute("name", membersUser.getName());
 		} else {
 			result.put("result", "error");
 			result.put("errorMessage", "로그인을 다시 시도해주세요.");

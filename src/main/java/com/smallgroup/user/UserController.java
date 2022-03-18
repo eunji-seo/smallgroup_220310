@@ -21,19 +21,6 @@ public class UserController {
 	@Autowired
 	private UserBO userBO;
 	
-	@RequestMapping("/join_view")
-	public String joinView(
-			Model model) {
-		model.addAttribute("viewName", "user/join");
-		return "template/layout";
-	}
-	
-	@RequestMapping("/login_view")
-	public String loginView(
-			Model model) {
-		model.addAttribute("viewName", "user/login");
-		return "template/layout";
-	}
 	
 	@RequestMapping("/favorite_view")
 	public String favoriteView(

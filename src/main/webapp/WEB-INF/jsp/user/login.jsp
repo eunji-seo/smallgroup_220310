@@ -42,7 +42,7 @@
 			,success: function(data){
 				if(data.result == 'success'){
 					alert(loginId+"님 반갑습니다.");
-					location.href="/meet/main";
+					location.href="/main/main_view";
 				}else{
 					alert(data.errorMessage);
 				}

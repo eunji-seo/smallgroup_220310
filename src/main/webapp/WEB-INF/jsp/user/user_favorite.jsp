@@ -63,7 +63,7 @@ $(document).ready(function(){
 				}
 			}
 			,error: function(e){
-				alert("관심사 선택에 실패하였습니다. 관리자에 문의해주세요.")
+				alert("관심사 선택에 실패하였습니다. 관리자에 문의해주세요.");
 			}
 		});
 	
