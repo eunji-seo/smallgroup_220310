@@ -39,8 +39,10 @@ public class UserBO {
 		return userDAO.selectFavoriteById();
 	}
 	
-	public int addUserFavorite(int userId ,int favoriteId) {
-		return userDAO.insertUserFavorite(userId, favoriteId);
+	public int addUserFavorite(int userId ,List<Integer> favoriteId) {
+		
+		return 	userDAO.insertUserFavorite(userId, favoriteId);
+		
 	}
 	
 }

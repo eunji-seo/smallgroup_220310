@@ -46,13 +46,13 @@ $(document).ready(function(){
 		
 		}); 
 		
-		// console.log(favoriteId);
+		console.log(favoriteId);
 	
 		$.ajax({
 			Type:"GET"
 			,url:"/user/is_user_favorite"
 			,data:{
-				"id":favoriteId
+				"favoriteId":favoriteId
 			}
 			,success: function(data){
 				if(data.result == 'success'){

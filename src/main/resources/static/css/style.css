@@ -28,3 +28,50 @@ li{text-decoration: none;}
 .favorite-subject{
 	margin-left:100px; 
 }
+
+/* meet_main */
+
+.navbar-collapse > .nav{
+	border-bottom: 1px solid #ccc;
+}
+
+.meet-box{
+	width: 400px;
+	margin: 50px;
+	padding: 20px;
+	border: 1px solid #000;
+	background-color: #fff;
+}
+
+.img-area{
+	margin-right: 20px;
+}
+.gu{
+	border: 1px solid #000;
+	margin-right: 10px;
+	padding:0 10px;
+	border-radius: 10px; 
+	background-color: #000;
+	color:#fff;
+}
+
+/* mypage */
+
+.mypage {
+	margin:10px 50px;
+}
+.member-list{
+	padding: 10px;
+	background-color: #fff;
+	margin:5px
+}
+.faverite-list{
+	padding: 10px;
+	background-color: #fff;
+	margin:5px
+}
+.meet-join-list{
+	padding: 10px;
+	background-color: #fff;
+	margin:5px
+}

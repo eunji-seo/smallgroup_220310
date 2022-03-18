@@ -1,6 +1,7 @@
 package com.smallgroup.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -128,7 +129,8 @@ public class UserRestController {
 	
 	@GetMapping("/is_user_favorite")
 	public Map<String, Object> isUserFavorite(
-			@RequestParam("id") int favoriteId,
+			@RequestParam(required = false, value = "favoriteId") List<Integer> favoriteId,
+			// @RequestParam("id") int favoriteId,
 			HttpServletRequest request){
 		
 		HttpSession session = request.getSession();

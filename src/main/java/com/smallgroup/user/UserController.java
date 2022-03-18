@@ -35,7 +35,7 @@ public class UserController {
 		return "template/layout";
 	}
 	
-	@RequestMapping("/user_favorite_view")
+	@RequestMapping("/favorite_view")
 	public String favoriteView(
 			//HttpServletRequest request,
 			Model model) {
