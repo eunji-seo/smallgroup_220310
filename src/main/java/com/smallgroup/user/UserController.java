@@ -24,12 +24,8 @@ public class UserController {
 	
 	@RequestMapping("/favorite_view")
 	public String favoriteView(
-			//HttpServletRequest request,
 			Model model) {
 		 
-		//HttpSession session = request.getSession();
-		//int id = (int) session.getAttribute("id");
-		
 		List<Favorite> favoriteList = userBO.getFavoriteById();
 		model.addAttribute("viewName", "user/user_favorite");
 		model.addAttribute("favoriteList", favoriteList);

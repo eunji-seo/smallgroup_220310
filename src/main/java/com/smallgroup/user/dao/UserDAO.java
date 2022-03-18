@@ -40,6 +40,6 @@ public interface UserDAO {
 	
 	public int insertUserFavorite(
 			@Param("userId") int userId, 
-			@Param("favoriteId") List<Integer> favoriteId);
+			@Param("favoriteId") int favoriteId);
 	
 }

@@ -144,7 +144,7 @@ function memberJoin(){
 		,success: function(data){
 			if(data.result == 'success'){
 				alert( loginId + "님 회원가입 되었습니다.");
-				location.href="/user/user_favorite_view"
+				location.href="/user/favorite_view"
 			}else{
 				alert(data.errorMessage);
 			}

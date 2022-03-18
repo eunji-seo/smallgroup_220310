@@ -130,8 +130,7 @@ public class UserRestController {
 	
 	@GetMapping("/is_user_favorite")
 	public Map<String, Object> isUserFavorite(
-			@RequestParam(required = false, value = "favoriteIds") List<Integer> favoriteId,
-			// @RequestParam("id") int favoriteId,
+			@RequestParam(required = false, value = "favoriteIds") List<Integer> favoriteIds,
 			HttpServletRequest request){
 		
 		HttpSession session = request.getSession();
@@ -140,7 +139,7 @@ public class UserRestController {
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
-		int row = userBO.addUserFavorite(userId, favoriteId);
+		int row = userBO.addUserFavorite(userId, favoriteIds);
 		
 		if(row <1) {
 			result.put("result", "error");

@@ -20,7 +20,7 @@ public class UserBO {
 	}
 
 	public User addJoin(String loginId, String password,  String name,String birth,String address, String email) {
-		if(userDAO.insertJoin(loginId, password, name, birth, address, email)==1) {
+		if(userDAO.insertJoin(loginId, password, name, birth, address, email) == 1) {
 			return userDAO.selectMemberCreateById(loginId);
 		}
 		return null;
@@ -42,9 +42,11 @@ public class UserBO {
 		return userDAO.selectFavoriteById();
 	}
 	
-	public int addUserFavorite(int userId ,List<Integer> favoriteId) {
-		
-		return 	userDAO.insertUserFavorite(userId, favoriteId);
+	public int addUserFavorite(int userId ,List<Integer> favoriteIds) {
+		for( int favoriteId : favoriteIds ) {
+			return 	userDAO.insertUserFavorite(userId, favoriteId);
+		}
+		return userId;
 		
 	}
 	
