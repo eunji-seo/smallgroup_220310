@@ -12,4 +12,21 @@
  		FROM
  			`favorite`
  	</select>
+ 	<insert id="insertMeetFavorite" parameterType="map">
+ 		INSERT INTO `meet_favorite`
+ 		(
+ 			`userId`
+			,`favoriteId`
+			,`createdAt`
+			,`updatedAt`
+			
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			,#{favoriteId}
+ 			,NOW()
+ 			,NOW()
+ 		)
+ 	</insert>
  </mapper>

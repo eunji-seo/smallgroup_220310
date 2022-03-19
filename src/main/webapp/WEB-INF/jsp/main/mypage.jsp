@@ -18,8 +18,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="d-flex justify-content-end">
-				<button type="button" class="btn btn-success">수정</button>
+		<div class="d-flex justify-content-end align-items-center">
+				<a href="/user/member_update_view" class="memberBtn btn btn-success text-white">수정</a>
 		</div>
 	</div>
 	<div class="faverite-list d-flex justify-content-between">
@@ -39,7 +39,7 @@
 		      </li>
 	    	</ul>
 		</div>
-		<button type="button" class="btn btn-success">수정</button>
+		<a href="/user/favorite_update_view" class="btn btn-success text-white">수정</a>
 	</div>
 	<div class="meet-join-list">
 	<h3>내가 가입한 모임</h3>

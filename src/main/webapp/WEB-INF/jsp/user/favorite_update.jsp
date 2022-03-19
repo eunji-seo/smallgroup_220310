@@ -6,21 +6,21 @@
 	<div class="bg-white d-flex align-items-center p-3">
 		<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
 		<div class="d-flex justify-content-center">
-			<h3 class="favorite-subject">모임 관심사 선택</h3>
+			<h3 class="favorite-subject">관심사 선택</h3>
 		</div>
 	</div>
-	<div class="text-danger m-5">* 최대 1개만 선택가능합니다.</div>
+	<div class="text-danger m-5">* 최대 6개만 선택가능합니다.</div>
 	<div class="">
 		<div class="check-box d-flex flex-wrap ">
 			<c:forEach var="favorite" items="${favoriteList}">
 				<div class="form-check">
-					<input type="checkbox" name="checkList" class="form-check-input"value="${favorite.favoriteName}" data-favorite-id="${favorite.id}">
-					<label for="trip" class="form-check-label">${favorite.favoriteName}</label>
+					<input type="checkbox" name="checkList" class="form-check-input"value="${favorite.favoriteName}" data-favorite-id="${favorite.id}" id="favor${favorite.id}">
+					<label for="favor${favorite.id}" class="form-check-label">${favorite.favoriteName}</label>
 				</div>
 			</c:forEach>
 		</div>
 		<div class="d-flex justify-content-end">
-			<button type="button" class="favoriteBtn btn btn-success col-2 mr-5">선택</button>
+			<button type="button" class="favoriteBtn btn btn-success col-2 mr-5">수정</button>
 		</div>
 	</div>	
 </div>    
@@ -28,9 +28,9 @@
 $(document).ready(function(){
 	
 	$('.favoriteBtn').on('click',function(){
-		//alert("click");
-		if($('input:checkbox[name=checkList]:checked').length > 1){
-			alert("1개까지만 선택 가능합니다.");
+		alert("click");
+		if($('input:checkbox[name=checkList]:checked').length > 6){
+			alert("6개까지만 선택 가능합니다.");
 			return;
 		}
 		if($('input:checkbox[name=checkList]:checked').length < 1){
@@ -39,27 +39,32 @@ $(document).ready(function(){
 		}
 		
 		
-		let favoriteId = $('input:checkbox[name=checkList]:checked').data('favorite-id');
-
+		let favoriteIds = [];
 		
-		// console.log(favoriteId);
+		$('input:checkbox[name=checkList]:checked').each(function(){
+			favoriteIds.push($(this).data('favorite-id'));
+		
+		}); 
+		
+		console.log(favoriteIds);
 	
 		$.ajax({
 			Type:"GET"
-			,url:"/user/is_meet_favorite"
+			,url:"/user/is_user_favorite"
+			,traditional : true
 			,data:{
-				"id":favoriteId
+				"favoriteIds":favoriteIds
 			}
 			,success: function(data){
 				if(data.result == 'success'){
 					alert("관심사 선택이 완료 되었습니다.");
-					location.href="/meet/create_view";
+					location.href="/meet/main_view";
 				}else{
 					alert(data.errorMessage);		
 				}
 			}
 			,error: function(e){
-				alert("관심사 선택에 실패하였습니다. 관리자에 문의해주세요.")
+				alert("관심사 선택에 실패하였습니다. 관리자에 문의해주세요.");
 			}
 		});
 	

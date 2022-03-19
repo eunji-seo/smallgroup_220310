@@ -9,47 +9,54 @@
 				<div id="isPassword" class="small text-danger d-none">비밀번호를 입력해주세요.</div>
 			</div>
 			<hr>
-			<button onclick="memberLogin()" type="button" class="btn btn-primary col-12 mb-3">로그인</button>
+			<button  type="button" class="loginBtn btn btn-primary col-12 mb-3">로그인</button>
 			<a href="/user/join_view" class="btn btn-light col-12">회원가입</a>
 		</div>
 	</div>
 <script>
 
-	function memberLogin(){
-		//alert("click");
-		let loginId = $('#loginId').val().trim();
-		let password = $('#password').val().trim();
-		
-		$('#isloginId').addClass('d-none');
-		$('#isPassword').addClass('d-none');
-		
-		if(loginId == ''){
-			$('#isloginId').removeClass('d-none');
-			return false;
-		}
-		if(password == ''){
-			$('#isPassword').removeClass('d-none');
-			return false;
-		}
-		
-		$.ajax({
-			type:"POST"
-			,url:"/user/login"
-			,data:{
-				"loginId":loginId
-				,"password":password
+
+$(document).keypress(function(event){
+	  var keycode = (event.keyCode ? event.keyCode : event.which);
+	  if(keycode == '13'){
+		  let loginId = $('#loginId').val().trim();
+			let password = $('#password').val().trim();
+			
+			$('#isloginId').addClass('d-none');
+			$('#isPassword').addClass('d-none');
+			$('#loginId').removeClass('is-invalid');
+			$('#password').removeClass('is-invalid');
+			
+			if(loginId == ''){
+				$('#isloginId').removeClass('d-none');
+				$('#loginId').addClass('is-invalid');
+				return false;
 			}
-			,success: function(data){
-				if(data.result == 'success'){
-					alert(loginId+"님 반갑습니다.");
-					location.href="/main/main_view";
-				}else{
-					alert(data.errorMessage);
+			if(password == ''){
+				$('#isPassword').removeClass('d-none');
+				$('#password').addClass('is-invalid');
+				return false;
+			}
+			$.ajax({
+				type:"POST"
+				,url:"/user/login"
+				,data:{
+					"loginId":loginId
+					,"password":password
 				}
-			}
-			,error: function(e){
-				alert("로그인에 실패하였습니다. 관리자에 문의해주세요.")
-			}
-		});
-	}
+				,success: function(data){
+					if(data.result == 'success'){
+						alert(loginId+"님 반갑습니다.");
+						location.href="/main/main_view";
+					}else{
+						alert(data.errorMessage);
+					}
+				}
+				,error: function(e){
+					alert("로그인에 실패하였습니다. 관리자에 문의해주세요.")
+				}
+			});
+	  }
+	});
+
 </script>

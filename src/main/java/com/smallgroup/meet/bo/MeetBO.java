@@ -17,4 +17,8 @@ public class MeetBO {
 		return meetDAO.selectFavoriteById();
 	}
 	
+	public int addMeetFavorite(int userId ,int favoriteIds) {
+			return 	meetDAO.insertMeetFavorite(userId, favoriteIds);
+		
+	}
 }

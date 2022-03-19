@@ -1,9 +1,45 @@
 package com.smallgroup.meet;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smallgroup.meet.bo.MeetBO;
+@RequestMapping("/meet")
 @RestController
 public class MeetRestController {
 
-
+	@Autowired
+	private MeetBO meetBO;
+	
+	@GetMapping("/is_meet_favorite")
+	public Map<String, Object> isUserFavorite(
+			@RequestParam("favoriteId") int favoriteId,
+			HttpServletRequest request){
+				
+		HttpSession session = request.getSession();
+		int userId = (int) session.getAttribute("id");
+	
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
+		
+		int row = meetBO.addMeetFavorite(userId, favoriteId);
+		
+		if(row < 1) {
+			result.put("result", "error");
+			result.put("errorMessage", "관심사 선택을 다시 시도해 주세요.");
+		}
+			
+		return result;
+		
+	}
 }

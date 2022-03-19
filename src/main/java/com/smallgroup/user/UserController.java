@@ -43,11 +43,32 @@ public class UserController {
 		
 		User user = userBO.getMemberCreateById(loginId);
 		
-		model.addAttribute("viewName", "user/member_create");
+		model.addAttribute("viewName", "user/member_update");
 		model.addAttribute("user", user);
 		return "template/layout";
 	}
 	
+	@RequestMapping("/favorite_update_view")
+	public String favoriteUpdate(
+			Model model) {
+		 
+		List<Favorite> favoriteList = userBO.getFavoriteById();
+		model.addAttribute("viewName", "user/favorite_update");
+		model.addAttribute("favoriteList", favoriteList);
+		return "template/layout";
+	}
 	
+	@RequestMapping("log_out")
+	public String logOut(
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		session.removeAttribute("loginId");
+		session.removeAttribute("id");
+		session.removeAttribute("name");
+		
+		return "redirect:/user/login_view";
+	}
 
 }

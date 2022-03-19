@@ -51,9 +51,12 @@ function memberCheck(){
 	$('#isCheckLength').addClass('d-none');
 	$('#isCheckDuplicated').addClass('d-none');
 	$('#isCheckOK').addClass('d-none');
+
+	$('#loginId').removeClass('is-invalid');
 	
 	if(loginId.length < 4){
 		$('#isCheckLength').removeClass('d-none');
+		$('#loginId').addClass('is-invalid');
 		return;
 	}
 	
@@ -62,9 +65,11 @@ function memberCheck(){
 		,data:{ "loginId":loginId }
 		,success: function(data){
 			if(data.result){
-				$('#isCheckDuplicated').removeClass('d-none');				
+				$('#isCheckDuplicated').removeClass('d-none');	
+				$('#loginId').addClass('is-invalid');
 			}else if(data.result == false){
-				$('#isCheckOK').removeClass('d-none');			
+				$('#isCheckOK').removeClass('d-none');	
+				$('#loginId').addClass('is-invalid');
 			}
 		}
 		,error: function(e){
@@ -94,40 +99,59 @@ function memberJoin(){
 	$('#isCheckAddress').addClass('d-none');
 	$('#isCheckEmail').addClass('d-none');
 	$('#isCheck').addClass('d-none');
+	
+	$('#loginId').removeClass('is-invalid');
+	$('#password').removeClass('is-invalid');
+	$('#passwordConfim').removeClass('is-invalid');
+	$('#name').removeClass('is-invalid');
+	$('#birth').removeClass('is-invalid');
+	$('#address').removeClass('is-invalid');
+	$('#email').removeClass('is-invalid');
 
 	
 	if(loginId == ''){
 		$('#isCheckId').removeClass('d-none');
+		$('#loginId').addClass('is-invalid');
+
 		return false;	
 	}
 	if(password == ''|| passwordConfim == ''){
 		$('#isCheckPassword').removeClass('d-none');
+		$('#password').addClass('is-invalid');
+		$('#passwordConfim').addClass('is-invalid');
 		return false;	
 	}
 	if(password != passwordConfim){
 		$('#isCheckPasswordConfim').removeClass('d-none');
+		$('#password').addClass('is-invalid');
+		$('#passwordConfim').addClass('is-invalid');
 		return false;		
 	}
 	if(name == ''){
 		$('#isCheckName').removeClass('d-none');
+		$('#name').addClass('is-invalid');
 		return false;	
 	}
 	if(birth == ''){
 		$('#isCheckBirth').removeClass('d-none');
+		$('#birth').addClass('is-invalid');
 		return false;	
 	}
 
 	if(address == ''){
 		$('#isCheckAddress').removeClass('d-none');
+		$('#address').addClass('is-invalid');
 		return false;		
 	}
 	if(email == ''){
 		$('#isCheckEmail').removeClass('d-none');
+		$('#email').addClass('is-invalid');
 		return false;		
 	}
 	
 	if($('#isCheckOK').hasClass('d-none')){
 		$('#isCheck').removeClass('d-none');
+		$('#loginId').addClass('is-invalid');
 		return false;
 	}
 	$.ajax({

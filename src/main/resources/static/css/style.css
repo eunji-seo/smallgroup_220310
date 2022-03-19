@@ -65,6 +65,9 @@ li{text-decoration: none;}
 	background-color: #fff;
 	margin:5px
 }
+.memberBtn{
+	color: #fff;
+}
 .faverite-list{
 	padding: 10px;
 	background-color: #fff;

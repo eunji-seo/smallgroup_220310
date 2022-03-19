@@ -43,7 +43,7 @@
 		</div>
 	</div>
 	<div class=" d-flex justify-content-end">
-		<a href="../meet/meet_favorite_view">
+		<a href="../meet/favorite_view">
 			<img alt="" src="/static/image/meet_plus.png" width="100">
 		</a>
 	</div>

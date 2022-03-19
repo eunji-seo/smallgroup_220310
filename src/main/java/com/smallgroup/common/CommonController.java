@@ -20,6 +20,6 @@ public class CommonController {
 	
 	@GetMapping("/")
 	public String goHome(Model model) {
-		return "redirect:/user/favorite_view";
+		return "redirect:/user/login_view";
 	}
 }

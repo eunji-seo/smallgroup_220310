@@ -141,7 +141,7 @@ public class UserRestController {
 		
 		int row = userBO.addUserFavorite(userId, favoriteIds);
 		
-		if(row <1) {
+		if(row < 1) {
 			result.put("result", "error");
 			result.put("errorMessage", "관심사 선택을 다시 시도해 주세요.");
 		}
