@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smallgroup.common.EncryptUtils;
 import com.smallgroup.user.bo.UserBO;
 import com.smallgroup.user.model.User;
+import com.smallgroup.user.model.UserFavorite;
 
 @RequestMapping("/user")
 @RestController
@@ -86,11 +87,13 @@ public class UserRestController {
 		
 		
 		
-		if(memberUser != null) {
+		if(memberUser != null) {			
 			HttpSession session = request.getSession();
 			session.setAttribute("loginId", memberUser.getLoginId());
 			session.setAttribute("id", memberUser.getId());
 			session.setAttribute("name", memberUser.getName());
+			List<UserFavorite> userFavorites = userBO.selectUserFavorites(memberUser.getId());
+			session.setAttribute("userFavorites", userFavorites);
 		} else {
 			result.put("result", "error");
 			result.put("errorMessage", "로그인을 다시 시도해주세요.");
@@ -107,6 +110,9 @@ public class UserRestController {
 			HttpServletRequest request){
 		
 		HttpSession session = request.getSession();
+		if(session.getAttribute("id")==null) {
+			
+		}
 		int userId = (int) session.getAttribute("id");
 		
 		Map<String, Object> result = new HashMap<>();

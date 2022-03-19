@@ -1,4 +1,4 @@
-package com.smallgroup.interception;
+package com.smallgroup.interceptor;
 
 import java.io.IOException;
 
@@ -33,11 +33,16 @@ public class PermissionInterceptor implements HandlerInterceptor{
 		
 		// URI 확인 (url path를 가져온다.)
 		String uri = request.getRequestURI();
-		
-		if(userId != null && uri.startsWith("/user")) {
-			// 로그인상태 && 접근을 시도한 uri path가 /user.. 이면 게시판 목록으로 리다이렉트			
-			response.sendRedirect("/main/main_view");
+		System.out.println(userId);
+		if(userId ==null && !uri.startsWith("/user/join") && !uri.startsWith("/user/login")) {
+			response.sendRedirect("/user/login_view");
 			return false;
+		}else if(userId != null && uri.startsWith("/user")) {
+			// 로그인상태 && 접근을 시도한 uri path가 /user.. 이면 게시판 목록으로 리다이렉트
+			if(!uri.endsWith("favorite_view")) {
+				response.sendRedirect("/main/main_view");
+			}
+			//return false;
 		} else if(userId == null && uri.startsWith("/meet")) {
 			// 비로그인 상태 && 접근을 시도한 uri path 가 /meet...이면 로그인 페이지로 리다이렉트
 			response.sendRedirect("/user/login_view");

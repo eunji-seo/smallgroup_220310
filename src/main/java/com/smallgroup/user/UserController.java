@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.smallgroup.user.bo.UserBO;
 import com.smallgroup.user.model.Favorite;
+<<<<<<< HEAD
+=======
+import com.smallgroup.user.model.UserFavorite;
+>>>>>>> f7ef43383f3190d9dbe0dc53f295ae401bbfef00
 
 @RequestMapping("/user")
 @Controller
@@ -22,9 +26,7 @@ public class UserController {
 	
 	
 	@RequestMapping("/favorite_view")
-	public String favoriteView(
-			Model model) {
-		 
+	public String favoriteView(	Model model, HttpSession session) {
 		List<Favorite> favoriteList = userBO.getFavoriteById();
 		model.addAttribute("viewName", "user/user_favorite");
 		model.addAttribute("favoriteList", favoriteList);

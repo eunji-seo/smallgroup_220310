@@ -2,6 +2,7 @@ package com.smallgroup.user.bo;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import com.smallgroup.main.dao.MainDAO;
 import com.smallgroup.user.dao.UserDAO;
 import com.smallgroup.user.model.Favorite;
 import com.smallgroup.user.model.User;
+import com.smallgroup.user.model.UserFavorite;
 
 @Service
 public class UserBO {
@@ -40,11 +42,15 @@ public class UserBO {
 	}
 	
 	public int addUserFavorite(int userId ,List<Integer> favoriteIds) {
+		int cnt = 0;
 		for( int favoriteId : favoriteIds ) {
-			return 	userDAO.insertUserFavorite(userId, favoriteId);
+			cnt += userDAO.insertUserFavorite(userId, favoriteId);
 		}
-		return userId;
+		return cnt;
 		
 	}
 	
+	public List<UserFavorite> selectUserFavorites(int userId){
+		return userDAO.selectUserFavorites(userId);
+	}
 }
