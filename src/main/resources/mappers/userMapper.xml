@@ -54,36 +54,7 @@
  			`loginId` = #{loginId}
 	 		AND	`password` = #{password}
  	</select>
- 		<select id="selectMemberCreateById" parameterType="String" resultType="com.smallgroup.user.model.User">
- 		SELECT
- 			`id`
- 			,`loginId`
-			,`password`
-			,`name`
-			,`birth`
-			,`address`
-			,`email`
-			,`createdAt`
-			,`updatedAt`
- 		FROM
- 			`user`
- 		WHERE
- 			`loginId` = #{loginId}
- 	</select>
- 	<update id="memberUpdate" parameterType="map">
- 		UPDATE `user`
- 		SET
- 			`password` = #{password}
- 			,`name` = #{name}
-			,`birth` = #{birth}
-			,`address` = #{address}
-			,`email` = #{email}
-			,`updatedAt` = NOW()
-		WHERE
-			`id` = #{id}
-			AND `loginId` = #{loginId}
-
- 	</update>
+ 	
  	<select id="selectFavoriteById" parameterType="String" resultType="com.smallgroup.user.model.Favorite">
  		SELECT
  			`id`

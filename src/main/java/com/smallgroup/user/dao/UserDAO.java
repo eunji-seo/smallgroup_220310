@@ -25,16 +25,6 @@ public interface UserDAO {
 			@Param("loginId") String loginId, 
 			@Param("password") String password); 
 	
-	public User selectMemberCreateById(String loginId);
-	
-	public int memberUpdate(
-			@Param("id") int id, 
-			@Param("loginId") String loginId, 
-			@Param("password") String password, 
-			@Param("name") String name, 
-			@Param("birth") String birth, 
-			@Param("address") String address, 
-			@Param("email") String email);
 	
 	public List<Favorite> selectFavoriteById();
 	

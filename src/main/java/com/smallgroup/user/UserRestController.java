@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smallgroup.common.EncryptUtils;
+import com.smallgroup.main.bo.MainBO;
 import com.smallgroup.user.bo.UserBO;
 import com.smallgroup.user.model.User;
 
@@ -26,6 +27,8 @@ public class UserRestController {
 	@Autowired
 	private UserBO userBO;
 	
+	@Autowired
+	private MainBO mainBO;
 	@RequestMapping("/is_duplicated_id")
 	public Map<String, Object> isDuplicatedId(
 			@RequestParam("loginId") String loginId
@@ -100,33 +103,7 @@ public class UserRestController {
 		return result;
 	}
 	
-	@PutMapping("/member_update")
-	public Map<String, Object> update(
-			@RequestParam("password") String password,
-			@RequestParam("name") String name,
-			@RequestParam("birth") String birth,
-			@RequestParam("address") String address,
-			@RequestParam("email") String email,			
-			HttpServletRequest request
-			){
-		
-		HttpSession session = request.getSession();
-		int id = (int) session.getAttribute("id");
-		String loginId = (String) session.getAttribute("loginId");
-		
-		
-		Map<String, Object> result = new HashMap<>();
-		int row = userBO.memberUpdate(id, loginId, password, name, birth, address, email);
-		result.put("result", "success");
-		
-		if(row < 1) {
-			result.put("result", "error");
-			result.put("errorMessage", "회원수정을 다시 시도해주세요.");
-		}
-		
-		return result;
-		
-	}
+	
 	
 	@GetMapping("/is_user_favorite")
 	public Map<String, Object> isUserFavorite(

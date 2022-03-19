@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div class="d-flex justify-content-end align-items-center">
-				<a href="/user/member_update_view" class="memberBtn btn btn-success text-white">수정</a>
+				<a href="/main/member_update_view" class="memberBtn btn btn-success text-white">수정</a>
 		</div>
 	</div>
 	<div class="faverite-list d-flex justify-content-between">
@@ -39,7 +39,7 @@
 		      </li>
 	    	</ul>
 		</div>
-		<a href="/user/favorite_update_view" class="btn btn-success text-white">수정</a>
+		<a href="/main/favorite_update_view" class="btn btn-success text-white">수정</a>
 	</div>
 	<div class="meet-join-list">
 	<h3>내가 가입한 모임</h3>

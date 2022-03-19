@@ -50,7 +50,7 @@ $(document).ready(function(){
 	
 		$.ajax({
 			Type:"GET"
-			,url:"/user/is_user_favorite"
+			,url:"/main/is_user_favorite"
 			,traditional : true
 			,data:{
 				"favoriteIds":favoriteIds

@@ -32,31 +32,6 @@ public class UserController {
 		return "template/layout";
 	}
 	
-	@RequestMapping("/member_update_view")
-	public String memberCreateView(
-			Model model,
-			HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		String loginId = (String) session.getAttribute("loginId");
-		
-		
-		User user = userBO.getMemberCreateById(loginId);
-		
-		model.addAttribute("viewName", "user/member_update");
-		model.addAttribute("user", user);
-		return "template/layout";
-	}
-	
-	@RequestMapping("/favorite_update_view")
-	public String favoriteUpdate(
-			Model model) {
-		 
-		List<Favorite> favoriteList = userBO.getFavoriteById();
-		model.addAttribute("viewName", "user/favorite_update");
-		model.addAttribute("favoriteList", favoriteList);
-		return "template/layout";
-	}
 	
 	@RequestMapping("log_out")
 	public String logOut(

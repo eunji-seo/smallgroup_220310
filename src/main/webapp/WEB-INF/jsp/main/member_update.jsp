@@ -89,7 +89,7 @@ function memberJoin(){
 	}
 	$.ajax({
 		type:"PUT"
-		,url:"/user/member_update"
+		,url:"/main/member_update"
 		,data: {
 			"password":password
 			,"name":name

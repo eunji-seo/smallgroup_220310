@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.smallgroup.main.dao.MainDAO">
+ 	<select id="selectMemberCreateById" parameterType="String" resultType="com.smallgroup.user.model.User">
+ 		SELECT
+ 			`id`
+ 			,`loginId`
+			,`password`
+			,`name`
+			,`birth`
+			,`address`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`loginId` = #{loginId}
+ 	</select>
+ 	<update id="memberUpdate" parameterType="map">
+ 		UPDATE `user`
+ 		SET
+ 			`password` = #{password}
+ 			,`name` = #{name}
+			,`birth` = #{birth}
+			,`address` = #{address}
+			,`email` = #{email}
+			,`updatedAt` = NOW()
+		WHERE
+			`id` = #{id}
+			AND `loginId` = #{loginId}
+
+ 	</update>
+ </mapper>
