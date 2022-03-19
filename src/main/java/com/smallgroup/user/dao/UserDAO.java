@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.smallgroup.user.model.Favorite;
 import com.smallgroup.user.model.User;
+import com.smallgroup.user.model.UserFavorite;
 
 @Repository
 public interface UserDAO {
@@ -32,4 +33,6 @@ public interface UserDAO {
 			@Param("userId") int userId, 
 			@Param("favoriteId") int favoriteId);
 	
+
+	public List<UserFavorite> selectUserFavorites(@Param("userId") int userId);
 }

@@ -64,22 +64,26 @@
  		FROM
  			`favorite`
  	</select>
+ 	
  	<insert id="insertUserFavorite" parameterType="map">
  	 	INSERT INTO `user_favorite`
  	 	(
 			`userId`
-			`favoriteId`
-			`createdAt`
-			`updatedAt`
+			,`favoriteId`
+			,`createdAt`
+			,`updatedAt`
 		)
 	 	VALUES 
 	 	(
 	 		#{userId}
-	 		<foreach collection="favoriteIds" item="favoriteId" separator=",">
-	 		 #{favoriteId}
-	 		</foreach>
+	 		,#{favoriteId}
 	 		,NOW()
 	 		,NOW()	 		
 	 	)
  	</insert>
+ 	
+ 	<select id="selectUserFavorites" resultType="com.smallgroup.user.model.UserFavorite">
+ 		SELECT * FROM USER_FAVORITE
+ 		WHERE USERID = #{userId}
+ 	</select>
  </mapper>

@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.smallgroup.interception.PermissionInterceptor;
+import com.smallgroup.interceptor.PermissionInterceptor;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer{
