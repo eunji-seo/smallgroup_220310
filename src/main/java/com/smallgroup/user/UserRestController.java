@@ -10,13 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smallgroup.common.EncryptUtils;
-import com.smallgroup.main.bo.MainBO;
 import com.smallgroup.user.bo.UserBO;
 import com.smallgroup.user.model.User;
 
@@ -27,8 +25,6 @@ public class UserRestController {
 	@Autowired
 	private UserBO userBO;
 	
-	@Autowired
-	private MainBO mainBO;
 	@RequestMapping("/is_duplicated_id")
 	public Map<String, Object> isDuplicatedId(
 			@RequestParam("loginId") String loginId

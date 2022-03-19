@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.smallgroup.user.bo.UserBO;
 import com.smallgroup.user.model.Favorite;
-import com.smallgroup.user.model.User;
 
 @RequestMapping("/user")
 @Controller

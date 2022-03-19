@@ -13,17 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smallgroup.main.bo.MainBO;
-import com.smallgroup.user.bo.UserBO;
 @RequestMapping("/main")
 @RestController
 public class MainRestController {
 
 	@Autowired
 	private MainBO mainBO;
-	
-	@Autowired
-	private UserBO userBO;
-	
 	
 	@PutMapping("/member_update")
 	public Map<String, Object> update(
