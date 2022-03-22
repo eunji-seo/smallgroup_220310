@@ -8,11 +8,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smallgroup.meet.bo.MeetBO;
+import com.smallgroup.meet.model.Meet;
+import com.smallgroup.meet.model.MeetFavorite;
 @RequestMapping("/meet")
 @RestController
 public class MeetRestController {
@@ -20,9 +24,11 @@ public class MeetRestController {
 	@Autowired
 	private MeetBO meetBO;
 	
-	@GetMapping("/is_meet_favorite")
+	
+	@GetMapping("/meet_favorite")
 	public Map<String, Object> isUserFavorite(
 			@RequestParam("favoriteId") int favoriteId,
+			@RequestParam("favoriteName") String favoriteName,
 			HttpServletRequest request){
 				
 		HttpSession session = request.getSession();
@@ -32,13 +38,39 @@ public class MeetRestController {
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
-		int row = meetBO.addMeetFavorite(userId, favoriteId);
+		int row = meetBO.addMeetFavorite(userId, favoriteId, favoriteName);
 		
 		if(row < 1) {
 			result.put("result", "error");
 			result.put("errorMessage", "관심사 선택을 다시 시도해 주세요.");
 		}
 			
+		return result;
+		
+	}
+	
+	@PostMapping("/create")
+	public Map<String, Object> MeetCreate(
+			@ModelAttribute Meet meet,
+			HttpServletRequest request ){
+		
+		Map<String,Object> result = new HashMap<>();
+		result.put("result", "success");
+	
+		
+		
+		HttpSession session = request.getSession();
+		String loginId = (String) session.getAttribute("loginId");
+		MeetFavorite meetFavorite = (MeetFavorite) session.getAttribute("meetFavorite");
+		
+	
+		
+		int row = meetBO.addMeet(loginId,meet);
+		
+		if(row < 1) {
+			result.put("result", "error");
+			result.put("errorMessage", "모임 만들기를 다시 시도해 주세요.");
+		}
 		return result;
 		
 	}

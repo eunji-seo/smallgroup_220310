@@ -84,6 +84,7 @@
  	
  	<select id="selectUserFavorites" resultType="com.smallgroup.user.model.UserFavorite">
  		SELECT * FROM USER_FAVORITE
- 		WHERE USERID = #{userId}
+ 		WHERE 
+ 		USERID = #{userId}
  	</select>
  </mapper>

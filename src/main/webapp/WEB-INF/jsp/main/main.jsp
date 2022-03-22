@@ -1,20 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="main">
 	<div class="navbar-collapse">
 		 <ul class="nav d-flex">
+		 	<c:forEach var="uf" items="${userFavorites}">	
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+		        <a class="nav-link" href="#">${uf.favoriteId}</a>
 		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link disabled" href="#">Link</a>
-		      </li>
-		      <li class="nav-item ">
-		        <a class="nav-link disabled" href="#">Link</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link disabled" href="#">Disabled</a>
-		      </li>
+		     </c:forEach>
 	    </ul>
 	    <hr>
 	</div>

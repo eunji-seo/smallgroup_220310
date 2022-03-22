@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smallgroup.common.EncryptUtils;
+import com.smallgroup.meet.bo.MeetBO;
+import com.smallgroup.meet.model.MeetFavorite;
 import com.smallgroup.user.bo.UserBO;
 import com.smallgroup.user.model.User;
 import com.smallgroup.user.model.UserFavorite;
@@ -25,6 +27,10 @@ public class UserRestController {
 
 	@Autowired
 	private UserBO userBO;
+	
+	@Autowired
+	private MeetBO meetBO;
+	
 	
 	@RequestMapping("/is_duplicated_id")
 	public Map<String, Object> isDuplicatedId(
@@ -63,7 +69,7 @@ public class UserRestController {
 			session.setAttribute("name", membersUser.getName());
 		} else {
 			result.put("result", "error");
-			result.put("errorMessage", "로그인을 다시 시도해주세요.");
+			result.put("errorMessage", "회원가입을 다시 시도해주세요.");
 		}
 		return result;
 		
@@ -94,6 +100,10 @@ public class UserRestController {
 			session.setAttribute("name", memberUser.getName());
 			List<UserFavorite> userFavorites = userBO.selectUserFavorites(memberUser.getId());
 			session.setAttribute("userFavorites", userFavorites);
+			MeetFavorite meetFavorite = meetBO.getMeetFavorite();
+			session.setAttribute("meetFavorite", meetFavorite);
+			
+			
 		} else {
 			result.put("result", "error");
 			result.put("errorMessage", "로그인을 다시 시도해주세요.");
@@ -104,7 +114,7 @@ public class UserRestController {
 	
 	
 	
-	@GetMapping("/is_user_favorite")
+	@GetMapping("/user_favorite")
 	public Map<String, Object> isUserFavorite(
 			@RequestParam(required = false, value = "favoriteIds") List<Integer> favoriteIds,
 			HttpServletRequest request){

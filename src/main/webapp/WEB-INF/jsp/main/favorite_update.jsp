@@ -14,7 +14,7 @@
 		<div class="check-box d-flex flex-wrap ">
 			<c:forEach var="favorite" items="${favoriteList}">
 				<div class="form-check">
-					<input type="checkbox" name="checkList" class="form-check-input"value="${favorite.favoriteName}" data-favorite-id="${favorite.id}" id="favor${favorite.id}">
+					<input type="checkbox" name="checkList" class="form-check-input"value="${favorite.id}" data-favorite-id="${favorite.id}" id="favor${favorite.id}">
 					<label for="favor${favorite.id}" class="form-check-label">${favorite.favoriteName}</label>
 				</div>
 			</c:forEach>
@@ -26,6 +26,9 @@
 </div>    
 <script>
 $(document).ready(function(){
+	<c:forEach var="uf" items="${userFavorites}">
+	$('input[value=${uf.favoriteId}]').prop('checked',true);
+	</c:forEach>
 	
 	$('.favoriteBtn').on('click',function(){
 		alert("click");
@@ -50,7 +53,7 @@ $(document).ready(function(){
 	
 		$.ajax({
 			Type:"GET"
-			,url:"/main/is_user_favorite"
+			,url:"/user/user_favorite"
 			,traditional : true
 			,data:{
 				"favoriteIds":favoriteIds
@@ -58,7 +61,7 @@ $(document).ready(function(){
 			,success: function(data){
 				if(data.result == 'success'){
 					alert("관심사 선택이 완료 되었습니다.");
-					location.href="/meet/main_view";
+					location.href="/main/mypage_view";
 				}else{
 					alert(data.errorMessage);		
 				}

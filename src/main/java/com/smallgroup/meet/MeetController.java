@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.smallgroup.meet.bo.MeetBO;
+import com.smallgroup.meet.model.MeetFavorite;
 import com.smallgroup.user.model.Favorite;
 
 @RequestMapping("/meet")
@@ -32,9 +33,12 @@ public class MeetController {
 	public String createView(
 			Model model) {
 		 
-		
+		MeetFavorite favoriteName = meetBO.getMeetFavorite();
+		model.addAttribute("favoriteName", favoriteName.getFavoriteName());
 		model.addAttribute("viewName", "meet/meet_create");
 		return "template/layout";
 	}
+	
+	
 
 }

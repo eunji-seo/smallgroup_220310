@@ -78,3 +78,9 @@ li{text-decoration: none;}
 	background-color: #fff;
 	margin:5px
 }
+/* meet_create */
+
+.meet-content{
+	width:600px;
+	margin: 50px auto;
+}

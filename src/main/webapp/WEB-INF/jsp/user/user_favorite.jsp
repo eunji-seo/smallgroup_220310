@@ -14,7 +14,7 @@
 		<div class="check-box d-flex flex-wrap ">
 			<c:forEach var="favorite" items="${favoriteList}">
 				<div class="form-check">
-					<input type="checkbox" name="checkList" class="form-check-input"value="${favorite.id}" data-favorite-id="${favorite.id}" id="favor${favorite.id}">
+					<input type="checkbox" name="checkList" class="form-check-input"value="${favorite.favoriteName}" data-favorite-id="${favorite.id}" id="favor${favorite.id}">
 					<label for="favor${favorite.id}" class="form-check-label">${favorite.favoriteName}</label>
 				</div>
 			</c:forEach>
@@ -32,7 +32,7 @@ $(document).ready(function(){
 	</c:forEach>
 	
 	$('.favoriteBtn').on('click',function(){
-		alert("click");
+		//alert("click");
 		if($('input:checkbox[name=checkList]:checked').length > 6){
 			alert("6개까지만 선택 가능합니다.");
 			return;
@@ -52,7 +52,7 @@ $(document).ready(function(){
 		console.log(favoriteIds);
 		$.ajax({
 			Type:"GET"
-			,url:"/user/is_user_favorite"
+			,url:"/user/user_favorite"
 			,traditional : true
 			,data:{
 				"favoriteIds":favoriteIds
@@ -60,7 +60,7 @@ $(document).ready(function(){
 			,success: function(data){
 				if(data.result == 'success'){
 					alert("관심사 선택이 완료 되었습니다.");
-					location.href="/meet/main_view";
+					location.href="/main/main_view";
 				}else{
 					alert(data.errorMessage);		
 				}

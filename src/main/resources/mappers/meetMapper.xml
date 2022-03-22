@@ -17,6 +17,7 @@
  		(
  			`userId`
 			,`favoriteId`
+			,`favoriteName`
 			,`createdAt`
 			,`updatedAt`
 			
@@ -25,8 +26,39 @@
  		(
  			#{userId}
  			,#{favoriteId}
+ 			,#{favoriteName}
  			,NOW()
  			,NOW()
  		)
+ 	</insert>
+ 	<select id="selectMeetFavorite" resultType="com.smallgroup.meet.model.MeetFavorite">
+ 		SELECT * FROM meet_favorite
+ 	</select>
+ 	<insert id="insertMeet" parameterType="int">
+	 	INSERT INTO `meet`
+	 	(
+	 		`userId`
+			,`favoriteId`
+			,`meetAddress`
+			,`meetName`
+			,`desc`
+			,`meetImagePath`
+			,`personnel`
+			,`createdAt`
+			,`updatedAt`
+	 			
+	 	)
+	 	VALEUS
+	 	(
+	 		#{userId}
+	 		,#{favoriteId}
+	 		,#{meetAddress}
+	 		,#{meetName}
+	 		,#{desc}
+	 		,#{meetImagePath}
+	 		,#{personnel}
+	 		,NOW()
+	 		,NOW()	 		
+	 	)
  	</insert>
  </mapper>

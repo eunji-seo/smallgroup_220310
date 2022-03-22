@@ -40,15 +40,17 @@ $(document).ready(function(){
 		
 		
 		let favoriteId = $('input:checkbox[name=checkList]:checked').data('favorite-id');
+		let favoriteName = $('input:checkbox[name=checkList]:checked').val();
 
 		
 		// console.log(favoriteId);
 	
 		$.ajax({
 			Type:"GET"
-			,url:"/meet/is_meet_favorite"
+			,url:"/meet/meet_favorite"
 			,data:{
-				"favoriteId":favoriteId
+				"favoriteId":favoriteId,
+				"favoriteName":favoriteName
 			}
 			,success: function(data){
 				if(data.result == 'success'){
