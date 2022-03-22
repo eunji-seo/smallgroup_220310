@@ -61,11 +61,11 @@ public class MeetRestController {
 		
 		HttpSession session = request.getSession();
 		String loginId = (String) session.getAttribute("loginId");
-		MeetFavorite meetFavorite = (MeetFavorite) session.getAttribute("meetFavorite");
+		int meetFavoriteId = (int) session.getAttribute("meetFavoriteId");
 		
 	
 		
-		int row = meetBO.addMeet(loginId,meet);
+		int row = meetBO.addMeet(meetFavoriteId, loginId, meet);
 		
 		if(row < 1) {
 			result.put("result", "error");

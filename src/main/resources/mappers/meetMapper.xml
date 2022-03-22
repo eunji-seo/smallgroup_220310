@@ -34,11 +34,11 @@
  	<select id="selectMeetFavorite" resultType="com.smallgroup.meet.model.MeetFavorite">
  		SELECT * FROM meet_favorite
  	</select>
- 	<insert id="insertMeet" parameterType="int">
+ 	<insert id="insertMeet" parameterType="map">
 	 	INSERT INTO `meet`
 	 	(
 	 		`userId`
-			,`favoriteId`
+			,`meetfavoriteId`
 			,`meetAddress`
 			,`meetName`
 			,`desc`
@@ -51,7 +51,7 @@
 	 	VALEUS
 	 	(
 	 		#{userId}
-	 		,#{favoriteId}
+	 		,#{meetfavoriteId}
 	 		,#{meetAddress}
 	 		,#{meetName}
 	 		,#{desc}

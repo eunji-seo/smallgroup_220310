@@ -103,6 +103,9 @@ public class UserRestController {
 			MeetFavorite meetFavorite = meetBO.getMeetFavorite();
 			session.setAttribute("meetFavorite", meetFavorite);
 			
+			MeetFavorite meetFavoriteId = meetBO.getMeetFavorite();
+			session.setAttribute("meetFavorite", meetFavoriteId.getId());
+			
 			
 		} else {
 			result.put("result", "error");

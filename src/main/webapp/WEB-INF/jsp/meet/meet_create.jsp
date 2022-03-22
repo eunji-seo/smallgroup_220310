@@ -17,12 +17,12 @@
 		</div>
 		<div class="meet-name  d-flex justify-content-around mb-3">
 			
-			<div>${favoriteName}</div>
+			<div id="meetFavoriteId" name="meetFavoriteId" data-MeetFavorite-id="${Id}">${favoriteName}</div>
 			<input type="text" name="meetName" id="meetName" class="form-control col-8" placeholder="모임 이름">
 		</div>
 		<div class="meetDesc write-box border rounded m-3 bg-white">
 			<textarea rows="" cols="" id="desc" name="desc" placeholder="모임 목표를 설명해주세요." class="border-0 w-100 "></textarea>
-			<div class="cleateDsec d-flex justify-content-between ">
+			<div class="cleateDsec d-flex justify-content-between">
 					<div class="file-upload d-flex bg-white">
 				       <input type="file" id="file" class="d-none" accept=".gif, .jpg, .png, .jpeg">
 							<a href="#" id="fileUploadBtn"><img width="35" src="/static/image/camera.png"></a>

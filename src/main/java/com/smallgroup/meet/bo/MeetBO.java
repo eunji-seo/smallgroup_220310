@@ -21,6 +21,7 @@ public class MeetBO {
 	private FileMangerService fileManger;
 	
 	
+	
 	public List<Favorite> getFavoriteById() {
 		return meetDAO.selectFavoriteById();
 	}
@@ -34,10 +35,13 @@ public class MeetBO {
 		return meetDAO.selectMeetFavorite();
 	}
 	
-	public int addMeet(String loginId, Meet meet) {
+	public int addMeet(int meetFavoriteId, String loginId, Meet meet) {
 		
-		String imagePath = fileManger.saveFile(loginId,meet.getFile());
-					meet.setMeetImagePath(imagePath);	
+		String imagePath = null;
+		if( meet.getFile() != null) {
+			imagePath = fileManger.saveFile(loginId,meet.getFile());
+						meet.setMeetImagePath(imagePath);	
+		}
 				
 		return meetDAO.insertMeet(meet);
 	}
