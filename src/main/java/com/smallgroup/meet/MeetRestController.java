@@ -29,9 +29,8 @@ public class MeetRestController {
 	public Map<String, Object> isUserFavorite(
 			@RequestParam("favoriteId") int favoriteId,
 			@RequestParam("favoriteName") String favoriteName,
-			HttpServletRequest request){
+			HttpSession session){
 				
-		HttpSession session = request.getSession();
 		int userId = (int) session.getAttribute("id");
 	
 		
@@ -52,18 +51,20 @@ public class MeetRestController {
 	@PostMapping("/create")
 	public Map<String, Object> MeetCreate(
 			@ModelAttribute Meet meet,
-			HttpServletRequest request ){
+			HttpSession session){
+		int userId = (int) session.getAttribute("id");
+
+		int row = meetBO.addMeetFavorite(userId, meet.getMeetFavoriteId(), "");
 		
 		Map<String,Object> result = new HashMap<>();
 		result.put("result", "success");
-	
 		
-		HttpSession session = request.getSession();
+		
 		String loginId = (String) session.getAttribute("loginId");
 		MeetFavorite meetFavoriteId = (MeetFavorite) session.getAttribute("meetFavorite");
 	
 		
-		int row = meetBO.addMeet(meetFavoriteId.getFavoriteId(), loginId, meet);
+		row = meetBO.addMeet(meet.getMeetFavoriteId(), loginId, meet);
 		
 		if(row < 1) {
 			result.put("result", "error");

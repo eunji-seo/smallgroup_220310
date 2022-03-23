@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="meet-create">
 	<div class="bg-white d-flex align-items-center p-3">
 		<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
@@ -8,6 +9,13 @@
 		</div>
 	</div>
 	<div class="meet-content">
+		<div class="check-box d-flex flex-wrap ">
+			<select id="favorite">
+				<c:forEach var="favorite" items="${favoriteList}">
+					<option value="${favorite.id}">${favorite.favoriteName}</option>
+				</c:forEach>
+			</select>
+		</div>
 		<div class="location d-flex justify-content-around mb-3 ">
 			<div>
 				<img alt="" src="/static/image/location.png" width="30">
@@ -66,10 +74,15 @@ $(document).ready(function(){
 		 $("#fileName").text(name);
 	});
 	$('.createBtn').on('click',function(){
+		if(!$('#file')[0].files.length){
+			alert('모임 사진은 필수입니다.');
+			return;
+		}
 		let meetAddress =  $('#meetAddress').val().trim();
 		let meetName = $('#meetName').val().trim(); 
 		let desc = $('#desc').val().trim();
 		let personnel = $('#personnel').val().trim();
+		let favorite = $('#favorite').val().trim();
 		
 		let formData = new FormData();
 		formData.append("meetAddress",meetAddress)
@@ -77,6 +90,7 @@ $(document).ready(function(){
 		formData.append("desc",desc)
 		formData.append("file",$('#file')[0].files[0])
 		formData.append("personnel",personnel)
+		formData.append('favorite', favorite);
 		
 		$.ajax({
 			type: "POST"

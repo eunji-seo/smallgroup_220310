@@ -30,13 +30,13 @@ public class MeetController {
 		return "template/layout";
 	}
 
-	@RequestMapping("/create_view")
+	@RequestMapping("/meet_create_view")
 	public String createView(
 			Model model) {
 		 
-		MeetFavorite favoriteName = meetBO.getMeetFavorite();
-		model.addAttribute("favoriteName", favoriteName.getFavoriteName());
+//		model.addAttribute("favoriteName", meetBO.getMeetFavorite().getFavoriteName());
 		model.addAttribute("viewName", "meet/meet_create");
+		model.addAttribute("favoriteList", meetBO.getFavoriteById());
 		return "template/layout";
 	}
 	

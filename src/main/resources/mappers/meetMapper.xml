@@ -48,10 +48,10 @@
 			,`updatedAt`
 	 			
 	 	)
-	 	VALEUS
+	 	VALUES
 	 	(
 	 		#{userId}
-	 		,#{meetfavoriteId}
+	 		,#{meetFavoriteId}
 	 		,#{meetAddress}
 	 		,#{meetName}
 	 		,#{desc}

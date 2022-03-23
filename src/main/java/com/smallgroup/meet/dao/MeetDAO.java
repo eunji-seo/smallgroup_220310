@@ -2,7 +2,7 @@ package com.smallgroup.meet.dao;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.smallgroup.meet.model.Meet;
@@ -15,9 +15,9 @@ public interface MeetDAO {
 	public List<Favorite> selectFavoriteById();
 	
 	public int insertMeetFavorite(
-			@Param("userId") int userId, 
+			@Param("userId") int userId,  
 			@Param("favoriteId") int favoriteId,
-			@Param("favoriteName") String favoriteName);
+			@Param("favoriteName") String favoriteName); 
 	
 	
 	public MeetFavorite selectMeetFavorite();

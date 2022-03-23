@@ -12,12 +12,11 @@
 	<div class="text-danger m-5">* 최대 1개만 선택가능합니다.</div>
 	<div class="">
 		<div class="check-box d-flex flex-wrap ">
+			<select name="favorite">
 			<c:forEach var="favorite" items="${favoriteList}">
-				<div class="form-check">
-					<input type="checkbox" name="checkList" id="favor${favorite.id}" class="form-check-input"value="${favorite.favoriteName}" data-favorite-id="${favorite.id}">
-					<label for="favor${favorite.id}" class="form-check-label">${favorite.favoriteName}</label>
-				</div>
+				<option value="${favorite.id}">${favorite.favoriteName}</option>
 			</c:forEach>
+			</select>
 		</div>
 		<div class="d-flex justify-content-end">
 			<button type="button" class="favoriteBtn btn btn-success col-2 mr-5">선택</button>
