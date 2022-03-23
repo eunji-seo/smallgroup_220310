@@ -21,7 +21,6 @@ public class MeetBO {
 	private FileMangerService fileManger;
 	
 	
-	
 	public List<Favorite> getFavoriteById() {
 		return meetDAO.selectFavoriteById();
 	}
@@ -44,5 +43,9 @@ public class MeetBO {
 		}
 				
 		return meetDAO.insertMeet(meet);
+	}
+	
+	public Meet getMeetById() {
+		return meetDAO.selectMeetById();
 	}
 }

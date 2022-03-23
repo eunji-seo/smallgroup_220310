@@ -23,4 +23,6 @@ public interface MeetDAO {
 	public MeetFavorite selectMeetFavorite();
 	
 	public int insertMeet(Meet meet);
+	
+	public Meet selectMeetById();
 }

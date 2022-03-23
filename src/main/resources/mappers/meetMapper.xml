@@ -61,4 +61,8 @@
 	 		,NOW()	 		
 	 	)
  	</insert>
+ 	<select id="selectMeetFavorite" resultType="com.smallgroup.meet.model.MeetFavorite">
+ 		SELECT * FROM meet
+ 	</select>
+ 	
  </mapper>

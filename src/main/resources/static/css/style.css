@@ -84,3 +84,28 @@ li{text-decoration: none;}
 	width:600px;
 	margin: 50px auto;
 }
+
+/* detail */
+
+.meet-info{
+
+	
+}
+
+.meet-desc {
+		background-color: #fff;
+}
+
+.meeting {
+		background-color: #fff;
+		padding: 10px 50px;
+}
+
+/* meeting */
+
+.meeting-list{
+	
+ 	width: 500px;
+ 	margin: auto;
+ 	
+}
