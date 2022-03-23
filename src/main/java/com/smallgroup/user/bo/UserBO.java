@@ -44,7 +44,13 @@ public class UserBO {
 	public int addUserFavorite(int userId ,List<Integer> favoriteIds) {
 		int cnt = 0;
 		for( int favoriteId : favoriteIds ) {
-			cnt += userDAO.insertUserFavorite(userId, favoriteId);
+//			int temp = 0;
+//			if(favoriteId != temp) {
+				
+//				temp = favoriteId;
+				cnt += userDAO.insertUserFavorite(userId, favoriteId);
+				
+//			}
 		}
 		return cnt;
 		

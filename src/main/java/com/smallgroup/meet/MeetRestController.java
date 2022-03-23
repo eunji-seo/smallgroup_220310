@@ -58,19 +58,41 @@ public class MeetRestController {
 		result.put("result", "success");
 	
 		
-		
 		HttpSession session = request.getSession();
 		String loginId = (String) session.getAttribute("loginId");
-		int meetFavoriteId = (int) session.getAttribute("meetFavoriteId");
-		
+		MeetFavorite meetFavoriteId = (MeetFavorite) session.getAttribute("meetFavorite");
 	
 		
-		int row = meetBO.addMeet(meetFavoriteId, loginId, meet);
+		int row = meetBO.addMeet(meetFavoriteId.getFavoriteId(), loginId, meet);
 		
 		if(row < 1) {
 			result.put("result", "error");
 			result.put("errorMessage", "모임 만들기를 다시 시도해 주세요.");
 		}
+		return result;
+		
+	}
+	@PostMapping("/detail")
+	public Map<String, Object> detailJoin(
+			@RequestParam("meetId") int meetId,
+			@RequestParam("leader") String leader,
+			@RequestParam("joinName") String joinName,			
+			HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		int userId = (int) session.getAttribute("id");
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
+		
+		int row = meetBO.addJoin(meetId, userId, leader, joinName);
+		
+		if(row < 1) {
+			result.put("result", "fail");
+			result.put("errorMessage", "모임 가입을 다시 시도하여주세요.");
+			
+		}
+		
 		return result;
 		
 	}

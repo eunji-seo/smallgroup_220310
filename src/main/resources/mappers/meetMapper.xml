@@ -61,8 +61,32 @@
 	 		,NOW()	 		
 	 	)
  	</insert>
- 	<select id="selectMeetFavorite" resultType="com.smallgroup.meet.model.MeetFavorite">
+ 	<select id="selectMeetById" resultType="com.smallgroup.meet.model.Meet">
  		SELECT * FROM meet
  	</select>
- 	
+ 	<select id="selectMeetList" resultType="com.smallgroup.meet.model.Meet">
+ 		SELECT * FROM meet
+ 	</select>
+ 	<insert id="insertJoin" parameterType="map">
+	 	INSERT INTO `meet`
+	 	(
+	 		`meetId`
+			,`userId`
+			,`leader`
+			,`joinName`
+			,`createdAt`
+			,`updatedAt`
+	 			
+	 	)
+	 	VALEUS
+	 	(
+	 		#{meetId}
+	 		,#{userId}
+	 		,#{leader}
+	 		,#{meetName}
+	 		,#{joinName}
+	 		,NOW()
+	 		,NOW()	 		
+	 	)
+ 	</insert>
  </mapper>

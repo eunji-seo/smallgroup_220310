@@ -2,7 +2,7 @@ package com.smallgroup.meet.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.smallgroup.meet.model.Meet;
@@ -25,4 +25,12 @@ public interface MeetDAO {
 	public int insertMeet(Meet meet);
 	
 	public Meet selectMeetById();
+	
+	public List<Meet> selectMeetList();
+	
+	public int insertJoin(
+			@Param("meetId") int meetId, 
+			@Param("userId") int userId, 
+			@Param("leader") String leader, 
+			@Param("joinName") String joinName);
 }

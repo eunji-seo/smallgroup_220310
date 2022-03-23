@@ -86,5 +86,8 @@
  		SELECT * FROM USER_FAVORITE
  		WHERE 
  		USERID = #{userId}
+ 		<!-- <if test="favoriteId != favoriteId">
+ 		AND favoriteId = #{favoriteId}
+ 		</if> -->
  	</select>
  </mapper>

@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.smallgroup.main.bo.MainBO;
+import com.smallgroup.meet.bo.MeetBO;
+import com.smallgroup.meet.model.Meet;
 import com.smallgroup.user.bo.UserBO;
 import com.smallgroup.user.model.Favorite;
 import com.smallgroup.user.model.User;
@@ -23,6 +25,20 @@ public class MainController {
 	
 	@Autowired
 	private UserBO userBO;
+	
+	@Autowired
+	private MeetBO meetBO;
+	
+	@RequestMapping("/main_view")
+	public String mainView(
+			Model model
+			) {
+		
+		List<Meet> meet = meetBO.getMeetList();
+		model.addAttribute("meet", meet);
+		model.addAttribute("viewName", "main/main");
+		return "template/layout";
+	}
 	
 	@RequestMapping("/member_update_view")
 	public String memberCreateView(

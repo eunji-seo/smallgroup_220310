@@ -101,11 +101,7 @@ public class UserRestController {
 			List<UserFavorite> userFavorites = userBO.selectUserFavorites(memberUser.getId());
 			session.setAttribute("userFavorites", userFavorites);
 			MeetFavorite meetFavorite = meetBO.getMeetFavorite();
-			session.setAttribute("meetFavorite", meetFavorite);
-			
-			MeetFavorite meetFavoriteId = meetBO.getMeetFavorite();
-			session.setAttribute("meetFavorite", meetFavoriteId.getId());
-			
+			session.setAttribute("meetFavorite", meetFavorite);			
 			
 		} else {
 			result.put("result", "error");

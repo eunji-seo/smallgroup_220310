@@ -48,4 +48,11 @@ public class MeetBO {
 	public Meet getMeetById() {
 		return meetDAO.selectMeetById();
 	}
+	public List<Meet> getMeetList() {
+		return meetDAO.selectMeetList();
+	}
+	
+	public int addJoin(int meetId, int userId, String leader, String joinName) {
+		return meetDAO.insertJoin(meetId, userId, leader, joinName);
+	}
 }

@@ -5,7 +5,7 @@
 	<div class="bg-white d-flex align-items-center p-3">
 			<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
 			<div class="d-flex justify-content-center">
-				<h3 class="favorite-subject">제목</h3>
+				<h3 class="favorite-subject">${meet.meetName}</h3>
 			</div>
 	</div>
 	<nav class="navbar-collapse">
@@ -25,7 +25,7 @@
 		<div class="meet-descAndBtn">
 			<div class="meet-desc p-3 mt-2">
 				<img alt="" src="/static/image/no-photo.png" width="350">
-				<p></p>
+				<p>${meet.desc}</p>
 			</div>
 			<div class="meet-join mt-3">
 				<a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModal" data-meet-id="${meet.id}"> 
@@ -74,10 +74,11 @@
       	<%-- modal 창 안에 내용 넣기 --%>
       	
       <div class="m-3">
-      		<span>가입 하시겠습니까?</span>
+      		<span class="mb-2">가입 하시겠습니까?</span>
+      		<input type="text" class="form-control" id="joinName" name="joinName" placeholder="성함을 입력해주세요.">
 	      	<div class="d-flex justify-content-center align-items-center">
 		      	<div class="border-right pr-3 text-center">
-		      			<a href="#" class="cancel d-block" data-dismiss="modal">취소</a>
+		      			<a href="#" class="cancel d-block text-secondary" data-dismiss="modal">취소</a>
 		      		</div>
 	      		<div class="my-3 ml-3 text-center">
 	      			<a href="#" class="del-post d-block" >확인</a>
@@ -92,7 +93,10 @@
 $('#moreModal .del-post').on('click', function(e){
 	e.preventDefault();
 	
-	let meetId = $('#moreModal').data('meet-id'); // get 꺼내서 사용할수 있게 된다
+	let meetId = $('#moreModal').data('meet-id'); 
+	let joinName = $('#joinName').val().trim(); 
+	
+	//let favoriteId = $('#moreModal').data('favorite-id'); 
 	//alert(postId);
 	
 	// 삭제 AJAX DELETE
@@ -100,7 +104,11 @@ $('#moreModal .del-post').on('click', function(e){
 	$.ajax({
 		type:"POST"
 		,url:"/meet/detail"
-		,data:{"meetId": meetId}
+		,data:{
+			"meetId": meetId,
+			"joinName": joinName			
+	//		,"favoriteId": favoriteId			
+		}
 		,success: function(data){
 			if(data.result == 'success'){
 				alert("가입이 완료 되었습니다.");
@@ -112,7 +120,7 @@ $('#moreModal .del-post').on('click', function(e){
 		
 		}
 		,error: function(e){
-			alert("삭제가 실패되었습니다. 관리자에 문의해주세요.");
+			alert("가입이 실패하였습니다. 관리자에 문의해주세요.");
 		}
 		
 		
