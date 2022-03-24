@@ -25,8 +25,8 @@ public class MeetBO {
 		return meetDAO.selectFavoriteById();
 	}
 	
-	public int addMeetFavorite(int userId ,int favoriteIds ,String favoriteName) {
-			return 	meetDAO.insertMeetFavorite(userId, favoriteIds, favoriteName);
+	public int addMeetFavorite(int userId ,int favoriteIds) {
+			return 	meetDAO.insertMeetFavorite(userId, favoriteIds);
 		
 	}
 	
@@ -34,7 +34,7 @@ public class MeetBO {
 		return meetDAO.selectMeetFavorite();
 	}
 	
-	public int addMeet(int meetFavoriteId, String loginId, Meet meet) {
+	public int addMeet(String loginId, Meet meet) {
 		
 		String imagePath = null;
 		if( meet.getFile() != null) {

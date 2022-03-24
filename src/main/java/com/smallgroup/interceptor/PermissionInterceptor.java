@@ -34,7 +34,7 @@ public class PermissionInterceptor implements HandlerInterceptor{
 		// URI 확인 (url path를 가져온다.)
 		String uri = request.getRequestURI();
 		System.out.println(userId);
-		if(userId ==null && !uri.startsWith("/user/join") && !uri.startsWith("/user/login")) {
+		if(userId ==null && !uri.startsWith("/user/join") && !uri.startsWith("/user/login")&& !uri.startsWith("/user/is_duplicated_id")) {
 			response.sendRedirect("/user/login_view");
 			return false;
 		}else if(userId != null && uri.startsWith("/user")) {

@@ -21,9 +21,11 @@ public class UserBO {
 	@Autowired
 	private MainDAO mainDAO;
 
+	
 	public boolean getDuplicatedId(String loginId) {
 		return userDAO.selectDuplicatedId(loginId);
 	}
+	
 
 	public User addJoin(String loginId, String password,  String name,String birth,String address, String email) {
 		if(userDAO.insertJoin(loginId, password, name, birth, address, email) == 1) {

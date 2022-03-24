@@ -12,14 +12,14 @@
 	    </ul>
 	    <hr>
 	</div>
-	<div class="list d-flex flex-wrap justify-content-center">
+	<div class="list ">
 		
-		<div class="meet-box">
+		<div class="d-flex flex-wrap justify-content-center">
 			<c:forEach var="meet" items="${meet}">
-				<a href="../meet/meet_view">
-					<div class="d-flex">
+				<a onclick="meetDetail()" href="#" id="#meetDetail" data-meet-id="${meet.id}">
+					<div class="meet-box d-flex">
 						<div class="img-area">
-							<img src="https://cdn.pixabay.com/photo/2020/12/14/15/44/man-5831234__340.jpg" width="100">
+							<img src="${meet.meetImagePath}" width="100">
 						</div>			
 						<div class="">
 							<div class="d-flex">
@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class=" d-flex justify-content-end">
-		<a href="../meet/favorite_view">
+		<a href="../meet/meet_create_view">
 			<img alt="" src="/static/image/meet_plus.png" width="100">
 		</a>
 	</div>
@@ -51,5 +51,22 @@
 	</div>
 </div>
 <script>
-
+function meetDetail(){
+	var meetId = $('#meetDetail').data('meet-id');
+	
+	$.post({
+		url:"/meet/detail"
+		,data:{
+			"meetId":meetId
+		}
+		,success: function(data){
+			console.log(data);
+			location.href="/meet/detail_view"
+		}
+		,error:function(e){
+			alert(err);
+		}
+	});
+	
+};
 </script>

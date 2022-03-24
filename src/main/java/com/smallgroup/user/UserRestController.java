@@ -31,7 +31,10 @@ public class UserRestController {
 	@Autowired
 	private MeetBO meetBO;
 	
-	
+
+	/*
+	 * 
+	 */
 	@RequestMapping("/is_duplicated_id")
 	public Map<String, Object> isDuplicatedId(
 			@RequestParam("loginId") String loginId
@@ -45,37 +48,7 @@ public class UserRestController {
 		return result;
 	}
 	
-	@PostMapping("/join")
-	public Map<String, Object> join(
-			@RequestParam("loginId") String loginId,
-			@RequestParam("password") String password,
-			@RequestParam("name") String name,
-			@RequestParam("birth") String birth,
-			@RequestParam("address") String address,
-			@RequestParam("email") String email,   //@Valid
-			HttpServletRequest request){
-		
-		String encryptPassword = EncryptUtils.md5(password);
-		
-		Map<String, Object> result = new HashMap<>();
-		result.put("result", "success");
-		
-		User membersUser  = userBO.addJoin(loginId, encryptPassword, name, birth, address, email);
-		
-		if(membersUser != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("loginId", membersUser.getLoginId());
-			session.setAttribute("id", membersUser.getId());
-			session.setAttribute("name", membersUser.getName());
-		} else {
-			result.put("result", "error");
-			result.put("errorMessage", "회원가입을 다시 시도해주세요.");
-		}
-		return result;
-		
-	}
 	
-
 	@PostMapping("/login")
 	public Map<String, Object> login(
 			@RequestParam("loginId") String loginId,			
@@ -111,7 +84,44 @@ public class UserRestController {
 		return result;
 	}
 	
+	/*
+	 * 
+	 */
+	@PostMapping("/join")
+	public Map<String, Object> join(
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password,
+			@RequestParam("name") String name,
+			@RequestParam("birth") String birth,
+			@RequestParam("address") String address,
+			@RequestParam("email") String email,   //@Valid
+			HttpServletRequest request){
+		
+		String encryptPassword = EncryptUtils.md5(password);
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
+		
+		User membersUser  = userBO.addJoin(loginId, encryptPassword, name, birth, address, email);
+		
+		if(membersUser != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("loginId", membersUser.getLoginId());
+			session.setAttribute("id", membersUser.getId());
+			session.setAttribute("name", membersUser.getName());
+			List<UserFavorite> userFavorites = userBO.selectUserFavorites(membersUser.getId());
+			session.setAttribute("userFavorites", userFavorites);
+		} else {
+			result.put("result", "error");
+			result.put("errorMessage", "회원가입을 다시 시도해주세요.");
+		}
+		return result;
+		
+	}
 	
+	/*
+	 * 
+	 */
 	
 	@GetMapping("/user_favorite")
 	public Map<String, Object> isUserFavorite(
@@ -125,7 +135,7 @@ public class UserRestController {
 		int userId = (int) session.getAttribute("id");
 		
 		Map<String, Object> result = new HashMap<>();
-		result.put("result", "success");
+		
 		
 		int row = userBO.addUserFavorite(userId, favoriteIds);
 		
@@ -133,7 +143,7 @@ public class UserRestController {
 			result.put("result", "error");
 			result.put("errorMessage", "관심사 선택을 다시 시도해 주세요.");
 		}
-			
+		result.put("result", "success");
 		return result;
 		
 	}

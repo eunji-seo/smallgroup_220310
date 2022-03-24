@@ -11,7 +11,7 @@
 			,`updatedAt`
  		FROM
  			`favorite`
- 	</select>
+ 	</select><!-- 
  	<insert id="insertMeetFavorite" parameterType="map">
  		INSERT INTO `meet_favorite`
  		(
@@ -30,7 +30,7 @@
  			,NOW()
  			,NOW()
  		)
- 	</insert>
+ 	</insert> -->
  	<select id="selectMeetFavorite" resultType="com.smallgroup.meet.model.MeetFavorite">
  		SELECT * FROM meet_favorite
  	</select>

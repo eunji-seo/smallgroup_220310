@@ -9,13 +9,6 @@
 		</div>
 	</div>
 	<div class="meet-content">
-		<div class="check-box d-flex flex-wrap ">
-			<select id="favorite">
-				<c:forEach var="favorite" items="${favoriteList}">
-					<option value="${favorite.id}">${favorite.favoriteName}</option>
-				</c:forEach>
-			</select>
-		</div>
 		<div class="location d-flex justify-content-around mb-3 ">
 			<div>
 				<img alt="" src="/static/image/location.png" width="30">
@@ -24,8 +17,14 @@
 			<input type="text" name="meetAddress" id="meetAddress" class="form-control col-6" placeholder="주소">
 		</div>
 		<div class="meet-name  d-flex justify-content-around mb-3">
-			
-			<div id="meetFavoriteId" name="meetFavoriteId" data-MeetFavorite-id="${Id}">${favoriteName}</div>
+			<div class="check-box d-flex flex-wrap ">
+			<select id="favorite" class="form-control">
+					<option value="${favorite.id}">-관심사 선택-</option>
+				<c:forEach var="favorite" items="${favoriteList}">
+					<option value="${favorite.id}">${favorite.favoriteName}</option>
+				</c:forEach>
+			</select>
+			</div>
 			<input type="text" name="meetName" id="meetName" class="form-control col-8" placeholder="모임 이름">
 		</div>
 		<div class="meetDesc write-box border rounded m-3 bg-white">
@@ -102,7 +101,7 @@ $(document).ready(function(){
 			//---request
 			, success: function(data){ //response
 				if(data.result == 'success'){
-					alert("모집 등록하였습니다.");
+					alert("모임을 등록하였습니다.");
 					location.href="/main/main_view";
 				}else{
 					alert(data.errorMessage);
@@ -110,7 +109,7 @@ $(document).ready(function(){
 				
 			}
 			, error: function(e) {
-				alert("게시글이 저장에 실패했습니다. 관리자에게 문의해주세요.");
+				alert("모임등록에 실패했습니다. 관리자에게 문의해주세요.");
 			}
 		});
 	});

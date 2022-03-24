@@ -16,8 +16,7 @@ public interface MeetDAO {
 	
 	public int insertMeetFavorite(
 			@Param("userId") int userId,  
-			@Param("favoriteId") int favoriteId,
-			@Param("favoriteName") String favoriteName); 
+			@Param("favoriteId") int favoriteId); 
 	
 	
 	public MeetFavorite selectMeetFavorite();
