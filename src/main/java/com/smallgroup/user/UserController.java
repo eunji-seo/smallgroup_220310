@@ -30,7 +30,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("log_out")
+	@RequestMapping("/log_out")
 	public String logOut(
 			HttpServletRequest request) {
 		
