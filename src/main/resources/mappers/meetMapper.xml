@@ -11,28 +11,6 @@
 			,`updatedAt`
  		FROM
  			`favorite`
- 	</select><!-- 
- 	<insert id="insertMeetFavorite" parameterType="map">
- 		INSERT INTO `meet_favorite`
- 		(
- 			`userId`
-			,`favoriteId`
-			,`favoriteName`
-			,`createdAt`
-			,`updatedAt`
-			
- 		)
- 		VALUES
- 		(
- 			#{userId}
- 			,#{favoriteId}
- 			,#{favoriteName}
- 			,NOW()
- 			,NOW()
- 		)
- 	</insert> -->
- 	<select id="selectMeetFavorite" resultType="com.smallgroup.meet.model.MeetFavorite">
- 		SELECT * FROM meet_favorite
  	</select>
  	<insert id="insertMeet" parameterType="map">
 	 	INSERT INTO `meet`
@@ -65,6 +43,9 @@
  		SELECT * FROM meet
  		WHERE
  			id = #{meetId}
+ 	</select>
+ 	<select id="selectMeetId" resultType="com.smallgroup.meet.model.Meet">
+ 		SELECT id FROM meet
  	</select>
  	<select id="selectMeetList" resultType="com.smallgroup.meet.model.Meet">
  		SELECT * FROM meet

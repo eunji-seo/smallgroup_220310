@@ -51,4 +51,16 @@ public class MeetController {
 		model.addAttribute("meet", meet);
 		return "template/layout";
 	}
+	
+	@RequestMapping("/meeting_view")
+	public String meetingView(
+			@RequestParam("meetId") int meetId,
+			Model model) {
+		 
+		Meet meets = meetBO.getMeetById(meetId);
+		model.addAttribute("viewName", "meet/meeting");
+		model.addAttribute("meet", meets);
+		return "template/layout";
+	}
+	
 }

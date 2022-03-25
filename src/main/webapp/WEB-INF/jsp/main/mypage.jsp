@@ -41,6 +41,7 @@
 		</div>
 		<a href="/main/favorite_update_view" class="btn btn-success text-white">수정</a>
 	</div>
+	<div> 
 	<div class="meet-join-list">
 	<h3>내가 가입한 모임</h3>
 		<div class="list d-flex flex-wrap justify-content-center">
@@ -67,5 +68,33 @@
 				</a>
 			</div>
 		</div>	
+	</div>
+	<div class="meet-create-list">
+	<h3>내가 등록한 모임</h3>
+		<div class="list d-flex flex-wrap justify-content-center">
+			<div class="meet-box">
+				<a href="#">
+					<div class="d-flex">
+						<div class="img-area">
+							<img src="https://cdn.pixabay.com/photo/2020/12/14/15/44/man-5831234__340.jpg" width="100">
+						</div>			
+						<div class="">
+							<div class="d-flex">
+								<div class="gu">강북구</div>
+								<div>
+									<h5>걷기모임</h5>
+								</div>
+							</div>	
+							<p>걸어서 하늘까지</p>
+							<div class="d-flex">
+								<img src="/static/image/person.png" width="25">
+								<div>65</div>
+							</div>	
+						</div>		
+					</div>
+				</a>
+			</div>
+		</div>	
+	</div>
 	</div>
 </div>

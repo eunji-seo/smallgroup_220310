@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.smallgroup.common.FileMangerService;
 import com.smallgroup.meet.dao.MeetDAO;
 import com.smallgroup.meet.model.Meet;
-import com.smallgroup.meet.model.MeetFavorite;
 import com.smallgroup.user.model.Favorite;
 
 @Service
@@ -30,9 +29,6 @@ public class MeetBO {
 		
 	}
 	
-	public MeetFavorite getMeetFavorite(){
-		return meetDAO.selectMeetFavorite();
-	}
 	
 	public int addMeet(String loginId, Meet meet) {
 		
@@ -48,6 +44,11 @@ public class MeetBO {
 	public Meet getMeetById(int meetId) {
 		return meetDAO.selectMeetById(meetId);
 	}
+	public Meet getMeetId() {
+		return meetDAO.selectMeetId();
+	}
+	
+	
 	public List<Meet> getMeetList() {
 		return meetDAO.selectMeetList();
 	}

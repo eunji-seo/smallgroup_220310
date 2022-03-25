@@ -83,11 +83,12 @@
  	</insert>
  	
  	<select id="selectUserFavorites" resultType="com.smallgroup.user.model.UserFavorite">
- 		SELECT * FROM USER_FAVORITE
+ 		SELECT * 
+ 		FROM FAVORITE
+ 		JOIN USER_FAVORITE
+ 		ON FAVORITE.id = USER_FAVORITE.favoriteId
  		WHERE 
  		USERID = #{userId}
- 		<!-- <if test="favoriteId != favoriteId">
- 		AND favoriteId = #{favoriteId}
- 		</if> -->
+ 		
  	</select>
  </mapper>

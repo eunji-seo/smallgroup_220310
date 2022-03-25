@@ -14,7 +14,7 @@
 				<img alt="" src="/static/image/location.png" width="30">
 				<span>지역</span>
 			</div>
-			<input type="text" name="meetAddress" id="meetAddress" class="form-control col-6" placeholder="주소">
+			<input type="text" name="meetAddress" id="meetAddress" class="form-control col-6" placeholder="행정구(ex 강북구)">
 		</div>
 		<div class="meet-name  d-flex justify-content-around mb-3">
 			<div class="check-box d-flex flex-wrap ">
@@ -73,10 +73,7 @@ $(document).ready(function(){
 		 $("#fileName").text(name);
 	});
 	$('.createBtn').on('click',function(){
-		if(!$('#file')[0].files.length){
-			alert('모임 사진은 필수입니다.');
-			return;
-		}
+	
 		let meetAddress =  $('#meetAddress').val().trim();
 		let meetName = $('#meetName').val().trim(); 
 		let desc = $('#desc').val().trim();
@@ -87,10 +84,12 @@ $(document).ready(function(){
 		formData.append("meetAddress",meetAddress)
 		formData.append("meetName",meetName)
 		formData.append("desc",desc)
-		formData.append("file",$('#file')[0].files[0])
 		formData.append("personnel",personnel)
 		formData.append('favorite', favorite);
 		
+		if( $('#file')[0].files[0]){
+			formData.append("file",$('#file')[0].files[0])
+         }
 		$.ajax({
 			type: "POST"
 			, url: "/meet/create"

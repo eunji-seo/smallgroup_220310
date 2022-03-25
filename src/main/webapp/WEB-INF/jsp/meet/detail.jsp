@@ -22,8 +22,12 @@
 	    </ul>
 	</nav>
 	<div class="meet-info d-flex justify-content-around">
-		<div class="meet-descAndBtn mr-3">
+		<div class="meet-descAndBtn">
 			<div class="meet-desc p-3 mt-2">
+				<c:if test="${empty meet.meetImagePath}">
+					<img alt="" src="/static/image/no-photo.png" width="350">
+				</c:if>
+			
 				<img alt="" src="${meet.meetImagePath}" width="350">
 				<p>${meet.desc}</p>
 			</div>
@@ -52,10 +56,14 @@
 			 			<img alt="" src="/static/image/won.png" width="30">
 						<span>1/N</span>	
 			 		</div>
+			 		<div class="mb-2">
+			 			<img alt="" src="/static/image/person.png" width="30">
+						<span>인원</span>	
+			 		</div>
 			 	</div>
 			</div>
 			<div class="meeting- mb-3">
-				<a href="../meet/meeting_view"class="btn btn-secondary w-100">+정모 등록 하기</a>
+				<a href="../meet/meeting_view?meetId=${meet.id}"class="btn btn-secondary w-100">+정모 등록 하기</a>
 			</div>
 			<div class="member-list">
 				<ul>
