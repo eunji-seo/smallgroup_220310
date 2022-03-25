@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smallgroup.meet.bo.MeetBO;
 import com.smallgroup.meet.model.Meet;
-import com.smallgroup.meet.model.MeetFavorite;
 import com.smallgroup.user.model.Favorite;
 
 @RequestMapping("/meet")
@@ -43,9 +43,10 @@ public class MeetController {
 	
 	@RequestMapping("/meet_view")
 	public String meetDetail(
+			@RequestParam("meetId") int meetId,
 			Model model) {
 		 
-		Meet meet = meetBO.getMeetById();
+		Meet meet = meetBO.getMeetById(meetId);
 		model.addAttribute("viewName", "meet/detail");
 		model.addAttribute("meet", meet);
 		return "template/layout";

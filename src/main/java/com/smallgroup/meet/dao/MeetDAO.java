@@ -23,7 +23,7 @@ public interface MeetDAO {
 	
 	public int insertMeet(Meet meet);
 	
-	public Meet selectMeetById();
+	public Meet selectMeetById(int meetId);
 	
 	public List<Meet> selectMeetList();
 	

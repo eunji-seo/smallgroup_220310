@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +40,7 @@ public class MainRestController {
 		Map<String, Object> result = new HashMap<>();
 		int row = mainBO.memberUpdate(id, loginId, password, name, birth, address, email);
 		result.put("result", "success");
-		
+	
 		if(row < 1) {
 			result.put("result", "error");
 			result.put("errorMessage", "회원수정을 다시 시도해주세요.");
@@ -47,6 +49,7 @@ public class MainRestController {
 		return result;
 		
 	}
+	
 	
 	
 }

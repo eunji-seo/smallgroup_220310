@@ -22,9 +22,9 @@
 	    </ul>
 	</nav>
 	<div class="meet-info d-flex justify-content-around">
-		<div class="meet-descAndBtn">
+		<div class="meet-descAndBtn mr-3">
 			<div class="meet-desc p-3 mt-2">
-				<img alt="" src="/static/image/no-photo.png" width="350">
+				<img alt="" src="${meet.meetImagePath}" width="350">
 				<p>${meet.desc}</p>
 			</div>
 			<div class="meet-join mt-3">

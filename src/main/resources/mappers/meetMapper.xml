@@ -63,6 +63,8 @@
  	</insert>
  	<select id="selectMeetById" resultType="com.smallgroup.meet.model.Meet">
  		SELECT * FROM meet
+ 		WHERE
+ 			id = #{meetId}
  	</select>
  	<select id="selectMeetList" resultType="com.smallgroup.meet.model.Meet">
  		SELECT * FROM meet

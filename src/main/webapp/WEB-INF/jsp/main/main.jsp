@@ -16,7 +16,7 @@
 		
 		<div class="d-flex flex-wrap justify-content-center">
 			<c:forEach var="meet" items="${meet}">
-				<a onclick="meetDetail()" href="#" id="#meetDetail" data-meet-id="${meet.id}">
+				<a href="../meet/meet_view?meetId=${meet.id}" data-meet-id="${meet.id}">
 					<div class="meet-box d-flex">
 						<div class="img-area">
 							<img src="${meet.meetImagePath}" width="100">
@@ -51,22 +51,5 @@
 	</div>
 </div>
 <script>
-function meetDetail(){
-	var meetId = $('#meetDetail').data('meet-id');
-	
-	$.post({
-		url:"/meet/detail"
-		,data:{
-			"meetId":meetId
-		}
-		,success: function(data){
-			console.log(data);
-			location.href="/meet/detail_view"
-		}
-		,error:function(e){
-			alert(err);
-		}
-	});
-	
-};
+
 </script>
