@@ -19,10 +19,15 @@ public class MeetController {
 	@Autowired
 	private MeetBO meetBO;
 	
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
+	
 	@RequestMapping("/favorite_view")
 	public String favoriteView(
 			Model model) {
-		 
 		
 		List<Favorite> favoriteList = meetBO.getFavoriteById();
 		model.addAttribute("viewName", "meet/favorite");
@@ -30,6 +35,11 @@ public class MeetController {
 		return "template/layout";
 	}
 
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/meet_create_view")
 	public String createView(
 			Model model) {
@@ -40,7 +50,12 @@ public class MeetController {
 		return "template/layout";
 	}
 	
-	
+	/**
+	 * 
+	 * @param meetId
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/meet_view")
 	public String meetDetail(
 			@RequestParam("meetId") int meetId,
@@ -51,16 +66,34 @@ public class MeetController {
 		model.addAttribute("meet", meet);
 		return "template/layout";
 	}
-	
+	/**
+	 * 
+	 * @param meetId
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/meeting_view")
 	public String meetingView(
 			@RequestParam("meetId") int meetId,
 			Model model) {
 		 
+		
 		Meet meets = meetBO.getMeetById(meetId);
 		model.addAttribute("viewName", "meet/meeting");
 		model.addAttribute("meet", meets);
 		return "template/layout";
 	}
+	@RequestMapping("/post_view")
+	public String postView(
+			@RequestParam("meetId") int meetId,
+			Model model) {
+		
+		
+		Meet meets = meetBO.getMeetById(meetId);
+		model.addAttribute("viewName", "meet/meeting");
+		model.addAttribute("meet", meets);
+		return "template/layout";
+	}
+	
 	
 }

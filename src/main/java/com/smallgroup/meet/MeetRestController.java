@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.smallgroup.meet.bo.MeetBO;
 import com.smallgroup.meet.model.Meet;
-import com.smallgroup.meet.model.MeetFavorite;
+import com.smallgroup.meet.model.Meeting;
 @RequestMapping("/meet")
 @RestController
 public class MeetRestController {
@@ -72,6 +71,27 @@ public class MeetRestController {
 			
 		}
 		
+		return result;
+		
+	}
+	
+	@PostMapping("/meeting")
+	public Map<String, Object> meeting(
+			@ModelAttribute Meeting meeting,
+			HttpSession session){
+		
+		int userId = (int) session.getAttribute("id");
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
+		meeting.setUserId(userId);
+		
+		int row = meetBO.addMeeting(meeting);
+		
+		if(row < 1) {
+			result.put("result", "error");
+			result.put("errorMessage", "모임등록을 다시 시도해주세요.");
+		}
 		return result;
 		
 	}

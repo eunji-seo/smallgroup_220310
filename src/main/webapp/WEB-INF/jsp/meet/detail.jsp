@@ -32,7 +32,7 @@
 				<p>${meet.desc}</p>
 			</div>
 			<div class="meet-join mt-3">
-				<a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModal" data-meet-id="${meet.id}"> 
+				<a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModalJoin" data-meet-id="${meet.id}"> 
 					가입하기
 				</a>
 			</div>
@@ -61,11 +61,29 @@
 						<span>인원</span>	
 			 		</div>
 			 	</div>
+			 	<div>
+			 		<a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModalAttend" data-meet-id="${meet.id}"> 
+			 			<button type="button" class="btn btn-success">참석</button>
+			 		</a>
+			 	</div>
 			</div>
 			<div class="meeting- mb-3">
 				<a href="../meet/meeting_view?meetId=${meet.id}"class="btn btn-secondary w-100">+정모 등록 하기</a>
 			</div>
+			<div class="attend-list">
+				<div class="d-flex justify-content-between">
+					<h5>참석자 리스트</h5>
+					<a href="#"><img alt="" src="/static/image/more_person.png" width="20" height="20"></a>
+				</div>
+				<ul>
+					<li></li>
+				</ul>
+			</div>
 			<div class="member-list">
+				<div class="d-flex justify-content-between">
+					<h5>멤버 리스트</h5>
+					<a href="#"><img alt="" src="/static/image/more_person.png" width="20" height="20"></a>
+				</div>
 				<ul>
 					<li></li>
 				</ul>
@@ -75,8 +93,8 @@
 	
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="moreModal">
+<!-- 가입하기 Modal -->
+<div class="modal fade" id="moreModalJoin">
   <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
     <div class="modal-content">
       	<%-- modal 창 안에 내용 넣기 --%>
@@ -89,7 +107,30 @@
 		      			<a href="#" class="cancel d-block text-secondary" data-dismiss="modal">취소</a>
 		      		</div>
 	      		<div class="my-3 ml-3 text-center">
-	      			<a href="#" class="del-post d-block" >확인</a>
+	      			<a href="#" class="meet-join d-block" >확인</a>
+	      		</div>
+	      		
+	      	</div>
+      	</div>
+    </div>
+  </div>
+</div>
+
+<!-- 참석 Modal -->
+<div class="modal fade" id="moreModalAttend">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content">
+      	<%-- modal 창 안에 내용 넣기 --%>
+      	
+      <div class="m-3">
+      		<span class="mb-2">참석 하시겠습니까?</span>
+      		<input type="text" class="form-control" id="attendName" name="attendName" placeholder="참석할 성함을 입력해주세요.">
+	      	<div class="d-flex justify-content-center align-items-center">
+		      	<div class="border-right pr-3 text-center">
+		      			<a href="#" class="cancel d-block text-secondary" data-dismiss="modal">취소</a>
+		      		</div>
+	      		<div class="my-3 ml-3 text-center">
+	      			<a href="#" class="attend-name d-block" >참석</a>
 	      		</div>
 	      		
 	      	</div>
@@ -98,6 +139,8 @@
   </div>
 </div>
 <script>
+
+
 $('#moreModal .del-post').on('click', function(e){
 	e.preventDefault();
 	

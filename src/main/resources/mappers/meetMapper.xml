@@ -44,9 +44,6 @@
  		WHERE
  			id = #{meetId}
  	</select>
- 	<select id="selectMeetId" resultType="com.smallgroup.meet.model.Meet">
- 		SELECT id FROM meet
- 	</select>
  	<select id="selectMeetList" resultType="com.smallgroup.meet.model.Meet">
  		SELECT * FROM meet
  	</select>
@@ -61,13 +58,41 @@
 			,`updatedAt`
 	 			
 	 	)
-	 	VALEUS
+	 	VALUES
 	 	(
 	 		#{meetId}
 	 		,#{userId}
 	 		,#{leader}
 	 		,#{meetName}
 	 		,#{joinName}
+	 		,NOW()
+	 		,NOW()	 		
+	 	)
+ 	</insert>
+ 		<insert id="insertMeeting">
+	 	INSERT INTO `meeting`
+	 	(
+	 		
+	 		`userId`
+	 		,`meetId`
+			,`meetingName`
+			,`meetingDay`
+			,`Place`
+			,`Cost`
+			,`Personnel`
+			,`createdAt`
+			,`updatedAt`
+	 			
+	 	)
+	 	VALUES
+	 	(
+	 		#{userId}
+	 		,#{meetId}
+	 		,#{meetingName}
+	 		,#{meetingDay}
+	 		,#{Place}
+	 		,#{Cost}
+	 		,#{Personnel}
 	 		,NOW()
 	 		,NOW()	 		
 	 	)

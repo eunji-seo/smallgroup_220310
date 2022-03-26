@@ -37,6 +37,7 @@
 			<input type="text" id="Personnel" name="Personnel" class="form-control col-3" placeholder="정원 10">
 		</div>
 			<div id="isCheckPersonnel" class="small text-danger d-none">인원을 입력 해주세요.</div>
+			<div id="isCheckPersonnelLength" class="small text-danger d-none">인원을 1~10명만 가능합니다.</div>
 		<div>
 		 <button type="button" class="createBtn btn btn-primary w-100" >정모 만들기</button>
 		</div>
@@ -105,13 +106,13 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		if(Personnel.length < 0 || Personnel.length > 10 ){
+		if(Personnel.length <= 0 || Personnel.length > 10 ){
 			$('#isCheckPersonnelLength').removeClass('d-none');
 			$('#Personnel').addClass('is-invalid');
 			return false;
 		}
 		
-		/* $.ajax({
+		 $.ajax({
 			type:"POST"
 			,url:"/meet/meeting"
 			,data:{
@@ -122,8 +123,21 @@ $(document).ready(function(){
 				,"Cost":Cost
 				,"Personnel":Personnel
 			}
+		 	,success: function(data){
+		 		if(data.result == 'success'){
+		 			alert("정모가 등록되었습니다.");
+		 			location.href="/meet/meet_view?meetId=" + meet.id;
+		 			
+		 		}else{
+		 			alert(data.errorMessage);
+		 		}
+		 	}
+		 	,error: function(e){
+		 		alert("정모등록에 실패하였습니다. 관리자에 문의해주세요.");
+		 	}
+		 	
 			
-		}); */
+		}); 
 	});
 	
 	
