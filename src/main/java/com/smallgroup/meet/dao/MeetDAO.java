@@ -34,4 +34,6 @@ public interface MeetDAO {
 			@Param("joinName") String joinName);
 	
 	public int insertMeeting(Meeting meeting);
+	
+	public List<Meeting> selectMeetingList();
 }

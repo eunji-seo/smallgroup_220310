@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smallgroup.meet.bo.MeetBO;
 import com.smallgroup.meet.model.Meet;
+import com.smallgroup.meet.model.Meeting;
 import com.smallgroup.user.model.Favorite;
 
 @RequestMapping("/meet")
@@ -56,14 +57,17 @@ public class MeetController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/meet_view")
+	@RequestMapping("/detail_view")
 	public String meetDetail(
 			@RequestParam("meetId") int meetId,
 			Model model) {
-		 
+		
+		
+		List<Meeting> meetingList = meetBO.getMeetingList(); 
 		Meet meet = meetBO.getMeetById(meetId);
 		model.addAttribute("viewName", "meet/detail");
 		model.addAttribute("meet", meet);
+		model.addAttribute("meetingList", meetingList);
 		return "template/layout";
 	}
 	/**
@@ -83,6 +87,15 @@ public class MeetController {
 		model.addAttribute("meet", meets);
 		return "template/layout";
 	}
+	
+	
+	/**
+	 * 
+	 * @param meetId
+	 * @param model
+	 * @return
+	 */
+	
 	@RequestMapping("/post_view")
 	public String postView(
 			@RequestParam("meetId") int meetId,

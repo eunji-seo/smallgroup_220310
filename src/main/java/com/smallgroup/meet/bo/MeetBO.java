@@ -63,4 +63,9 @@ public class MeetBO {
 	public int addMeeting(Meeting meeting) {
 		return meetDAO.insertMeeting(meeting);
 	}
+	
+	public List<Meeting> getMeetingList(){
+		return meetDAO.selectMeetingList();
+	}
+	
 }

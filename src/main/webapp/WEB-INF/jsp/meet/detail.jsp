@@ -38,35 +38,37 @@
 			</div>
 		</div>
 		<div>
-			<div class="meeting d-flex justify-content-start align-items-center mt-2">
-			 	<div class="mr-3">
-			 	<h3>정모 모임</h3>
-			 		<img alt="" src="/static/image/smile.png" width="90">
-			 	</div>
-			 	<div>
-			 		<div class="mb-2">
-			 			<img alt="" src="/static/image/calendar.png" width="30">
-						<span>4월 8일 (토) 오후 02:00</span>	
-			 		</div>
-			 		<div class="mb-2">
-			 			<img alt="" src="/static/image/location.png" width="30">
-						<span>노원 더숲</span>	
-			 		</div>
-			 		<div class="mb-2">
-			 			<img alt="" src="/static/image/won.png" width="30">
-						<span>1/N</span>	
-			 		</div>
-			 		<div class="mb-2">
-			 			<img alt="" src="/static/image/person.png" width="30">
-						<span>인원</span>	
-			 		</div>
-			 	</div>
-			 	<div>
-			 		<a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModalAttend" data-meet-id="${meet.id}"> 
-			 			<button type="button" class="btn btn-success">참석</button>
-			 		</a>
-			 	</div>
-			</div>
+			<c:forEach var="meeting" items="${meetingList}">
+				<div class="meeting d-flex justify-content-start align-items-center mt-2">
+				 	<div class="mr-3">
+				 	<h3>정모 모임</h3>
+				 		<img alt="" src="/static/image/smile.png" width="90">
+				 	</div>
+				 	<div>
+				 		<div class="mb-2">
+				 			<img alt="" src="/static/image/calendar.png" width="30">
+							<span>${meeting.meetingDay}</span>	
+				 		</div>
+				 		<div class="mb-2">
+				 			<img alt="" src="/static/image/location.png" width="30">
+							<span>${meeting.place}</span>	
+				 		</div>
+				 		<div class="mb-2">
+				 			<img alt="" src="/static/image/won.png" width="30">
+							<span>${meeting.cost}</span>	
+				 		</div>
+				 		<div class="mb-2">
+				 			<img alt="" src="/static/image/person.png" width="30">
+							<span>${meeting.personnel}</span>	
+				 		</div>
+				 	</div>
+				 	<div>
+				 		<a href="../meet/meeting_view?meetingId=${meeting.id}" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModalAttend" data-meet-id="${meet.id}"> 
+				 			<button type="button" class="btn btn-success">참석</button>
+				 		</a>
+				 	</div>
+				</div>
+			</c:forEach>
 			<div class="meeting- mb-3">
 				<a href="../meet/meeting_view?meetId=${meet.id}"class="btn btn-secondary w-100">+정모 등록 하기</a>
 			</div>

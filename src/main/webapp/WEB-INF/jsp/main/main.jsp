@@ -17,7 +17,7 @@
 		
 		<div class="d-flex flex-wrap justify-content-center">
 			<c:forEach var="meet" items="${meet}">
-				<a href="../meet/meet_view?meetId=${meet.id}" data-meet-id="${meet.id}">
+				<a href="../meet/detail_view?meetId=${meet.id}" data-meet-id="${meet.id}">
 					<div class="meet-box d-flex">
 						<div class="img-area">
 							<c:if test="${empty meet.meetImagePath}">

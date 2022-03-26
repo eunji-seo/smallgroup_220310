@@ -9,9 +9,9 @@ public class Meeting {
 	private int meetId;
 	private String meetingName;
 	private String meetingDay;
-	private String Place;
-	private String Cost;
-	private int Personnel;
+	private String place;
+	private String cost;
+	private int personnel;
 	private Date createdAt;
 	private Date updatedAt;
 	public int getId() {
@@ -45,22 +45,22 @@ public class Meeting {
 		this.meetingDay = meetingDay;
 	}
 	public String getPlace() {
-		return Place;
+		return place;
 	}
 	public void setPlace(String place) {
-		Place = place;
+		this.place = place;
 	}
 	public String getCost() {
-		return Cost;
+		return cost;
 	}
 	public void setCost(String cost) {
-		Cost = cost;
+		this.cost = cost;
 	}
 	public int getPersonnel() {
-		return Personnel;
+		return personnel;
 	}
 	public void setPersonnel(int personnel) {
-		Personnel = personnel;
+		this.personnel = personnel;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -77,7 +77,7 @@ public class Meeting {
 	@Override
 	public String toString() {
 		return "Meeting [id=" + id + ", userId=" + userId + ", meetId=" + meetId + ", meetingName=" + meetingName
-				+ ", meetingDay=" + meetingDay + ", Place=" + Place + ", Cost=" + Cost + ", Personnel=" + Personnel
+				+ ", meetingDay=" + meetingDay + ", place=" + place + ", cost=" + cost + ", personnel=" + personnel
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 	
