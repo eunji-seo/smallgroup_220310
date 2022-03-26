@@ -64,8 +64,8 @@ public class MeetBO {
 		return meetDAO.insertMeeting(meeting);
 	}
 	
-	public List<Meeting> getMeetingList(){
-		return meetDAO.selectMeetingList();
+	public List<Meeting> getMeetingList(int meetId){
+		return meetDAO.selectMeetingList(meetId);
 	}
 	
 }

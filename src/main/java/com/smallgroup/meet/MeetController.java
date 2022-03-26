@@ -63,7 +63,7 @@ public class MeetController {
 			Model model) {
 		
 		
-		List<Meeting> meetingList = meetBO.getMeetingList(); 
+		List<Meeting> meetingList = meetBO.getMeetingList(meetId); 
 		Meet meet = meetBO.getMeetById(meetId);
 		model.addAttribute("viewName", "meet/detail");
 		model.addAttribute("meet", meet);

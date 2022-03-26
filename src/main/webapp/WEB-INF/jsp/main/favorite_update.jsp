@@ -27,7 +27,7 @@
 <script>
 $(document).ready(function(){
 	<c:forEach var="uf" items="${userFavorites}">
-	$('input[value=${uf.favoriteId}]').prop('checked',true);
+	$('input[value=${uf.id}]').prop('checked',true);
 	</c:forEach>
 	
 	$('.favoriteBtn').on('click',function(){
@@ -59,6 +59,7 @@ $(document).ready(function(){
 				"favoriteIds":favoriteIds
 			}
 			,success: function(data){
+				console.log(data);
 				if(data.result == 'success'){
 					alert("관심사 선택이 완료 되었습니다.");
 					location.href="/main/mypage_view";

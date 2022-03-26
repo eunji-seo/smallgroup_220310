@@ -7,7 +7,7 @@
 		 <ul class="nav d-flex">
 		 	<c:forEach var="uf" items="${userFavorites}">	
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#">${uf.favoriteId}</a>
+		        <a class="nav-link" href="#">${uf.favoriteName}</a>
 		      </li>
 		     </c:forEach>
 	    </ul>

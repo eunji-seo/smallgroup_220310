@@ -33,6 +33,7 @@ public interface UserDAO {
 			@Param("userId") int userId, 
 			@Param("favoriteId") int favoriteId);
 	
-
-	public List<UserFavorite> selectUserFavorites(@Param("userId") int userId);
+	public void deleteUserFavorite(int userId);
+	
+	public List<Favorite> selectUserFavorites(@Param("userId") int userId);
 }

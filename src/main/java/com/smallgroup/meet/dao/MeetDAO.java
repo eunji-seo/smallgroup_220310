@@ -35,5 +35,5 @@ public interface MeetDAO {
 	
 	public int insertMeeting(Meeting meeting);
 	
-	public List<Meeting> selectMeetingList();
+	public List<Meeting> selectMeetingList(int meetId);
 }

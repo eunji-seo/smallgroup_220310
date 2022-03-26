@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smallgroup.common.EncryptUtils;
 import com.smallgroup.meet.bo.MeetBO;
 import com.smallgroup.user.bo.UserBO;
+import com.smallgroup.user.model.Favorite;
 import com.smallgroup.user.model.User;
 import com.smallgroup.user.model.UserFavorite;
 
@@ -70,7 +71,7 @@ public class UserRestController {
 			session.setAttribute("loginId", memberUser.getLoginId());
 			session.setAttribute("id", memberUser.getId());
 			session.setAttribute("name", memberUser.getName());
-			List<UserFavorite> userFavorites = userBO.selectUserFavorites(memberUser.getId());
+			List<Favorite> userFavorites = userBO.selectUserFavorites(memberUser.getId());
 			session.setAttribute("userFavorites", userFavorites);
 		} else {
 			result.put("result", "error");
@@ -105,7 +106,7 @@ public class UserRestController {
 			session.setAttribute("loginId", membersUser.getLoginId());
 			session.setAttribute("id", membersUser.getId());
 			session.setAttribute("name", membersUser.getName());
-			List<UserFavorite> userFavorites = userBO.selectUserFavorites(membersUser.getId());
+			List<Favorite> userFavorites = userBO.selectUserFavorites(membersUser.getId());
 			session.setAttribute("userFavorites", userFavorites);
 		} else {
 			result.put("result", "error");
@@ -122,16 +123,15 @@ public class UserRestController {
 	@GetMapping("/user_favorite")
 	public Map<String, Object> isUserFavorite(
 			@RequestParam(required = false, value = "favoriteIds") List<Integer> favoriteIds,
-			HttpServletRequest request){
-		
-		HttpSession session = request.getSession();
+			HttpSession session){
 		if(session.getAttribute("id")==null) {
 			
 		}
 		int userId = (int) session.getAttribute("id");
 		
 		Map<String, Object> result = new HashMap<>();
-		
+
+		result.put("result", "success");
 		
 		int row = userBO.addUserFavorite(userId, favoriteIds);
 		
@@ -139,7 +139,6 @@ public class UserRestController {
 			result.put("result", "error");
 			result.put("errorMessage", "관심사 선택을 다시 시도해 주세요.");
 		}
-		result.put("result", "success");
 		return result;
 		
 	}

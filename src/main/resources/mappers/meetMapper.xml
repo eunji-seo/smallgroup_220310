@@ -90,14 +90,15 @@
 	 		,#{meetId}
 	 		,#{meetingName}
 	 		,#{meetingDay}
-	 		,#{Place}
-	 		,#{Cost}
-	 		,#{Personnel}
+	 		,#{place}
+	 		,#{cost}
+	 		,#{personnel}
 	 		,NOW()
 	 		,NOW()	 		
 	 	)
  	</insert>
  	<select id="selectMeetingList" resultType="com.smallgroup.meet.model.Meeting">
  		SELECT * FROM meeting
+ 		where meetId = #{meetId}
  	</select>
  </mapper>

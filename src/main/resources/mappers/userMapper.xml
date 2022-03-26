@@ -82,13 +82,17 @@
 	 	)
  	</insert>
  	
- 	<select id="selectUserFavorites" resultType="com.smallgroup.user.model.UserFavorite">
+ 	<select id="selectUserFavorites" resultType="com.smallgroup.user.model.Favorite">
  		SELECT * 
  		FROM FAVORITE
  		JOIN USER_FAVORITE
  		ON FAVORITE.id = USER_FAVORITE.favoriteId
  		WHERE 
  		USERID = #{userId}
- 		
  	</select>
+ 	
+ 	<delete id="deleteUserFavorite">
+ 		DELETE FROM USER_FAVORITE
+ 		WHERE USERID=#{userId}
+ 	</delete>
  </mapper>

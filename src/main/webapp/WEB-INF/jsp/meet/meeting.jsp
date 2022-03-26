@@ -126,7 +126,7 @@ $(document).ready(function(){
 		 	,success: function(data){
 		 		if(data.result == 'success'){
 		 			alert("정모가 등록되었습니다.");
-		 			location.href="/meet/meet_view?meetId=" + meet.id;
+		 			location.href="/meet/detail_view?meetId=${meet.id}";
 		 			
 		 		}else{
 		 			alert(data.errorMessage);
