@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.smallgroup.common.FileMangerService;
+import com.smallgroup.common.FileManagerService;
 import com.smallgroup.interceptor.PermissionInterceptor;
 
 @Configuration
@@ -23,7 +23,7 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry
 		.addResourceHandler("/images/**") // http://localhost/images/toma1019_16456453342/sun.png
-		.addResourceLocations("file:///"+FileMangerService.FILE_UPLOAD_PATH); // 실제 파일 저장 위치		
+		.addResourceLocations("file:///"+FileManagerService.fileUploadPath); // 실제 파일 저장 위치		
 	}
 	
 	@Override

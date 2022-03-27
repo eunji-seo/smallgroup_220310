@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.smallgroup.common.FileMangerService;
+import com.smallgroup.common.FileManagerService;
 import com.smallgroup.meet.dao.MeetDAO;
 import com.smallgroup.meet.model.Meet;
+import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
 import com.smallgroup.user.model.Favorite;
 
@@ -18,7 +19,7 @@ public class MeetBO {
 	private MeetDAO meetDAO;
 	
 	@Autowired
-	private FileMangerService fileManger;
+	private FileManagerService fileManger;
 	
 	
 	public List<Favorite> getFavoriteById() {
@@ -45,21 +46,15 @@ public class MeetBO {
 	public Meet getMeetById(int meetId) {
 		return meetDAO.selectMeetById(meetId);
 	}
-//	public Meet getMeetId() {
-//		return meetDAO.selectMeetId();
-//	}
-//	
-	
+
 	public List<Meet> getMeetList() {
 		return meetDAO.selectMeetList();
 	}
 	
-	public int addJoin(int meetId, int userId, String leader, String joinName) {
-		return meetDAO.insertJoin(meetId, userId, leader, joinName);
+	public int addJoin(MeetJoin meetJoin) {
+		return meetDAO.insertJoin(meetJoin);
 	}
-	/*
-	 * 
-	 */
+
 	public int addMeeting(Meeting meeting) {
 		return meetDAO.insertMeeting(meeting);
 	}

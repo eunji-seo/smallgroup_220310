@@ -3,18 +3,17 @@ package com.smallgroup.meet;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smallgroup.meet.bo.MeetBO;
 import com.smallgroup.meet.model.Meet;
+import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
 @RequestMapping("/meet")
 @RestController
@@ -52,18 +51,17 @@ public class MeetRestController {
 	
 	@PostMapping("/detail")
 	public Map<String, Object> detailJoin(
-			@RequestParam("meetId") int meetId,
-			@RequestParam("leader") String leader,
-			@RequestParam("joinName") String joinName,			
-			HttpServletRequest request){
+			@ModelAttribute MeetJoin meetJoin,		
+			HttpSession session){
 		
-		HttpSession session = request.getSession();
+		
 		int userId = (int) session.getAttribute("id");
+		meetJoin.setUserId(userId);
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
-		int row = meetBO.addJoin(meetId, userId, leader, joinName);
+		int row = meetBO.addJoin(meetJoin);
 		
 		if(row < 1) {
 			result.put("result", "fail");

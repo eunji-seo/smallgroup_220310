@@ -108,8 +108,11 @@ li{text-decoration: none;}
 .meet-desc {
 		background-color: #fff;
 }
+.meeting{
+	width: 450px;
 
-.meeting {
+}
+.meeting-content {
 		background-color: #fff;
 		padding: 10px 50px;
 }
@@ -122,3 +125,4 @@ li{text-decoration: none;}
  	margin: auto;
  	
 }
+

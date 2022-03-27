@@ -37,11 +37,11 @@
 				</a>
 			</div>
 		</div>
-		<div>
+		<div class="meeting">
 			<c:forEach var="meeting" items="${meetingList}">
-				<div class="meeting d-flex justify-content-start align-items-center mt-2">
+				<div class="meeting-content d-flex justify-content-start align-items-center mt-2">
 				 	<div class="mr-3">
-				 	<h3>정모 모임</h3>
+				 	<h4>정모 모임</h4>
 				 		<img alt="" src="/static/image/smile.png" width="90">
 				 	</div>
 				 	<div>
@@ -63,14 +63,14 @@
 				 		</div>
 				 	</div>
 				 	<div>
-				 		<a href="../meet/meeting_view?meetingId=${meeting.id}" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModalAttend" data-meet-id="${meet.id}"> 
+				 		<a href="../meet/meeting_view?meetingId=${meeting.id}" class="btn btn-success" data-toggle="modal" data-target="#moreModalAttend" data-meet-id="${meet.id}"> 
 				 			<button type="button" class="btn btn-success">참석</button>
 				 		</a>
 				 	</div>
 				</div>
 			</c:forEach>
 			<div class="meeting- mb-3">
-				<a href="../meet/meeting_view?meetId=${meet.id}"class="btn btn-secondary w-100">+정모 등록 하기</a>
+				<a href="../meet/meeting_view?meetId=${meet.id}"class="btn btn-secondary w-100 mt-2">+정모 등록 하기</a>
 			</div>
 			<div class="attend-list">
 				<div class="d-flex justify-content-between">
@@ -115,7 +115,7 @@
 	      	</div>
       	</div>
     </div>
-  </div>
+  </div> 
 </div>
 
 <!-- 참석 Modal -->

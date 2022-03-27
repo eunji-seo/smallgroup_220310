@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +20,6 @@ import com.smallgroup.meet.bo.MeetBO;
 import com.smallgroup.user.bo.UserBO;
 import com.smallgroup.user.model.Favorite;
 import com.smallgroup.user.model.User;
-import com.smallgroup.user.model.UserFavorite;
 
 @RequestMapping("/user")
 @RestController
@@ -53,7 +53,7 @@ public class UserRestController {
 	public Map<String, Object> login(
 			@RequestParam("loginId") String loginId,			
 			@RequestParam("password") String password,			
-			HttpServletRequest request){
+			HttpSession session){
 		
 		
 		String encryptPassword = EncryptUtils.md5(password);
@@ -67,7 +67,6 @@ public class UserRestController {
 		
 		
 		if(memberUser != null) {			
-			HttpSession session = request.getSession();
 			session.setAttribute("loginId", memberUser.getLoginId());
 			session.setAttribute("id", memberUser.getId());
 			session.setAttribute("name", memberUser.getName());
@@ -86,23 +85,18 @@ public class UserRestController {
 	 */
 	@PostMapping("/join")
 	public Map<String, Object> join(
-			@RequestParam("loginId") String loginId,
-			@RequestParam("password") String password,
-			@RequestParam("name") String name,
-			@RequestParam("birth") String birth,
-			@RequestParam("address") String address,
-			@RequestParam("email") String email,   //@Valid
-			HttpServletRequest request){
+			@ModelAttribute User user,//@Valid
+			HttpSession session){
 		
-		String encryptPassword = EncryptUtils.md5(password);
+		String encryptUtils = EncryptUtils.md5(user.getPassword());
+		user.setPassword(encryptUtils);
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
-		User membersUser  = userBO.addJoin(loginId, encryptPassword, name, birth, address, email);
+		User membersUser  = userBO.addJoin(user);
 		
 		if(membersUser != null) {
-			HttpSession session = request.getSession();
 			session.setAttribute("loginId", membersUser.getLoginId());
 			session.setAttribute("id", membersUser.getId());
 			session.setAttribute("name", membersUser.getName());

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.smallgroup.meet.model.Meet;
+import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
 import com.smallgroup.user.model.Favorite;
 
@@ -27,11 +28,7 @@ public interface MeetDAO {
 	
 	public List<Meet> selectMeetList();
 	
-	public int insertJoin(
-			@Param("meetId") int meetId, 
-			@Param("userId") int userId, 
-			@Param("leader") String leader, 
-			@Param("joinName") String joinName);
+	public int insertJoin(MeetJoin meetJoin);
 	
 	public int insertMeeting(Meeting meeting);
 	

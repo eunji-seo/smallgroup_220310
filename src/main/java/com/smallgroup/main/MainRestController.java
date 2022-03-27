@@ -3,18 +3,17 @@ package com.smallgroup.main;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smallgroup.common.EncryptUtils;
 import com.smallgroup.main.bo.MainBO;
+import com.smallgroup.user.model.User;
 @RequestMapping("/main")
 @RestController
 public class MainRestController {
@@ -24,21 +23,19 @@ public class MainRestController {
 	
 	@PutMapping("/member_update")
 	public Map<String, Object> update(
-			@RequestParam("password") String password,
-			@RequestParam("name") String name,
-			@RequestParam("birth") String birth,
-			@RequestParam("address") String address,
-			@RequestParam("email") String email,			
-			HttpServletRequest request
+			@ModelAttribute User user,
+			HttpSession session 
 			){
+		String encryptUtils = EncryptUtils.md5(user.getPassword());
+		user.setPassword(encryptUtils);
 		
-		HttpSession session = request.getSession();
 		int id = (int) session.getAttribute("id");
 		String loginId = (String) session.getAttribute("loginId");
-		
+		user.setLoginId(loginId);
+		user.setId(id);
 		
 		Map<String, Object> result = new HashMap<>();
-		int row = mainBO.memberUpdate(id, loginId, password, name, birth, address, email);
+		int row = mainBO.memberUpdate(user);
 		result.put("result", "success");
 	
 		if(row < 1) {

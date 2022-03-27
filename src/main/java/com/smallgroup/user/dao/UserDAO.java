@@ -14,13 +14,7 @@ public interface UserDAO {
 	
 	public boolean selectDuplicatedId(String loginId); 
 	
-	public int insertJoin(
-			@Param("loginId") String loginId, 
-			@Param("password") String password, 
-			@Param("name") String name, 
-			@Param("birth") String birth, 
-			@Param("address") String address, 
-			@Param("email") String email);
+	public int insertJoin(User user);
 	
 	public User selectLoginIdAndPassword(
 			@Param("loginId") String loginId, 

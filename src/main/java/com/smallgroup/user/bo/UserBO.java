@@ -23,9 +23,9 @@ public class UserBO {
 		return userDAO.selectDuplicatedId(loginId);
 	}
 
-	public User addJoin(String loginId, String password, String name, String birth, String address, String email) {
-		if (userDAO.insertJoin(loginId, password, name, birth, address, email) == 1) {
-			return mainDAO.selectMemberCreateById(loginId);
+	public User addJoin(User user) {
+		if (userDAO.insertJoin(user) == 1) {
+			return mainDAO.selectMemberCreateById(user.getLoginId());
 		}
 		return null;
 	}

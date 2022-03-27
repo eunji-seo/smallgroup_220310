@@ -15,8 +15,8 @@ public class MainBO {
 		return mainDAO.selectMemberCreateById(loginId);
 	}
 
-	public int memberUpdate(int id, String loginId, String password, String name, String birth, String address, String email) {
-		return mainDAO.memberUpdate(id, loginId, password, name, birth, address, email);
+	public int memberUpdate(User user) {
+		return mainDAO.memberUpdate(user);
 	}
 
 }
