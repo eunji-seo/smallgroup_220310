@@ -70,6 +70,7 @@ public class UserRestController {
 			session.setAttribute("loginId", memberUser.getLoginId());
 			session.setAttribute("id", memberUser.getId());
 			session.setAttribute("name", memberUser.getName());
+			session.setAttribute("address", memberUser.getAddress());
 			List<Favorite> userFavorites = userBO.selectUserFavorites(memberUser.getId());
 			session.setAttribute("userFavorites", userFavorites);
 		} else {

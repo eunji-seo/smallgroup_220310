@@ -25,17 +25,23 @@
 		<div class="meet-descAndBtn">
 			<div class="meet-desc p-3 mt-2">
 				<c:if test="${empty meet.meetImagePath}">
-					<img alt="" src="/static/image/no-photo.png" width="350">
+					<div class="d-flex justify-content-center">
+						<img alt="" src="/static/image/no-photo.png" width="350">
+					</div>	
 				</c:if>
-			
-				<img alt="" src="${meet.meetImagePath}" width="350">
+				<c:if test="${not empty meet.meetImagePath}">
+					<img alt="" src="${meet.meetImagePath}" width="350">
+				</c:if>
 				<p>${meet.desc}</p>
 			</div>
-			<div class="meet-join mt-3">
-				<a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModalJoin" data-meet-id="${meet.id}"> 
-					가입하기
-				</a>
-			</div>
+			<c:if test="${meet.userId != id}">
+				<div class="meet-join mt-3">
+					<a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModalJoin"> 
+						가입하기
+					</a>
+				</div>
+			</c:if>
+			
 		</div>
 		<div class="meeting">
 			<c:forEach var="meeting" items="${meetingList}">
@@ -69,9 +75,11 @@
 				 	</div>
 				</div>
 			</c:forEach>
-			<div class="meeting- mb-3">
-				<a href="../meet/meeting_view?meetId=${meet.id}"class="btn btn-secondary w-100 mt-2">+정모 등록 하기</a>
-			</div>
+			<c:if test="${meet.userId == id}">
+				<div class="meeting- mb-3">
+					<a href="../meet/meeting_view?meetId=${meet.id}"class="btn btn-secondary w-100 mt-2">+정모 등록 하기</a>
+				</div>
+			</c:if>
 			<div class="attend-list">
 				<div class="d-flex justify-content-between">
 					<h5>참석자 리스트</h5>
@@ -87,8 +95,12 @@
 					<a href="#"><img alt="" src="/static/image/more_person.png" width="20" height="20"></a>
 				</div>
 				<ul>
-					<li></li>
+					<li class="">${memberName.name}<b class="ml-2">방장</b></li>
+					<c:forEach var="join" items="${join}">
+						<li>${join.joinName}</li>
+					</c:forEach>
 				</ul>
+				
 			</div>
 		</div>
 	</div>
@@ -109,7 +121,7 @@
 		      			<a href="#" class="cancel d-block text-secondary" data-dismiss="modal">취소</a>
 		      		</div>
 	      		<div class="my-3 ml-3 text-center">
-	      			<a href="#" class="meet-join d-block" >확인</a>
+	      			<a href="../meet/detail_view?meetId=${meet.id}" class="joinBtn d-block" data-meet-id="${meet.id}">확인</a>
 	      		</div>
 	      		
 	      	</div>
@@ -132,7 +144,7 @@
 		      			<a href="#" class="cancel d-block text-secondary" data-dismiss="modal">취소</a>
 		      		</div>
 	      		<div class="my-3 ml-3 text-center">
-	      			<a href="#" class="attend-name d-block" >참석</a>
+	      			<a href="#" class="attendBtn d-block" data-meet-id="${meet.id}">참석</a>
 	      		</div>
 	      		
 	      	</div>
@@ -143,11 +155,44 @@
 <script>
 
 
-$('#moreModal .del-post').on('click', function(e){
+$('#moreModalAttend .attendBtn').on('click', function(e){
 	e.preventDefault();
+	//alert("click");
+	var meetId = $('.attendBtn').data('meet-id'); 
+	var attendName = $('#attendName').val().trim(); 
+		
+	$.ajax({
+		type:"POST"
+		,url:"/meet/detail"
+		,data:{
+			"meetId": meetId,
+			"attendName": attendName			
+	//		,"favoriteId": favoriteId			
+		}
+		,success: function(data){
+			if(data.result == 'success'){
+				alert("참석이 완료 되었습니다.");
+				location.reload();
+				
+			}else{
+				alert(data.errorMessage);
+			}
+		
+		}
+		,error: function(e){
+			alert("가입이 실패하였습니다. 관리자에 문의해주세요.");
+		}
+		
+		
+	});
 	
-	let meetId = $('#moreModal').data('meet-id'); 
-	let joinName = $('#joinName').val().trim(); 
+});
+
+$('#moreModalJoin .joinBtn').on('click', function(e){
+	e.preventDefault();
+	//alert("click");
+	var meetId = $('.joinBtn').data('meet-id'); 
+	var joinName = $('#joinName').val().trim(); 
 	
 	//let favoriteId = $('#moreModal').data('favorite-id'); 
 	//alert(postId);
@@ -160,7 +205,6 @@ $('#moreModal .del-post').on('click', function(e){
 		,data:{
 			"meetId": meetId,
 			"joinName": joinName			
-	//		,"favoriteId": favoriteId			
 		}
 		,success: function(data){
 			if(data.result == 'success'){

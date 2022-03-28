@@ -9,6 +9,7 @@ import com.smallgroup.meet.model.Meet;
 import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
 import com.smallgroup.user.model.Favorite;
+import com.smallgroup.user.model.User;
 
 @Repository
 public interface MeetDAO {
@@ -23,12 +24,14 @@ public interface MeetDAO {
 	public int insertMeet(Meet meet);
 	
 	public Meet selectMeetById(int meetId);
-
-//	public Meet selectMeetId();
 	
 	public List<Meet> selectMeetList();
 	
 	public int insertJoin(MeetJoin meetJoin);
+	
+	public User getRederName(int meetId);
+	
+	public List<MeetJoin> getJoinName(int meetId);
 	
 	public int insertMeeting(Meeting meeting);
 	

@@ -47,12 +47,11 @@
  	<select id="selectMeetList" resultType="com.smallgroup.meet.model.Meet">
  		SELECT * FROM meet
  	</select>
- 	<insert id="insertJoin" parameterType="map">
-	 	INSERT INTO `meet`
+ 	<insert id="insertJoin">
+	 	INSERT INTO `meet_join`
 	 	(
 	 		`meetId`
 			,`userId`
-			,`leader`
 			,`joinName`
 			,`createdAt`
 			,`updatedAt`
@@ -62,14 +61,24 @@
 	 	(
 	 		#{meetId}
 	 		,#{userId}
-	 		,#{leader}
-	 		,#{meetName}
 	 		,#{joinName}
 	 		,NOW()
 	 		,NOW()	 		
 	 	)
  	</insert>
- 		<insert id="insertMeeting">
+ 	<select id="getRederName" resultType="com.smallgroup.user.model.User">
+ 		SELECT  *
+		FROM user 
+		JOIN meet 
+		ON user.id = meet.userId
+		where meet.id = #{meetId}
+ 	</select>
+ 	<select id="getJoinName" resultType="com.smallgroup.meet.model.MeetJoin">
+ 		select * 
+ 		from meet_join
+ 		where meetId = #{meetId}
+ 	</select>
+ 	<insert id="insertMeeting">
 	 	INSERT INTO `meeting`
 	 	(
 	 		

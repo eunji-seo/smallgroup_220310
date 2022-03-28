@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smallgroup.meet.bo.MeetBO;
 import com.smallgroup.meet.model.Meet;
+import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
 import com.smallgroup.user.model.Favorite;
+import com.smallgroup.user.model.User;
 
 @RequestMapping("/meet")
 @Controller
@@ -63,11 +65,16 @@ public class MeetController {
 			Model model) {
 		
 		
+		List<MeetJoin> join = meetBO.getJoinName(meetId);
+		User memberName =meetBO.getRederName(meetId);
 		List<Meeting> meetingList = meetBO.getMeetingList(meetId); 
 		Meet meet = meetBO.getMeetById(meetId);
+		
 		model.addAttribute("viewName", "meet/detail");
 		model.addAttribute("meet", meet);
 		model.addAttribute("meetingList", meetingList);
+		model.addAttribute("memberName", memberName);
+		model.addAttribute("join", join);
 		return "template/layout";
 	}
 	/**

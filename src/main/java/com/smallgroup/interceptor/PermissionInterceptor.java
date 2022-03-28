@@ -37,11 +37,14 @@ public class PermissionInterceptor implements HandlerInterceptor{
 		if(userId == null){
 			if(uri.startsWith("/user/join") || uri.startsWith("/user/login") || uri.startsWith("/user/is_duplicated_id")) {
 				return true;
+			}else {
+				response.sendRedirect("/user/login_view");
+				return false;	
 			}
-			response.sendRedirect("/user/login_view");
-			return false;
+			
 		}
-		return true;
+			return true;
+		
 		
 	}
 	

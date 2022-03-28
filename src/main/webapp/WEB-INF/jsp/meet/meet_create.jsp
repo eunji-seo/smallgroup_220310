@@ -20,7 +20,7 @@
 			<div class="check-box d-flex flex-wrap ">
 			<select id="favorite" class="form-control">
 					<option value="${favorite.id}">-관심사 선택-</option>
-				<c:forEach var="favorite" items="${favoriteList}">
+				<c:forEach var="favorite" items="${userFavorites}">
 					<option value="${favorite.id}">${favorite.favoriteName}</option>
 				</c:forEach>
 			</select>
@@ -78,14 +78,14 @@ $(document).ready(function(){
 		let meetName = $('#meetName').val().trim(); 
 		let desc = $('#desc').val().trim();
 		let personnel = $('#personnel').val().trim();
-		let favorite = $('#favorite').val().trim();
+		let favorite = $('#favorite').val();
 		
 		let formData = new FormData();
 		formData.append("meetAddress",meetAddress)
 		formData.append("meetName",meetName)
 		formData.append("desc",desc)
 		formData.append("personnel",personnel)
-		formData.append('favorite', favorite);
+		formData.append('meetFavoriteId', favorite);
 		
 		if( $('#file')[0].files[0]){
 			formData.append("file",$('#file')[0].files[0])

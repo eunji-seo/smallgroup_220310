@@ -11,6 +11,7 @@ import com.smallgroup.meet.model.Meet;
 import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
 import com.smallgroup.user.model.Favorite;
+import com.smallgroup.user.model.User;
 
 @Service
 public class MeetBO {
@@ -53,6 +54,14 @@ public class MeetBO {
 	
 	public int addJoin(MeetJoin meetJoin) {
 		return meetDAO.insertJoin(meetJoin);
+	}
+	
+	public	User getRederName(int meetId){ 
+		return meetDAO.getRederName(meetId);
+	}
+	
+	public List<MeetJoin> getJoinName(int meetId) {
+		return meetDAO.getJoinName(meetId);
 	}
 
 	public int addMeeting(Meeting meeting) {

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="mypage">
 <h3>MyPage</h3>
 	<div class="member-list d-flex justify-content-between">
@@ -10,11 +10,11 @@
 			</div>
 			<div class="">
 				<div class="name">
-				서은지
+				${name}
 				</div>
 				<div class="address d-flex align-items-center">
 					<img alt="" src="/static/image/location.png" width="30">
-					<div>서울특별시</div>
+					<div>${address}</div>
 				</div>
 			</div>
 		</div>
@@ -24,19 +24,12 @@
 	</div>
 	<div class="faverite-list d-flex justify-content-between">
 		<div class="nav">
-			 <ul class="nav d-flex">
-		      <li class="nav-item active">
-		        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link disabled" href="#">Link</a>
-		      </li>
-		      <li class="nav-item ">
-		        <a class="nav-link disabled" href="#">Link</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link disabled" href="#">Disabled</a>
-		      </li>
+			<ul class="nav d-flex">
+			 	<c:forEach var="uf" items="${userFavorites}">	
+			      <li class="nav-item active">
+			        <a class="nav-link" href="#">${uf.favoriteName}</a>
+			      </li>
+			     </c:forEach>
 	    	</ul>
 		</div>
 		<a href="/main/favorite_update_view" class="btn btn-success text-white">수정</a>

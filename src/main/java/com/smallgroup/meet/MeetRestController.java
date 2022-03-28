@@ -22,21 +22,19 @@ public class MeetRestController {
 	@Autowired
 	private MeetBO meetBO;
 	
-
-	/*
-	 * 
-	 */
+	
 	@PostMapping("/create")
 	public Map<String, Object> MeetCreate(
 			@ModelAttribute Meet meet,
 			HttpSession session){
+		
+		
 		int userId = (int) session.getAttribute("id");
+		String loginId = (String) session.getAttribute("loginId");
+		meet.setUserId(userId);
 		
 		Map<String,Object> result = new HashMap<>();
 		result.put("result", "success");
-		
-		
-		String loginId = (String) session.getAttribute("loginId");
 		
 		
 	    int row = meetBO.addMeet(loginId, meet);
@@ -62,6 +60,7 @@ public class MeetRestController {
 		result.put("result", "success");
 		
 		int row = meetBO.addJoin(meetJoin);
+		
 		
 		if(row < 1) {
 			result.put("result", "fail");
