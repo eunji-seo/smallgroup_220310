@@ -66,6 +66,7 @@ public class MeetController {
 		
 		
 		List<MeetJoin> join = meetBO.getJoinName(meetId);
+		MeetJoin joinName = meetBO.getJoinNameByName(meetId);
 		User memberName =meetBO.getRederName(meetId);
 		List<Meeting> meetingList = meetBO.getMeetingList(meetId); 
 		Meet meet = meetBO.getMeetById(meetId);
@@ -75,6 +76,7 @@ public class MeetController {
 		model.addAttribute("meetingList", meetingList);
 		model.addAttribute("memberName", memberName);
 		model.addAttribute("join", join);
+		model.addAttribute("joinName", joinName);
 		return "template/layout";
 	}
 	/**

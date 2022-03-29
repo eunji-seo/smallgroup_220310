@@ -63,6 +63,10 @@ public class MeetBO {
 	public List<MeetJoin> getJoinName(int meetId) {
 		return meetDAO.getJoinName(meetId);
 	}
+	
+	public MeetJoin getJoinNameByName(int meetId) {
+		return meetDAO.getJoinNameByName(meetId);
+	}
 
 	public int addMeeting(Meeting meeting) {
 		return meetDAO.insertMeeting(meeting);

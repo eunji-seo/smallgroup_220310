@@ -78,6 +78,15 @@
  		from meet_join
  		where meetId = #{meetId}
  	</select>
+ 	<select id="getJoinNameByName" resultType="com.smallgroup.meet.model.MeetJoin">
+ 		select * 
+ 		from meet_join
+		<where>
+			<if test='userId != null'>	
+				meetId = #{meetId}
+			</if>
+		</where>
+ 	</select>
  	<insert id="insertMeeting">
 	 	INSERT INTO `meeting`
 	 	(

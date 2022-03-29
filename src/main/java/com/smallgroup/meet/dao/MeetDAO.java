@@ -33,6 +33,8 @@ public interface MeetDAO {
 	
 	public List<MeetJoin> getJoinName(int meetId);
 	
+	public MeetJoin getJoinNameByName(int meetId);
+	
 	public int insertMeeting(Meeting meeting);
 	
 	public List<Meeting> selectMeetingList(int meetId);
