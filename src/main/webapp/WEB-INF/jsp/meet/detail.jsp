@@ -33,15 +33,13 @@
 					<img alt="" src="${meet.meetImagePath}" width="350">
 				</c:if>
 				<p>${meet.desc}</p>
+			</div> 
+			<c:if test="${cnt ne 1 }">
+			<div class="meet-join mt-3">
+				<a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModalJoin"> 
+					가입하기
+				</a>
 			</div>
-			${joinName.userId}
-			${id}
-			<c:if test="${meet.userId != id or joinName.userId != id}">
-				<div class="meet-join mt-3">
-					<a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModalJoin"> 
-						가입하기
-					</a>
-				</div>
 			</c:if>
 		</div>
 		<div class="meeting">

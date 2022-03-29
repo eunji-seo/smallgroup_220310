@@ -33,7 +33,7 @@ public interface MeetDAO {
 	
 	public List<MeetJoin> getJoinName(int meetId);
 	
-	public MeetJoin getJoinNameByName(int meetId);
+	public int getJoinNameByName(@Param("meetId")int meetId, @Param("userId")int userId);
 	
 	public int insertMeeting(Meeting meeting);
 	

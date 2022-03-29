@@ -10,11 +10,22 @@
 	</div>
 	<div class="meet-content">
 		<div class="location d-flex justify-content-around mb-3 ">
+			<div class="d-flex mb-3 ">
+					<div class="">
+						<img alt="" src="/static/image/location.png" width="30" height="30">
+						<span>지역</span>
+					</div>
+					<input type="text" name="meetAddress" id="meetAddress" class="form-control col-10" placeholder="행정구(ex 강북구)">
+				</div>
 			<div>
-				<img alt="" src="/static/image/location.png" width="30">
-				<span>지역</span>
+				<div class="d-flex justify-content-around mb-3 ">
+					<div>
+					<img alt="" src="/static/image/parson.png" width="30">
+					<span>이름</span>
+					</div>
+					<input type="text" name="joinName" id="joinName" class="form-control col-10" placeholder="방장 이름">
+				</div>
 			</div>
-			<input type="text" name="meetAddress" id="meetAddress" class="form-control col-6" placeholder="행정구(ex 강북구)">
 		</div>
 		<div class="meet-name  d-flex justify-content-around mb-3">
 			<div class="check-box d-flex flex-wrap ">

@@ -64,8 +64,8 @@ public class MeetBO {
 		return meetDAO.getJoinName(meetId);
 	}
 	
-	public MeetJoin getJoinNameByName(int meetId) {
-		return meetDAO.getJoinNameByName(meetId);
+	public int getJoinNameByName(int meetId, int userId) {
+		return meetDAO.getJoinNameByName(meetId,userId);
 	}
 
 	public int addMeeting(Meeting meeting) {

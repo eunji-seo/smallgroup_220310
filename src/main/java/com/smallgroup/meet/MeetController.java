@@ -2,6 +2,8 @@ package com.smallgroup.meet;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,11 +64,12 @@ public class MeetController {
 	@RequestMapping("/detail_view")
 	public String meetDetail(
 			@RequestParam("meetId") int meetId,
+			HttpSession session,
 			Model model) {
 		
-		
+		int userId = (int)session.getAttribute("id");
 		List<MeetJoin> join = meetBO.getJoinName(meetId);
-		MeetJoin joinName = meetBO.getJoinNameByName(meetId);
+		int cnt = meetBO.getJoinNameByName(meetId, userId);
 		User memberName =meetBO.getRederName(meetId);
 		List<Meeting> meetingList = meetBO.getMeetingList(meetId); 
 		Meet meet = meetBO.getMeetById(meetId);
@@ -76,7 +79,7 @@ public class MeetController {
 		model.addAttribute("meetingList", meetingList);
 		model.addAttribute("memberName", memberName);
 		model.addAttribute("join", join);
-		model.addAttribute("joinName", joinName);
+		model.addAttribute("cnt", cnt);
 		return "template/layout";
 	}
 	/**
