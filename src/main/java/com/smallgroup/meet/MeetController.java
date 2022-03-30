@@ -62,28 +62,17 @@ public class MeetController {
 	 * @return
 	 */
 	@RequestMapping("/detail_view")
-	public String meetDetail(
-			@RequestParam("meetId") int meetId,
-			@RequestParam("meetingId") int meetingId,
-			HttpSession session,
-			Model model) {
-		
+	public String meetDetail(@RequestParam("meetId") int meetId, HttpSession session, Model model) {
 		int userId = (int)session.getAttribute("id");
-		
-		Meeting meeting = meetBO.getMeeting(meetingId, meetId);
-		
 		List<MeetJoin> join = meetBO.getJoinName(meetId);
 		int cnt = meetBO.getJoinNameByName(meetId, userId);
 		User memberName =meetBO.getRederName(meetId);
-		
-		
 		List<Meeting> meetingList = meetBO.getMeetingList(meetId); 
 		Meet meet = meetBO.getMeetById(meetId);
 		
 		model.addAttribute("viewName", "meet/detail");
 		model.addAttribute("meet", meet);
 		model.addAttribute("meetingList", meetingList);
-		model.addAttribute("meeting", meeting);
 		model.addAttribute("memberName", memberName);
 		model.addAttribute("join", join);
 		model.addAttribute("cnt", cnt);

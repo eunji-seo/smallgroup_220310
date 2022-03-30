@@ -34,7 +34,7 @@
 				</c:if>
 				<p>${meet.desc}</p>
 			</div> 
-			<c:if test="${meet.userId != id and cnt ne 1 }">
+			<c:if test="${cnt ne 1 }">
 			<div class="meet-join mt-3">
 				<a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModalJoin"> 
 					가입하기
@@ -68,9 +68,7 @@
 				 		</div>
 				 	</div>
 				 	<div>
-				 		<a href="../meet/meeting_view?meetingId=${meeting.id}" class="attendBtn btn btn-success" data-toggle="modal" data-target="#moreModalAttend" data-meet-id="${meet.id}" data-meeting-id="${meeing.id}"> 
-				 			<button type="button" class="btn btn-success">참석</button>
-				 		</a>
+				 		<button type="button" class="btn btn-success" onclick="showModal('${meeting.id}')">참석</button>
 				 	</div>
 				</div>
 			</c:forEach>
@@ -99,7 +97,7 @@
 						<li>${join.joinName}</li>
 					</c:forEach>
 				</ul>
-				${meeting.id}
+				
 			</div>
 		</div>
 	</div>
@@ -143,31 +141,32 @@
 		      			<a href="#" class="cancel d-block text-secondary" data-dismiss="modal">취소</a>
 		      		</div>
 	      		<div class="my-3 ml-3 text-center">
-	      			<a href="../meet/meeting_view?meetingId=${meeting.id}" onclick="modalAttendBtn()" class="modalAttendBtn d-block" data-meet-id="${meet.id}" data-meeting-id="${meeting.id}">참석</a>
+	      			<a href="#" class="attendBtn d-block"  >참석</a>
 	      		</div>
+	      		<div data-meeting-id="" id="meetingId"></div>
 	      	</div>
       	</div>
     </div>
   </div>
 </div>
 <script>
-$(document).ready(function(){
-	
+function showModal(meetingId){
+	$('#moreModalAttend').modal();
+	$('#meetingId').data('meeting-id',meetingId);
+}
 
-function modalAttendBtn(){
+$('#moreModalAttend .attendBtn').on('click', function(e){
 	e.preventDefault();
 	//alert("click");
-	var meetingId = $('.attendBtn').data('meeting-id'); 
-	var meetId = $('.modalAttendBtn').data('meet-id'); 
+	var meetingId = $('#meetingId').data('meeting-id');
 	var attendName = $('#attendName').val().trim(); 
 		
-	$.ajax({
-		type:"POST"
-		,url:"/meet/detail_attend"
+	$.post({
+		url:"/meet/detail_attend"
 		,data:{
-			"meetId": meetId,
 			"meetingId": meetingId,
-			"attendName": attendName					
+			"attendName": attendName			
+	//		,"favoriteId": favoriteId			
 		}
 		,success: function(data){
 			if(data.result == 'success'){
@@ -180,7 +179,7 @@ function modalAttendBtn(){
 		
 		}
 		,error: function(e){
-			alert("참석을 실패하였습니다. 관리자에 문의해주세요.");
+			alert("가입이 실패하였습니다. 관리자에 문의해주세요.");
 		}
 		
 		
@@ -201,7 +200,7 @@ $('#moreModalJoin .joinBtn').on('click', function(e){
 	
 	$.ajax({
 		type:"POST"
-		,url:"/meet/detail_join"
+		,url:"/meet/detail"
 		,data:{
 			"meetId": meetId,
 			"joinName": joinName			
@@ -221,9 +220,8 @@ $('#moreModalJoin .joinBtn').on('click', function(e){
 		}
 		
 		
-		});
-	
 	});
-
+	
 });
+
 </script>
