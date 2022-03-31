@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.smallgroup.meet.model.Meet;
 import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
+import com.smallgroup.meet.model.MeetingAttend;
 import com.smallgroup.user.model.Favorite;
 import com.smallgroup.user.model.User;
 
@@ -29,6 +30,8 @@ public interface MeetDAO {
 	
 	public int insertJoin(MeetJoin meetJoin);
 	
+	public int insertAttend(MeetingAttend meetingAttend);
+	
 	public User getRederName(int meetId);
 	
 	public List<MeetJoin> getJoinName(int meetId);
@@ -38,4 +41,8 @@ public interface MeetDAO {
 	public int insertMeeting(Meeting meeting);
 	
 	public List<Meeting> selectMeetingList(int meetId);
+	
+	public Meeting selectMeeting (
+			@Param("id") int meetingId, 
+			@Param("meetId") int meetId);
 }

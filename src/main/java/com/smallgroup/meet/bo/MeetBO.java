@@ -10,6 +10,7 @@ import com.smallgroup.meet.dao.MeetDAO;
 import com.smallgroup.meet.model.Meet;
 import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
+import com.smallgroup.meet.model.MeetingAttend;
 import com.smallgroup.user.model.Favorite;
 import com.smallgroup.user.model.User;
 
@@ -56,6 +57,10 @@ public class MeetBO {
 		return meetDAO.insertJoin(meetJoin);
 	}
 	
+	public int addAttend(MeetingAttend meetingAttend) {
+		return meetDAO.insertAttend(meetingAttend);
+	}
+	
 	public	User getRederName(int meetId){ 
 		return meetDAO.getRederName(meetId);
 	}
@@ -74,6 +79,10 @@ public class MeetBO {
 	
 	public List<Meeting> getMeetingList(int meetId){
 		return meetDAO.selectMeetingList(meetId);
+	}
+	
+	public Meeting getMeeting(int meetingId, int meetId){
+		return meetDAO.selectMeeting(meetingId, meetId);
 	}
 	
 }

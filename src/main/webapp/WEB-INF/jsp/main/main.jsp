@@ -13,8 +13,8 @@
 	    </ul>
 	    <hr>
 	</div>
-	<div class="list ">
-		
+	<form id="moreListForm">
+	<div class="list">
 		<div class="d-flex flex-wrap justify-content-center">
 			<c:forEach var="meet" items="${meet}">
 				<a href="../meet/detail_view?meetId=${meet.id}" data-meet-id="${meet.id}">
@@ -58,7 +58,9 @@
 			<img alt="" src="/static/image/more.png" width="50">
 		</a>
 	</div>
+	</form>
 </div>
 <script>
+
 
 </script>

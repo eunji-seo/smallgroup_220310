@@ -11,19 +11,19 @@
 	<div class="meet-content">
 		<div class="location d-flex justify-content-around mb-3 ">
 			<div class="d-flex mb-3 ">
-					<div class="">
+					<div class="d-flex justify-content-around ">
 						<img alt="" src="/static/image/location.png" width="30" height="30">
 						<span>지역</span>
 					</div>
-					<input type="text" name="meetAddress" id="meetAddress" class="form-control col-10" placeholder="행정구(ex 강북구)">
+					<input type="text" name="meetAddress" id="meetAddress" class="form-control col-9" placeholder="행정구(ex 강북구)">
 				</div>
 			<div>
-				<div class="d-flex justify-content-around mb-3 ">
+				<div class="d-flex justify-content-around">
 					<div>
-					<img alt="" src="/static/image/parson.png" width="30">
+					<img alt="" src="/static/image/person.png" width="30">
 					<span>이름</span>
 					</div>
-					<input type="text" name="joinName" id="joinName" class="form-control col-10" placeholder="방장 이름">
+					<input type="text" name="joinName" id="joinName" class="form-control col-7" placeholder="방장 이름">
 				</div>
 			</div>
 		</div>
@@ -86,6 +86,7 @@ $(document).ready(function(){
 	$('.createBtn').on('click',function(){
 	
 		let meetAddress =  $('#meetAddress').val().trim();
+		let joinName = $('#joinName').val().trim(); 
 		let meetName = $('#meetName').val().trim(); 
 		let desc = $('#desc').val().trim();
 		let personnel = $('#personnel').val().trim();
@@ -93,6 +94,7 @@ $(document).ready(function(){
 		
 		let formData = new FormData();
 		formData.append("meetAddress",meetAddress)
+		formData.append("joinName",joinName)
 		formData.append("meetName",meetName)
 		formData.append("desc",desc)
 		formData.append("personnel",personnel)

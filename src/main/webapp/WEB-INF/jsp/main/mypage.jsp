@@ -63,7 +63,7 @@
 		</div>	
 	</div>
 	<div class="meet-create-list">
-	<h3>내가 등록한 모임</h3>
+	<h3>내가 만든 모임</h3>
 		<div class="list d-flex flex-wrap justify-content-center">
 			<div class="meet-box">
 				<a href="#">

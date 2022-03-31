@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,7 @@ import com.smallgroup.meet.bo.MeetBO;
 import com.smallgroup.meet.model.Meet;
 import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
+import com.smallgroup.meet.model.MeetingAttend;
 @RequestMapping("/meet")
 @RestController
 public class MeetRestController {
@@ -47,9 +49,9 @@ public class MeetRestController {
 		
 	}
 	
-	@PostMapping("/detail")
+	@PostMapping("/detail_join")
 	public Map<String, Object> detailJoin(
-			@ModelAttribute MeetJoin meetJoin,		
+			@ModelAttribute MeetJoin meetJoin,
 			HttpSession session){
 		
 		
@@ -71,6 +73,31 @@ public class MeetRestController {
 		return result;
 		
 	}
+	
+	@PostMapping("/detail_attend")
+	public Map<String, Object> detailAttend(
+			@ModelAttribute MeetingAttend meetingAttend,
+			HttpSession session){
+		
+		
+		int userId = (int) session.getAttribute("id");
+		meetingAttend.setUserId(userId);
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
+		
+		int	rowcount = meetBO.addAttend(meetingAttend);
+		
+		
+		if(rowcount < 1) {
+			result.put("result", "fail");
+			result.put("errorMessage", "참석을 다시 시도하여주세요.");
+			
+		}
+		return result;
+		
+	}
+	
 	
 	@PostMapping("/meeting")
 	public Map<String, Object> meeting(

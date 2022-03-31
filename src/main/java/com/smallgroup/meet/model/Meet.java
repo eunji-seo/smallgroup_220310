@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Meet {
 	private int id;
 	private int userId;
+	private String JoinName;
 	private int meetFavoriteId;
 	private String meetAddress;
 	private String meetName;
@@ -28,6 +29,12 @@ public class Meet {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public String getJoinName() {
+		return JoinName;
+	}
+	public void setJoinName(String joinName) {
+		JoinName = joinName;
 	}
 	public int getMeetFavoriteId() {
 		return meetFavoriteId;
@@ -85,11 +92,13 @@ public class Meet {
 	}
 	@Override
 	public String toString() {
-		return "Meet [id=" + id + ", userId=" + userId + ", meetFavoriteId=" + meetFavoriteId + ", meetAddress="
-				+ meetAddress + ", meetName=" + meetName + ", desc=" + desc + ", meetImagePath=" + meetImagePath
-				+ ", file=" + file + ", personnel=" + personnel + ", createdAt=" + createdAt + ", updatedAt="
-				+ updatedAt + "]";
+		return "Meet [id=" + id + ", userId=" + userId + ", JoinName=" + JoinName + ", meetFavoriteId=" + meetFavoriteId
+				+ ", meetAddress=" + meetAddress + ", meetName=" + meetName + ", desc=" + desc + ", meetImagePath="
+				+ meetImagePath + ", file=" + file + ", personnel=" + personnel + ", createdAt=" + createdAt
+				+ ", updatedAt=" + updatedAt + "]";
 	}
+	
+	
 	
 	
 	
