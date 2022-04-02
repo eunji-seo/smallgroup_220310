@@ -23,10 +23,10 @@ public class MeetPostController {
 	
 	@RequestMapping("/post_create_view")
 	public String postView(
-			//@RequestParam("meetId") int meetId,
+			@RequestParam("meetId") int meetId,
 			Model model) {
 		
-		
+		System.out.println(meetId);
 		Meet meet = meetBO.getMeetById(meetId);
 		model.addAttribute("viewName", "post/meet_create");
 		model.addAttribute("meet", meet);

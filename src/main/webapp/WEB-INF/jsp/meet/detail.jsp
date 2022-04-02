@@ -11,10 +11,10 @@
 	<nav class="navbar-collapse">
 		<ul class="nav d-flex">
 		      <li class="nav-item active">
-		        <a class="nav-link" href="../meet/detail_view?meetId=${meet.id}">정보</a>
+		        <a class="nav-link" href="${pageContext.request.contextPath}/meet/detail_view?meetId=${meet.id}">정보</a>
 		      </li>
 		      <li class="nav-item active">
-		        <a class="nav-link" href="../post/meetPost_view">게시판</a>
+		        <a class="nav-link" href="${pageContext.request.contextPath}/post/meetPost_view?meetId=${meet.id}">게시판</a>
 		      </li>
 		      <li class="nav-item active">
 		        <a class="nav-link" href="#">채팅</a>
