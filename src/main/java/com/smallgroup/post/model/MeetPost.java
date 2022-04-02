@@ -1,4 +1,4 @@
-package com.smallgroup.meet.model;
+package com.smallgroup.post.model;
 
 import java.util.Date;
 

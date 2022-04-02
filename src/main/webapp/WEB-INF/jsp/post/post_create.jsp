@@ -23,11 +23,14 @@
 					</div>				
 			</div>	
 		</div>
-		<button type="button" class="createBtn btn btn-primary w-100">게시글 등록</button>
+		<button type="button" class="createBtn btn btn-primary w-100"">게시글 등록${meet.id}</button>
+			
 	</div>
 </div>
 <script>
 $(document).ready(function(){
+	<
+	
 	$('#fileUploadBtn').on('click', function(e) {
 		e.preventDefault(); // 기본 작동 중지
 		$('#file').click(); // input file을 클릭한 것과 같은 동작
@@ -54,10 +57,12 @@ $(document).ready(function(){
 	
 		let subject =  $('#subject').val().trim();
 		let contentText = $('#contentText').val().trim();
+		let meetId = $('.createBtn').data('meet-id');
 		
 		let formData = new FormData();
 		formData.append("subject",subject)
 		formData.append("contentText",contentText)
+		formData.append("meetId",meetId)
 		
 		if( $('#file')[0].files[0]){
 			formData.append("file",$('#file')[0].files[0])

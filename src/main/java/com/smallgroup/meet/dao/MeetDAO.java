@@ -9,6 +9,7 @@ import com.smallgroup.meet.model.Meet;
 import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
 import com.smallgroup.meet.model.MeetingAttend;
+import com.smallgroup.post.model.MeetPost;
 import com.smallgroup.user.model.Favorite;
 import com.smallgroup.user.model.User;
 
@@ -25,7 +26,7 @@ public interface MeetDAO {
 	public int insertMeet(Meet meet);
 	
 	public Meet selectMeetById(int meetId);
-	
+
 	public List<Meet> selectMeetList();
 	
 	public int insertJoin(MeetJoin meetJoin);
@@ -45,4 +46,6 @@ public interface MeetDAO {
 	public Meeting selectMeeting (
 			@Param("id") int meetingId, 
 			@Param("meetId") int meetId);
+	
+
 }

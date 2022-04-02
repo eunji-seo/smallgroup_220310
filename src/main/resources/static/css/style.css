@@ -42,6 +42,9 @@ li{text-decoration: none;}
 	border: 1px solid #000;
 	background-color: #fff;
 }
+.meet-inner{
+	width: 100%;
+}
 
 .img-area{
 	margin-right: 20px;

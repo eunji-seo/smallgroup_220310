@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.smallgroup.common.EncryptUtils;
 import com.smallgroup.meet.bo.MeetBO;
+import com.smallgroup.meet.model.Meet;
 import com.smallgroup.user.bo.UserBO;
 import com.smallgroup.user.model.Favorite;
 import com.smallgroup.user.model.User;
@@ -73,6 +73,8 @@ public class UserRestController {
 			session.setAttribute("address", memberUser.getAddress());
 			List<Favorite> userFavorites = userBO.selectUserFavorites(memberUser.getId());
 			session.setAttribute("userFavorites", userFavorites);
+			List<Meet> meetList = meetBO.getMeetList();
+			session.setAttribute("meetList", meetList);
 		} else {
 			result.put("result", "error");
 			result.put("errorMessage", "로그인을 다시 시도해주세요.");

@@ -1,0 +1,32 @@
+package com.smallgroup.post.bo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.smallgroup.common.FileManagerService;
+import com.smallgroup.post.dao.MeetPostDAO;
+import com.smallgroup.post.model.MeetPost;
+
+@Service
+public class MeetPostBO {
+	
+	@Autowired
+	private MeetPostDAO meetPostDAO;
+	
+
+	@Autowired
+	private FileManagerService fileManger;
+	
+	
+public int addpost(String loginId, MeetPost meetPost) {
+		
+		String imagePath = null;
+		if( meetPost.getPostImage()!= null) {
+			imagePath = fileManger.saveFile(loginId, meetPost.getPostImage());
+						meetPost.setPostImagePath(imagePath);	
+		}
+				
+		return meetPostDAO.insertPost(meetPost);
+	}
+	
+}

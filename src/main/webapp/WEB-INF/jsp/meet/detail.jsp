@@ -11,10 +11,10 @@
 	<nav class="navbar-collapse">
 		<ul class="nav d-flex">
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#">정보</a>
+		        <a class="nav-link" href="../meet/detail_view?meetId=${meet.id}">정보</a>
 		      </li>
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#">게시판</a>
+		        <a class="nav-link" href="../post/meetPost_view">게시판</a>
 		      </li>
 		      <li class="nav-item active">
 		        <a class="nav-link" href="#">채팅</a>
@@ -69,7 +69,16 @@
 				 	</div>
 				 	<div>
 				 		<button type="button" class="btn btn-success" onclick="showModal('${meeting.id}')">참석</button>
+				 		
 				 	</div>
+				</div>
+				<div class="attend-list">
+					<div class="d-flex justify-content-between">
+						<h5>참석자 리스트</h5>
+						<a href="#" data-toggle="modal" data-target="#moreModalAttendjoin"> 
+							<img alt="" src="/static/image/more_person.png" width="20" height="20">
+						</a>
+					</div>
 				</div>
 			</c:forEach>
 			<c:if test="${meet.userId == id}">
@@ -77,15 +86,6 @@
 					<a href="../meet/meeting_view?meetId=${meet.id}"class="btn btn-secondary w-100 mt-2">+정모 등록 하기</a>
 				</div>
 			</c:if>
-			<div class="attend-list">
-				<div class="d-flex justify-content-between">
-					<h5>참석자 리스트</h5>
-					<a href="#"><img alt="" src="/static/image/more_person.png" width="20" height="20"></a>
-				</div>
-				<ul>
-					<li></li>
-				</ul>
-			</div>
 			<div class="member-list">
 				<div class="d-flex justify-content-between">
 					<h5>멤버 리스트</h5>
@@ -141,8 +141,28 @@
 		      			<a href="#" class="cancel d-block text-secondary" data-dismiss="modal">취소</a>
 		      		</div>
 	      		<div class="my-3 ml-3 text-center">
-	      			<a href="#" class="attendBtn d-block"  >참석</a>
+	      			<a href="../meet/detail_view?meetingId=${meeting.id}" class="attendBtn d-block">참석</a>
 	      		</div>
+	      		<div data-meeting-id="" id="meetingId"></div>
+	      	</div>
+      	</div>
+    </div>
+  </div>
+</div>
+<!-- 참석 Modal -->
+<div class="modal fade" id="moreModalAttendjoin">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content">
+      	<%-- modal 창 안에 내용 넣기 --%>
+      	
+      <div class="m-3">
+      		<span class="mb-2"><b>참석자 리스트</b></span>      		
+      		<div class="d-flex justify-content-center align-items-center">
+		      	<div class="pr-3 text-center">
+		      			<div></div>
+		      			<div></div>
+		      			<a href="#" class="cancel " data-dismiss="modal">취소</a>
+		      		</div>
 	      		<div data-meeting-id="" id="meetingId"></div>
 	      	</div>
       	</div>
@@ -153,7 +173,10 @@
 function showModal(meetingId){
 	$('#moreModalAttend').modal();
 	$('#meetingId').data('meeting-id',meetingId);
+	
+	
 }
+
 
 $('#moreModalAttend .attendBtn').on('click', function(e){
 	e.preventDefault();

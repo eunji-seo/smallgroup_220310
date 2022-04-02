@@ -46,6 +46,11 @@
  		WHERE
  			id = #{meetId}
  	</select>
+ 	<select id="selectMeetingById" resultType="com.smallgroup.meet.model.MeetingAttend">
+ 		SELECT * FROM meetingAttend
+ 		WHERE
+ 			id = #{meetingId}
+ 	</select>
  	<select id="selectMeetList" resultType="com.smallgroup.meet.model.Meet">
  		SELECT * FROM meet
  	</select>
@@ -146,6 +151,6 @@
  		where 
  			meetId = #{meetId}
  		and id = #{meetingId}
- 		
  	</select>
+	
  </mapper>

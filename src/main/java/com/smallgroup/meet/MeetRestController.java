@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +16,7 @@ import com.smallgroup.meet.model.Meet;
 import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
 import com.smallgroup.meet.model.MeetingAttend;
+import com.smallgroup.post.model.MeetPost;
 @RequestMapping("/meet")
 @RestController
 public class MeetRestController {
@@ -119,4 +119,6 @@ public class MeetRestController {
 		return result;
 		
 	}
+	
+	
 }

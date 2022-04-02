@@ -62,11 +62,17 @@ public class MeetController {
 	 * @return
 	 */
 	@RequestMapping("/detail_view")
-	public String meetDetail(@RequestParam("meetId") int meetId, HttpSession session, Model model) {
+	public String meetDetail(
+			@RequestParam("meetId") int meetId, 
+			HttpSession session, Model model) {
 		int userId = (int)session.getAttribute("id");
+		
+		
+		
 		List<MeetJoin> join = meetBO.getJoinName(meetId);
 		int cnt = meetBO.getJoinNameByName(meetId, userId);
 		User memberName =meetBO.getRederName(meetId);
+		
 		List<Meeting> meetingList = meetBO.getMeetingList(meetId); 
 		Meet meet = meetBO.getMeetById(meetId);
 		
@@ -76,6 +82,7 @@ public class MeetController {
 		model.addAttribute("memberName", memberName);
 		model.addAttribute("join", join);
 		model.addAttribute("cnt", cnt);
+		
 		return "template/layout";
 	}
 	/**
@@ -97,24 +104,7 @@ public class MeetController {
 	}
 	
 	
-	/**
-	 * 
-	 * @param meetId
-	 * @param model
-	 * @return
-	 */
 	
-	@RequestMapping("/post_view")
-	public String postView(
-			@RequestParam("meetId") int meetId,
-			Model model) {
-		
-		
-		Meet meets = meetBO.getMeetById(meetId);
-		model.addAttribute("viewName", "meet/meeting");
-		model.addAttribute("meet", meets);
-		return "template/layout";
-	}
 	
 	
 }

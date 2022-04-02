@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.smallgroup.post.dao.MeetPostDAO">
+ 	<insert id="insertPost">
+		INSERT INTO `meet_post`
+		(
+			`userId`
+			,`meetId`
+			,`subject`
+			,`contentText`
+			,`postImagePath`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUES
+		(
+			#{userId}
+			,#{meetId}
+			,#{subject}
+			,#{contentText}
+			,#{postImagePath}
+			,NOW()
+			,NOW()
+			
+		)
+	</insert>
+ 
+ </mapper>
+ 
