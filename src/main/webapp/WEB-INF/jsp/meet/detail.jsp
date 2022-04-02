@@ -76,6 +76,9 @@
 					<div class="d-flex justify-content-between">
 						<h5>참석자 리스트</h5>
 						<a href="#" data-toggle="modal" data-target="#moreModalAttendjoin"> 
+						<!-- <button type="button" class="btn btn-success" onclick="showModal('${meeting.id}')">참석</button> 
+						위의 show modal 참고
+						-->
 							<img alt="" src="/static/image/more_person.png" width="20" height="20">
 						</a>
 					</div>
