@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="main">
 	<div class="bg-white d-flex align-items-center p-3">
 			<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
@@ -25,50 +26,59 @@
 	</div>
 	<form id="moreListForm">
 	<div class="list">
+	<c:forEach var="postList" items="${postList}">
 		<div class="d-flex flex-wrap justify-content-center">
-				<a href="#" >
-					<div class="meet-box">
+					<div class="meet-post-box">
 					    <div class="meet-inner d-flex justify-content-between">
 					    	<div>
 					    	<img alt="" src="/static/image/person.png"  width="25">
-					    	<span>글쓴이</span>
+					    	<span>${postList.userId}</span>
 					    	</div>
-					    	<div>올린날짜</div>
+					    	<div>
+					    	<fmt:formatDate var="resultRegDt" value="${postList.updatedAt}" pattern="yyyy년 MM월 dd일 HH:mm:ss"/>
+					    	${resultRegDt}
+					    	</div>
 					    </div>
 					    <div class="d-flex justify-content-between">
 					    	<div>
-						    	<div><b>제목</b></div>
+						    	<div><b>${postList.subject}</b></div>
 						    	<div>						    	
-									<p>${meet.desc}</p>
+									<p>${postList.contentText}</p>
 						    	</div>
 					    	</div>
 					    	<div>
-					    		<c:if test="${empty meet.meetImagePath}">
-								<img alt="" src="/static/image/no-photo.png"  width="100">
+					    		<c:if test="${empty postList.postImagePath}">
+								<img alt="" src="/static/image/no-photo.png"  width=150>
 								</c:if>
-								<img src="${meet.meetImagePath}" width="100">
+								<img src="${postList.postImagePath}" width="200">
 					    	</div>
 					    	</div>
 					    	<div class="">
 					    		<div class="d-flex">
-					    			<img alt="" src="/static/image/no-photo.png"  width="25">	
+					    			<img alt="" src="/static/image/notlike.png"  width="25">	
 					    			<div>좋아요</div>
 					    			<div>3</div>				    			
 					    		</div>
 					    		<hr>
 					    		<div class="">
-					    			
+											<div class="comment-list">
+												<span class="ml-2"><b></b></span>
+												<span></span>
+												<%-- 댓글 삭제버튼 --%>
+													<a href="#" class="commentDelBtn" data-comment-id="">
+														<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
+													</a>
+											</div>
+
 									<div class="cleate-comment-group d-flex justify-content-start mt-2 ">
-										<input type="text" id="commentText${post.id}" name="commentText" class="form-control" placeholder="댓글을 입력해주세요.">
-										<button type="button" class="commentBtn btn btn-none" data-post-id="${post.id}">게시</button>
+										<input type="text" id="commentText${postList.id}" name="commentText" class="form-control" placeholder="댓글을 입력해주세요.">
+										<button type="button" class="commentBtn btn btn-none" data-meetPost-id="${postList.id}" data-meet-id="${postList.meetId}">게시</button>
 									</div>	
 					    		</div>
-					    	</div>
-					    
-					    		
+					    	</div>	
 					</div>
-				</a>
-		</div>
+			</div>
+		</c:forEach>
 	</div>
 	<div class=" d-flex justify-content-end">
 		<a href="../post/post_create_view?meetId=${param.meetId}">
@@ -83,6 +93,71 @@
 	</form>
 </div>
 <script>
+
+$('.commentBtn').on('click',function(){
+let meetPostId= $(this).data('meetPost-id'); 
+let meetId= $(this).data('meet-id'); 
+	//alert(postId);
+
+	let commentText = $('#commentText' + meetPostId).val();
+	//alert(commentText);
+	
+	if(commentText == ''){
+		alert("댓글을 입력해주세요.")
+		return;
+	}
+	
+	$.ajax({
+		type:"POST"
+		,url:"/comment/create"
+		,data: {"meetPostId":meetPostId, "meetId":meetId, "content":commentText}
+		,success: function(data){
+			if(data.result == 'success'){
+				alert("댓글이 입력되었습니다.")
+				location.reload();
+			}
+			
+		}
+		,error: function(e){
+			alert("댓글입력에 실패하였습니다. 관리자에 연락해주세요.")	
+		}
+		
+		
+		
+	});
+	
+});
+$('.likeBtn').on('click', function(e){
+		e.preventDefault();
+		
+	let	meetPostId = $(this).data('post-id');
+	let userId = $(this).data('user-id');
+	
+	console.log(postId);
+	console.log(userId);
+	
+	if(userId == ''){
+		alert("로그인후 사용가능합니다.");
+		return;
+	}
+	
+	$.ajax({
+		type: "POST"
+		, url: "/like/" + meetPostId
+		, success: function(data){
+			if(data.result == 'success'){
+				location.reload();
+				
+			}else {
+				alert(data.errorMassage);
+			}
+		}
+		, error: function(e){
+			alert("좋아요의 실패하였습니다.");	
+		}
+		
+	});
+});
 
 
 </script>

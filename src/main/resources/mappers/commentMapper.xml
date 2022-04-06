@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.smallgroup.comment.dao.CommentDAO">
+ 	<insert id="insertCommentList" parameterType="map">
+ 	INSERT INTO `comment`
+ 	(
+	 		 `meetId`
+	 		,`userId`
+	 		, `meetPostId`
+	 		, `content`
+	 		, `createdAt`
+	 		, `updatedAt`
+ 	)
+ 	VALUES
+ 	(
+ 		#{meetId}
+ 		, #{userId}
+ 		, #{meetPostId}
+ 		, #{content}
+ 		,NOW()
+ 		,NOW()
+ 	)
+ 	</insert>
+ 	<select id="selectCommentListByPostId" parameterType="int" resultType="com.smallgroup.comment.model.Comment">
+ 		SELECT 	
+ 			`id`
+	 		, `meetId`
+	 		, `userId`
+	 		, `meetPostId`
+	 		, `content`
+	 		, `createdAt`
+	 		, `updatedAt`
+ 		FROM
+ 			`comment`
+ 		WHERE
+ 			`meetPostId` = #{meetPostId}
+ 	</select>
+ 	<delete id="deleteCommentsByPostId" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`comment`
+ 		WHERE
+ 			`meetPostId` = #{meetPostId}
+ 	</delete>
+ 	<delete id="deleteCommentByCommentIdAndUserId" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`comment`
+ 		WHERE
+ 			`id` = #{commentId}
+ 			AND `meetPostId` = #{meetPostId}
+ 	</delete>
+ </mapper>

@@ -6,6 +6,7 @@ public class CommentView {
 
 	private Comment comment;
 	private User user;
+	
 	public Comment getComment() {
 		return comment;
 	}

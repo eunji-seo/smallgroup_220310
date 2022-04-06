@@ -60,7 +60,7 @@
 	<div class="moreView d-flex justify-content-center">
 	
 		<a href="#" onclick="myFunction()" id="myBtn"class="btn">
-		  Read more
+		 Read less
 		</a>
 	</div>
 	</form>

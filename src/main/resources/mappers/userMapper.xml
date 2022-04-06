@@ -95,4 +95,21 @@
  		DELETE FROM USER_FAVORITE
  		WHERE USERID=#{userId}
  	</delete>
+ 	
+ 	<select id="selectUserById" parameterType="int" resultType="com.smallgroup.user.model.User">
+ 	SELECT
+ 			`id`
+ 			,`loginId`
+			,`password`
+			,`name`
+			,`birth`
+			,`address`
+			,`email`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`id` = #{id}
+ 	</select>
  </mapper>

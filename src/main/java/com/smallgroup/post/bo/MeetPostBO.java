@@ -1,5 +1,7 @@
 package com.smallgroup.post.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,11 @@ public class MeetPostBO {
 		return meetPostDAO.insertPost(meetPost);
 	}
 
+	
+	public List<MeetPost> getMeetPostList(){
+		return meetPostDAO.getMeetPostList();
+	}
+	
 	
 	
 }

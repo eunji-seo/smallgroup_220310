@@ -30,4 +30,6 @@ public interface UserDAO {
 	public void deleteUserFavorite(int userId);
 	
 	public List<Favorite> selectUserFavorites(@Param("userId") int userId);
+	
+	public User selectUserById(int userId);
 }

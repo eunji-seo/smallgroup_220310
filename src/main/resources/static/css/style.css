@@ -134,3 +134,14 @@ li{text-decoration: none;}
  	
 }
 
+/* meetPost */
+
+.meet-post-box{
+	width: 400px;
+	margin: 5px;
+	padding: 20px;
+	border: 1px solid #000;
+	background-color: #fff;
+}
+
+

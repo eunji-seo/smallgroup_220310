@@ -51,4 +51,8 @@ public class UserBO {
 	public List<Favorite> selectUserFavorites(int userId) {
 		return userDAO.selectUserFavorites(userId);
 	}
+	
+	public User getUserById(int userId) {
+		return userDAO.selectUserById(userId);
+	}
 }
