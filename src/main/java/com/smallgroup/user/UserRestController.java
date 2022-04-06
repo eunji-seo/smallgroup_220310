@@ -73,7 +73,7 @@ public class UserRestController {
 			session.setAttribute("address", memberUser.getAddress());
 			List<Favorite> userFavorites = userBO.selectUserFavorites(memberUser.getId());
 			session.setAttribute("userFavorites", userFavorites);
-			List<Meet> meetList = meetBO.getMeetList();
+			List<Meet> meetList = meetBO.getMeetList(null);
 			session.setAttribute("meetList", meetList);
 		} else {
 			result.put("result", "error");

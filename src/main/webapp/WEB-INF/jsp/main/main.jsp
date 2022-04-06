@@ -6,11 +6,11 @@
 	<div class="navbar-collapse">
 		 <ul class="nav d-flex">
 		 	  <li class="nav-item active">
-		        <a class="nav-link" href="#">전체</a>
+		        <a class="nav-link" href="${pageContext.request.contextPath}/main/main_view">전체</a>
 		      </li>
 		    <c:forEach var="uf" items="${userFavorites}">	
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#" id="category">${uf.favoriteName}</a>
+		        <a class="nav-link" href="${pageContext.request.contextPath}/main/main_view?meetFavoriteId=${uf.id}" id="category">${uf.favoriteName}</a>
 		      </li>
 		     </c:forEach>
 	    </ul>
