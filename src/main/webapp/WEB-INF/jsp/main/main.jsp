@@ -5,20 +5,22 @@
 <div class="main">
 	<div class="navbar-collapse">
 		 <ul class="nav d-flex">
-		 	<c:forEach var="uf" items="${userFavorites}">	
+		 	  <li class="nav-item active">
+		        <a class="nav-link" href="#">전체</a>
+		      </li>
+		    <c:forEach var="uf" items="${userFavorites}">	
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#">${uf.favoriteName}</a>
+		        <a class="nav-link" href="#" id="category">${uf.favoriteName}</a>
 		      </li>
 		     </c:forEach>
 	    </ul>
 	    <hr>
 	</div>
 	<form id="moreListForm">
-	<div class="list">
-		<div class="d-flex flex-wrap justify-content-center">
+		<ul class="content-list d-flex flex-wrap justify-content-center">
 			<c:forEach var="meet" items="${meet}">
 				<a href="../meet/detail_view?meetId=${meet.id}" data-meet-id="${meet.id}">
-					<div class="meet-box d-flex">
+					<li class="meet-box d-flex">
 						<div class="img-area">
 							<c:if test="${empty meet.meetImagePath}">
 							<img alt="" src="/static/image/no-photo.png"  width="100">
@@ -43,24 +45,45 @@
 								<div>${meet.personnel}</div>
 							</div>	
 						</div>		
-					</div>
+					</li>
 				</a>
+				<span id="dots"></span>	<span id="more">
 			</c:forEach>
-		</div>
-	</div>
+		</span>
+		
+		</ul>
 	<div class=" d-flex justify-content-end">
 		<a href="../meet/meet_create_view">
 			<img alt="" src="/static/image/meet_plus.png" width="100">
 		</a>
 	</div>
-	<div class="more d-flex justify-content-center">
-		<a href="#">
-			<img alt="" src="/static/image/more.png" width="50">
+	<div class="moreView d-flex justify-content-center">
+	
+		<a href="#" onclick="myFunction()" id="myBtn"class="btn">
+		  Read more
 		</a>
 	</div>
 	</form>
 </div>
 <script>
 
+function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less"; 
+    moreText.style.display = "inline";
+  }
+}
+
+
+ 
 
 </script>

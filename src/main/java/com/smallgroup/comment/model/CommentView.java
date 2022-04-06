@@ -1,4 +1,4 @@
-package com.smallgroup.commnet.model;
+package com.smallgroup.comment.model;
 
 import com.smallgroup.user.model.User;
 

@@ -58,6 +58,7 @@ li{text-decoration: none;}
 	color:#fff;
 }
 
+
 /* mypage */
 
 .mypage {
@@ -118,6 +119,10 @@ li{text-decoration: none;}
 .meeting-content {
 		background-color: #fff;
 		padding: 10px 50px;
+}
+
+.attend{
+	width: 150px;
 }
 
 /* meeting */

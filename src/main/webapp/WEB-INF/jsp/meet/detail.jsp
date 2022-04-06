@@ -67,22 +67,24 @@
 							<span>${meeting.personnel}</span>	
 				 		</div>
 				 	</div>
-				 	<div>
-				 		<button type="button" class="btn btn-success" onclick="showModal('${meeting.id}')">참석</button>
+				 	<div class="attend">
+				 		<button type="button" class="btn btn-success mb-3" onclick="showModal('${meeting.id}')">참석</button>
+				 		<hr>
+				 		<a href="#" class="d-block" data-toggle="modal" data-target="#moreModalAttendjoin" onclick="showAttendModal('${meeting.id}')">참석자 리스트</a>
 				 		
 				 	</div>
 				</div>
-				<div class="attend-list">
+				<!-- <div class="attend-list">
 					<div class="d-flex justify-content-between">
 						<h5>참석자 리스트</h5>
-						<a href="#" data-toggle="modal" data-target="#moreModalAttendjoin"> 
-						<!-- <button type="button" class="btn btn-success" onclick="showModal('${meeting.id}')">참석</button> 
+						<a href="#" "> 
+						<button type="button" class="btn btn-success" onclick="showModal('${meeting.id}')">참석</button> 
 						위의 show modal 참고
-						-->
+						
 							<img alt="" src="/static/image/more_person.png" width="20" height="20">
 						</a>
 					</div>
-				</div>
+				</div> -->
 			</c:forEach>
 			<c:if test="${meet.userId == id}">
 				<div class="meeting- mb-3">
@@ -144,7 +146,7 @@
 		      			<a href="#" class="cancel d-block text-secondary" data-dismiss="modal">취소</a>
 		      		</div>
 	      		<div class="my-3 ml-3 text-center">
-	      			<a href="../meet/detail_view?meetingId=${meeting.id}" class="attendBtn d-block">참석</a>
+	      			<a href="../meet/detail_view?meetingId=${meeting.id}" id="attendBtn" class="attendBtn d-block"  data-meet-id="${meet.id}">참석</a>
 	      		</div>
 	      		<div data-meeting-id="" id="meetingId"></div>
 	      	</div>
@@ -161,10 +163,7 @@
       <div class="m-3">
       		<span class="mb-2"><b>참석자 리스트</b></span>      		
       		<div class="d-flex justify-content-center align-items-center">
-		      	<div class="pr-3 text-center">
-		      			<div></div>
-		      			<div></div>
-		      			<a href="#" class="cancel " data-dismiss="modal">취소</a>
+		      	<div class="pr-3 text-center" id="attendsDiv">
 		      		</div>
 	      		<div data-meeting-id="" id="meetingId"></div>
 	      	</div>
@@ -179,19 +178,40 @@ function showModal(meetingId){
 	
 	
 }
+function showAttendModal(meetingId){
+	
+	//$('#meetingId').data('meeting-id',meetingId);
+	$.get({
+		url:"/meet/attends/" + meetingId
+		,success: function(data){
+			console.log(data);
+			var html = '';
+			html += '<div>${memberName.name}<b>방장</b></div>'
+			for(var attend of data){
+				html += '<div>'+attend.attendName+'</div>';
+			}
+			html += '<a href="#" class="cancel" data-dismiss="modal" data-meet-id="${meet.id}">취소</a>';
+			$('#attendsDiv').html(html);
+			$('#moreModalAttendjoin').modal();
+		}
+	});
+	
+}
 
 
 $('#moreModalAttend .attendBtn').on('click', function(e){
 	e.preventDefault();
 	//alert("click");
+	var meetId = $('#attendBtn').data('meet-id');
 	var meetingId = $('#meetingId').data('meeting-id');
 	var attendName = $('#attendName').val().trim(); 
 		
 	$.post({
 		url:"/meet/detail_attend"
 		,data:{
-			"meetingId": meetingId,
-			"attendName": attendName			
+			"meetId":meetId
+			,"meetingId": meetingId
+			,"attendName": attendName			
 	//		,"favoriteId": favoriteId			
 		}
 		,success: function(data){
@@ -226,7 +246,7 @@ $('#moreModalJoin .joinBtn').on('click', function(e){
 	
 	$.ajax({
 		type:"POST"
-		,url:"/meet/detail"
+		,url:"/meet/detail_join"
 		,data:{
 			"meetId": meetId,
 			"joinName": joinName			

@@ -18,15 +18,17 @@ public class MeetPostBO {
 	private FileManagerService fileManger;
 	
 	
-public int addpost(String loginId, MeetPost meetPost) {
+	public int addpost(String loginId, MeetPost meetPost) {
 		
 		String imagePath = null;
-		if( meetPost.getPostImage()!= null) {
-			imagePath = fileManger.saveFile(loginId, meetPost.getPostImage());
+		if( meetPost.getFile()!= null) {
+			imagePath = fileManger.saveFile(loginId, meetPost.getFile());
 						meetPost.setPostImagePath(imagePath);	
 		}
 				
 		return meetPostDAO.insertPost(meetPost);
 	}
+
+	
 	
 }

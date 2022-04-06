@@ -47,5 +47,6 @@ public interface MeetDAO {
 			@Param("id") int meetingId, 
 			@Param("meetId") int meetId);
 	
+	public List<MeetingAttend> getMeetingAttendList(int meetingId);
 
 }

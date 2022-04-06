@@ -14,6 +14,7 @@ import com.smallgroup.meet.bo.MeetBO;
 import com.smallgroup.meet.model.Meet;
 import com.smallgroup.meet.model.MeetJoin;
 import com.smallgroup.meet.model.Meeting;
+import com.smallgroup.meet.model.MeetingAttend;
 import com.smallgroup.user.model.Favorite;
 import com.smallgroup.user.model.User;
 
@@ -74,7 +75,9 @@ public class MeetController {
 		User memberName =meetBO.getRederName(meetId);
 		
 		List<Meeting> meetingList = meetBO.getMeetingList(meetId); 
+		
 		Meet meet = meetBO.getMeetById(meetId);
+		
 		
 		model.addAttribute("viewName", "meet/detail");
 		model.addAttribute("meet", meet);

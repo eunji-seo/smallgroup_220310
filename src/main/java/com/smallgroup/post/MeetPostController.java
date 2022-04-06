@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.smallgroup.meet.bo.MeetBO;
 import com.smallgroup.meet.model.Meet;
 
-@RequestMapping("/meet")
+@RequestMapping("/post")
 @Controller
 public class MeetPostController {
 	@Autowired
@@ -28,9 +28,23 @@ public class MeetPostController {
 		
 		System.out.println(meetId);
 		Meet meet = meetBO.getMeetById(meetId);
-		model.addAttribute("viewName", "post/meet_create");
+		model.addAttribute("viewName", "post/post_create");
 		model.addAttribute("meet", meet);
 		return "template/layout";
+	}
+	
+	@RequestMapping("/meetPost_view")
+	public String meetPostView(
+			@RequestParam("meetId") int meetId
+			,Model model) {
+		
+		System.out.println(meetId);
+		
+		Meet meet = meetBO.getMeetById(meetId);
+		model.addAttribute("viewName", "post/meetPost");
+		model.addAttribute("meet", meet);
+		return "template/layout";
+		
 	}
 	
 }

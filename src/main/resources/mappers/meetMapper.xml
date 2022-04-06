@@ -152,5 +152,16 @@
  			meetId = #{meetId}
  		and id = #{meetingId}
  	</select>
-	
+	<select id="getMeetingAttendList" resultType="com.smallgroup.meet.model.MeetingAttend">
+		SELECT
+			id
+			,userId
+			,meetId
+			,meetingId
+			,attendName
+		FROM
+			`meeting_attend`
+ 		WHERE
+			meetingId = #{meetingId}
+	</select>
  </mapper>

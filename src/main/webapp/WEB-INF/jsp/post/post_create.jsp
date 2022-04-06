@@ -2,6 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="meet-create">
+<nav class="navbar-collapse">
+		<ul class="nav d-flex">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="${pageContext.request.contextPath}/meet/detail_view?meetId=${meet.id}">정보</a>
+		      </li>
+		      <li class="nav-item active">
+		        <a class="nav-link" href="${pageContext.request.contextPath}/post/meetPost_view?meetId=${meet.id}">게시판</a>
+		      </li>
+		      <li class="nav-item active">
+		        <a class="nav-link" href="#">채팅</a>
+		      </li>
+	    </ul>
+	</nav>
 	<div class="bg-white d-flex align-items-center p-3">
 		<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
 		<div class="d-flex justify-content-center">
@@ -23,14 +36,14 @@
 					</div>				
 			</div>	
 		</div>
-		<button type="button" class="createBtn btn btn-primary w-100"">게시글 등록${meet.id}</button>
+		${param.meetId}
+		<button type="button" class="createBtn btn btn-primary w-100" data-meet-id="${meet.id}">게시글 등록${meet.id}</button>
 			
 	</div>
 </div>
 <script>
 $(document).ready(function(){
-	<
-	
+
 	$('#fileUploadBtn').on('click', function(e) {
 		e.preventDefault(); // 기본 작동 중지
 		$('#file').click(); // input file을 클릭한 것과 같은 동작

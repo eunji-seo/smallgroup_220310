@@ -12,10 +12,10 @@
 	<nav class="navbar-collapse">
 		<ul class="nav d-flex">
 		      <li class="nav-item active">
-		        <a class="nav-link" href="../meet/detail_view?meetId=${meet.id}">정보</a>
+		        <a class="nav-link" href="${pageContext.request.contextPath}/meet/detail_view?meetId=${meet.id}">정보</a>
 		      </li>
 		      <li class="nav-item active">
-		        <a class="nav-link" href="../post/meetPost_view?meetId=${meet.id}">게시판</a>
+		        <a class="nav-link" href="${pageContext.request.contextPath}/post/meetPost_view?meetId=${meet.id}">게시판</a>
 		      </li>
 		      <li class="nav-item active">
 		        <a class="nav-link" href="#">채팅</a>
@@ -38,7 +38,7 @@
 					    <div class="d-flex justify-content-between">
 					    	<div>
 						    	<div><b>제목</b></div>
-						    	<div>글						    	
+						    	<div>						    	
 									<p>${meet.desc}</p>
 						    	</div>
 					    	</div>
@@ -59,8 +59,8 @@
 					    		<div class="">
 					    			
 									<div class="cleate-comment-group d-flex justify-content-start mt-2 ">
-										<input type="text" id="commentText${content.post.id}" name="commentText" class="form-control" placeholder="댓글을 입력해주세요.">
-										<button type="button" class="commentBtn btn btn-none" data-post-id="${content.post.id}">게시</button>
+										<input type="text" id="commentText${post.id}" name="commentText" class="form-control" placeholder="댓글을 입력해주세요.">
+										<button type="button" class="commentBtn btn btn-none" data-post-id="${post.id}">게시</button>
 									</div>	
 					    		</div>
 					    	</div>
@@ -71,7 +71,7 @@
 		</div>
 	</div>
 	<div class=" d-flex justify-content-end">
-		<a href="../meet/meet_create_view">
+		<a href="../post/post_create_view?meetId=${param.meetId}">
 			<img alt="" src="/static/image/meet_plus.png" width="100">
 		</a>
 	</div>

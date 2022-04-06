@@ -2,7 +2,7 @@ package com.smallgroup.post.model;
 
 import java.util.List;
 
-import com.smallgroup.commnet.model.CommentView;
+import com.smallgroup.comment.model.CommentView;
 import com.smallgroup.user.model.User;
 
 public class PostContentView {

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smallgroup.post.bo.MeetPostBO;
@@ -24,12 +25,14 @@ public class MeetPostRestController {
 	@PostMapping("/post_create")
 	public Map<String, Object> postCreate(
 			@ModelAttribute MeetPost meetPost,
+			@RequestParam("meetId") int meetId,
 			HttpSession session){
 		
 		int userId = (int) session.getAttribute("id");
 		String loginId = (String) session.getAttribute("loginId");
-		
+		meetPost.setMeetId(meetId);
 		meetPost.setUserId(userId);
+	
 		Map<String, Object> result = new HashMap<>();
 		
 		result.put("result", "success");

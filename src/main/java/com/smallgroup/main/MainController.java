@@ -2,7 +2,6 @@ package com.smallgroup.main;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +42,8 @@ public class MainController {
 	@RequestMapping("/member_update_view")
 	public String memberCreateView(
 			Model model,
-			HttpServletRequest request) {
+			HttpSession session) {
 		
-		HttpSession session = request.getSession();
 		String loginId = (String) session.getAttribute("loginId");
 		
 		
@@ -66,5 +64,7 @@ public class MainController {
 		return "template/layout";
 	}
 	
+
+
 
 }

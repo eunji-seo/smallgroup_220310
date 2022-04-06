@@ -12,7 +12,7 @@ public class MeetPost {
 	private String subject;
 	private String contentText;
 	private String postImagePath;
-	private MultipartFile postImage;
+	private MultipartFile file;
 	private Date createdAt;
 	private Date updatedAt;
 	public int getId() {
@@ -51,11 +51,11 @@ public class MeetPost {
 	public void setPostImagePath(String postImagePath) {
 		this.postImagePath = postImagePath;
 	}
-	public MultipartFile getPostImage() {
-		return postImage;
+	public MultipartFile getFile() {
+		return file;
 	}
-	public void setPostImage(MultipartFile postImage) {
-		this.postImage = postImage;
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -72,9 +72,11 @@ public class MeetPost {
 	@Override
 	public String toString() {
 		return "MeetPost [id=" + id + ", userId=" + userId + ", meetId=" + meetId + ", subject=" + subject
-				+ ", contentText=" + contentText + ", postImagePath=" + postImagePath + ", postImage=" + postImage
+				+ ", contentText=" + contentText + ", postImagePath=" + postImagePath + ", file=" + file
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
+	
+	
 
 	
 }

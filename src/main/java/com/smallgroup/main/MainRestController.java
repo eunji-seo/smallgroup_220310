@@ -1,6 +1,7 @@
 package com.smallgroup.main;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.smallgroup.common.EncryptUtils;
 import com.smallgroup.main.bo.MainBO;
+import com.smallgroup.main.model.FavoriteDto;
 import com.smallgroup.user.model.User;
 @RequestMapping("/main")
 @RestController
@@ -47,6 +49,9 @@ public class MainRestController {
 		
 	}
 	
-	
+	@RequestMapping("/category/all")
+	public List<FavoriteDto> getCategoryAll(){
+		return mainBO.getCategory();
+	}
 	
 }

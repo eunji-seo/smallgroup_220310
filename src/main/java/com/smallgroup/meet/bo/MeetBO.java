@@ -29,7 +29,7 @@ public class MeetBO {
 	}
 	
 	public int addMeetFavorite(int userId ,int favoriteIds) {
-			return 	meetDAO.insertMeetFavorite(userId, favoriteIds);
+		return 	meetDAO.insertMeetFavorite(userId, favoriteIds);
 		
 	}
 	
@@ -85,7 +85,9 @@ public class MeetBO {
 		return meetDAO.selectMeeting(meetingId, meetId);
 	}
 	
+	public List<MeetingAttend> getMeetingAttendList(int meetingId){
+		return meetDAO.getMeetingAttendList(meetingId);
 	
 	
-	
+	}
 }
