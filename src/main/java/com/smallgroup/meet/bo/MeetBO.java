@@ -70,6 +70,8 @@ public class MeetBO {
 	}
 	
 	public int getJoinNameByName(int meetId, int userId) {
+		
+		
 		return meetDAO.getJoinNameByName(meetId,userId);
 	}
 
