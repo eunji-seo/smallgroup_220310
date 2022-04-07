@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smallgroup.main.bo.MainBO;
 import com.smallgroup.meet.bo.MeetBO;
@@ -29,11 +30,9 @@ public class MainController {
 	private MeetBO meetBO;
 	
 	@RequestMapping("/main_view")
-	public String mainView(
-			Model model
-			) {
+	public String mainView(Model model, @RequestParam(name = "meetFavoriteId", required = false) Integer meetFavoriteId) {
 		
-		List<Meet> meet = meetBO.getMeetList();
+		List<Meet> meet = meetBO.getMeetList(meetFavoriteId);
 		model.addAttribute("meet", meet);
 		model.addAttribute("viewName", "main/main");
 		return "template/layout";

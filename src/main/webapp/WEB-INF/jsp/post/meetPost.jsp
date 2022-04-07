@@ -71,8 +71,8 @@
 											</div>
 
 									<div class="cleate-comment-group d-flex justify-content-start mt-2 ">
-										<input type="text" id="commentText" name="commentText" class="form-control" data-meetPost-id="${postList.id}" placeholder="댓글을 입력해주세요.">
-										<button type="button" class="commentBtn btn btn-none"  data-meet-id="${postList.meetId}">게시</button>
+										<input type="text" id="commentText" name="commentText" class="form-control"  placeholder="댓글을 입력해주세요.">
+										<button type="button" class="commentBtn btn btn-none"  data-meet-post-id="${postList.id}" data-meet-id="${meet.id}">게시</button>
 									</div>	
 					    		</div>
 					    	</div>	
@@ -97,8 +97,9 @@
 <script>
 
 $('.commentBtn').on('click',function(){
-let meetPostId= $('#commentText').data('meetPost-id'); 
-let meetId= $(this).data('meet-id'); 
+	let meetPostId= $(this).data('meet-post-id'); 
+	let meetId = $(this).data('meet-id');
+	
 	//alert(postId);
 
 	let content = $('#commentText').val();

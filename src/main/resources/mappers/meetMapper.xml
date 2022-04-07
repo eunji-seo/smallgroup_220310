@@ -53,6 +53,11 @@
  	</select>
  	<select id="selectMeetList" resultType="com.smallgroup.meet.model.Meet">
  		SELECT * FROM meet
+ 		<where>
+ 			<if test='meetFavoriteId != null and meetFavoriteId != 0'>
+ 				AND meetFavoriteId =#{meetFavoriteId}
+ 			</if>
+ 		</where>
  	</select>
  	<insert id="insertJoin">
 	 	INSERT INTO `meet_join`
