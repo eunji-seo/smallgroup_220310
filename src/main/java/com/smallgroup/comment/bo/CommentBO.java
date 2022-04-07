@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smallgroup.comment.dao.CommentDAO;
+import com.smallgroup.comment.model.Comment;
 import com.smallgroup.user.bo.UserBO;
 
 @Service
@@ -14,4 +15,8 @@ public class CommentBO {
 	@Autowired
 	private UserBO userBO;  // userBO 가 커먼트비오를 또 부르면 상호참조 에러 발생됨
 
+	
+	public int insertComment(Comment comment) {
+		return commentDAO.insertComment(comment);
+	}
 }

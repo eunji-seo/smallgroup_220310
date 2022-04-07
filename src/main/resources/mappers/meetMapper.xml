@@ -102,7 +102,13 @@
 		where meet.id = #{meetId}
  	</select>
  	<select id="getJoinName" resultType="com.smallgroup.meet.model.MeetJoin">
- 		select * 
+ 		select
+ 			`id` 
+ 			,`meetId`
+			,`userId`
+			,`joinName`
+			,`createdAt`
+			,`updatedAt`
  		from meet_join
  		where meetId = #{meetId}
  	</select>
@@ -142,11 +148,32 @@
 	 	)
  	</insert>
  	<select id="selectMeetingList" resultType="com.smallgroup.meet.model.Meeting">
- 		SELECT * FROM meeting
+ 		SELECT
+ 			`id` 
+ 			,`userId`
+	 		,`meetId`
+			,`meetingName`
+			,`meetingDay`
+			,`Place`
+			,`Cost`
+			,`Personnel`
+			,`createdAt`
+			,`updatedAt`
+		
+		FROM meeting
  		where meetId = #{meetId}
  	</select>
  	<select id="selectMeeting" resultType="com.smallgroup.meet.model.Meeting">
- 		SELECT * 
+ 		SELECT `id` 
+ 			,`userId`
+	 		,`meetId`
+			,`meetingName`
+			,`meetingDay`
+			,`Place`
+			,`Cost`
+			,`Personnel`
+			,`createdAt`
+			,`updatedAt` 
  		FROM meeting
  		where 
  			meetId = #{meetId}

@@ -59,13 +59,14 @@ public class MeetPostController {
 		
 		System.out.println(meetId);
 		
-		List<MeetPost> postList = meetPostBO.getMeetPostList();
+		List<MeetPost> postList = meetPostBO.getMeetPostList(meetId);
 		
-		
+		//int cut = meetBO.getJoinNameByName(meetId, userId);
 		Meet meet = meetBO.getMeetById(meetId);
 		model.addAttribute("viewName", "post/meetPost");
 		model.addAttribute("meet", meet);
 		model.addAttribute("postList", postList);
+		//model.addAttribute("cut", cut);
 		return "template/layout";
 		
 	}

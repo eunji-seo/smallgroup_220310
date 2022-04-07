@@ -71,8 +71,8 @@
 											</div>
 
 									<div class="cleate-comment-group d-flex justify-content-start mt-2 ">
-										<input type="text" id="commentText${postList.id}" name="commentText" class="form-control" placeholder="댓글을 입력해주세요.">
-										<button type="button" class="commentBtn btn btn-none" data-meetPost-id="${postList.id}" data-meet-id="${postList.meetId}">게시</button>
+										<input type="text" id="commentText" name="commentText" class="form-control" data-meetPost-id="${postList.id}" placeholder="댓글을 입력해주세요.">
+										<button type="button" class="commentBtn btn btn-none"  data-meet-id="${postList.meetId}">게시</button>
 									</div>	
 					    		</div>
 					    	</div>	
@@ -80,11 +80,13 @@
 			</div>
 		</c:forEach>
 	</div>
+		<c:if test="${cnt == 1 or id == meet.userId}">
 	<div class=" d-flex justify-content-end">
 		<a href="../post/post_create_view?meetId=${param.meetId}">
 			<img alt="" src="/static/image/meet_plus.png" width="100">
 		</a>
 	</div>
+	</c:if>
 	<div class="more d-flex justify-content-center">
 		<a href="#">
 			<img alt="" src="/static/image/more.png" width="50">
@@ -95,14 +97,14 @@
 <script>
 
 $('.commentBtn').on('click',function(){
-let meetPostId= $(this).data('meetPost-id'); 
+let meetPostId= $('#commentText').data('meetPost-id'); 
 let meetId= $(this).data('meet-id'); 
 	//alert(postId);
 
-	let commentText = $('#commentText' + meetPostId).val();
+	let content = $('#commentText').val();
 	//alert(commentText);
 	
-	if(commentText == ''){
+	if(content == ''){
 		alert("댓글을 입력해주세요.")
 		return;
 	}
@@ -110,7 +112,11 @@ let meetId= $(this).data('meet-id');
 	$.ajax({
 		type:"POST"
 		,url:"/comment/create"
-		,data: {"meetPostId":meetPostId, "meetId":meetId, "content":commentText}
+		,data: { 
+			"meetId":meetId, 
+			"meetPostId":meetPostId,
+			"content":content
+			}
 		,success: function(data){
 			if(data.result == 'success'){
 				alert("댓글이 입력되었습니다.")

@@ -32,8 +32,8 @@ public class MeetPostBO {
 	}
 
 	
-	public List<MeetPost> getMeetPostList(){
-		return meetPostDAO.getMeetPostList();
+	public List<MeetPost> getMeetPostList(int meetId){
+		return meetPostDAO.getMeetPostList(meetId);
 	}
 	
 	

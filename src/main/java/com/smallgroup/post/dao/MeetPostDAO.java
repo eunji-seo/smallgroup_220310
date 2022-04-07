@@ -11,5 +11,5 @@ public interface MeetPostDAO {
 
 	public int insertPost(MeetPost meetPost); 
 	
-	public List<MeetPost> getMeetPostList();
+	public List<MeetPost> getMeetPostList(int meetId);
 }

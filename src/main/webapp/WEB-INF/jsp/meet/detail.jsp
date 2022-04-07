@@ -34,7 +34,7 @@
 				</c:if>
 				<p>${meet.desc}</p>
 			</div> 
-			<c:if test="${cnt ne 1 }">
+			<c:if test="${cnt ne 1 and id != meet.userId}">
 			<div class="meet-join mt-3">
 				<a href="#" class="btn btn-success w-100" data-toggle="modal" data-target="#moreModalJoin"> 
 					가입하기
@@ -67,12 +67,13 @@
 							<span>${meeting.personnel}</span>	
 				 		</div>
 				 	</div>
+				 	<c:if test="${cnt == 1 or id == meet.userId}">
 				 	<div class="attend">
 				 		<button type="button" class="btn btn-success mb-3" onclick="showModal('${meeting.id}')">참석</button>
 				 		<hr>
 				 		<a href="#" class="d-block" data-toggle="modal" data-target="#moreModalAttendjoin" onclick="showAttendModal('${meeting.id}')">참석자 리스트</a>
-				 		
 				 	</div>
+				 	</c:if>
 				</div>
 				<!-- <div class="attend-list">
 					<div class="d-flex justify-content-between">

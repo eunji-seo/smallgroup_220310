@@ -29,6 +29,9 @@
 	<select id="getMeetPostList" resultType="com.smallgroup.post.model.MeetPost">
 	SELECT *
 	FROM `meet_post`
+	WHERE
+		meetId = #{meetId}
+	
 	
 	
 		
