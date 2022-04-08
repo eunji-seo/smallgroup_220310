@@ -49,9 +49,10 @@ public class MeetPostController {
 		return "template/layout";
 	}
 	
-	@RequestMapping("/meetPost_view")
+	@RequestMapping("/meet_post_view")
 	public String meetPostView(
 			@RequestParam("meetId") int meetId
+			//,@RequestParam("meetPostId") int meetPostId
 			,Model model
 			,HttpSession session) {
 		
@@ -59,14 +60,16 @@ public class MeetPostController {
 		
 		System.out.println(meetId);
 		
-		List<MeetPost> postList = meetPostBO.getMeetPostList(meetId);
+	//	List<ContentView> contentViewList = contentViewBO.generateContentViewList(userId, meetPostId, meetId);
 		
-		//int cut = meetBO.getJoinNameByName(meetId, userId);
+		
+	//	List<MeetPost> postList = meetPostBO.getMeetPostList(meetId, meetPostId);
+		
 		Meet meet = meetBO.getMeetById(meetId);
 		model.addAttribute("viewName", "post/meetPost");
 		model.addAttribute("meet", meet);
-		model.addAttribute("postList", postList);
-		//model.addAttribute("cut", cut);
+	//	model.addAttribute("postList", postList);
+	//	model.addAttribute("contentViewList", contentViewList);
 		return "template/layout";
 		
 	}

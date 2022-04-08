@@ -33,12 +33,4 @@
 			AND `loginId` = #{loginId}
 
  	</update>
- 	<select id="getCategoryList" resultType="com.smallgroup.user.model.Favorite">
- 		SELECT * 
- 		FROM `favorite`
- 	</select>
- 	<select id="getCategoryItemList" resultType="com.smallgroup.user.model.UserFavorite">
- 		SELECT * 
- 		FROM `user_favorite`
- 	</select>
  </mapper>

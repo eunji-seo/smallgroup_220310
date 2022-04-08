@@ -8,7 +8,7 @@ public class Meet {
 	private int id;
 	private int userId;
 	private String JoinName;
-	private int meetFavoriteId;
+	private int favoriteId;
 	private String meetAddress;
 	private String meetName;
 	private String desc;
@@ -17,7 +17,6 @@ public class Meet {
 	private int personnel;
 	private Date createdAt;
 	private Date updatedAt;
-	
 	public int getId() {
 		return id;
 	}
@@ -36,11 +35,11 @@ public class Meet {
 	public void setJoinName(String joinName) {
 		JoinName = joinName;
 	}
-	public int getMeetFavoriteId() {
-		return meetFavoriteId;
+	public int getFavoriteId() {
+		return favoriteId;
 	}
-	public void setMeetFavoriteId(int meetFavoriteId) {
-		this.meetFavoriteId = meetFavoriteId;
+	public void setFavoriteId(int favoriteId) {
+		this.favoriteId = favoriteId;
 	}
 	public String getMeetAddress() {
 		return meetAddress;
@@ -92,14 +91,11 @@ public class Meet {
 	}
 	@Override
 	public String toString() {
-		return "Meet [id=" + id + ", userId=" + userId + ", JoinName=" + JoinName + ", meetFavoriteId=" + meetFavoriteId
+		return "Meet [id=" + id + ", userId=" + userId + ", JoinName=" + JoinName + ", favoriteId=" + favoriteId
 				+ ", meetAddress=" + meetAddress + ", meetName=" + meetName + ", desc=" + desc + ", meetImagePath="
 				+ meetImagePath + ", file=" + file + ", personnel=" + personnel + ", createdAt=" + createdAt
 				+ ", updatedAt=" + updatedAt + "]";
 	}
-	
-	
-	
-	
+
 	
 }

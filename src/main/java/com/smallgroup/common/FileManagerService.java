@@ -53,4 +53,16 @@ public class FileManagerService {
 		
 		return null;
 	}
+	public void deleteFile(String imagePath) throws IOException {
+		Path path = Paths.get(fileUploadPath + imagePath.replace("/images/", ""));
+		if(Files.exists(path)) {
+			Files.delete(path);
+		}
+		
+		//디렉토리(폴더)삭제
+		path = path.getParent();
+		if(Files.exists(path)) {
+			Files.delete(path);
+		}
+	}
 }

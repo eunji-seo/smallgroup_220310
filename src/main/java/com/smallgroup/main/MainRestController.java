@@ -1,7 +1,6 @@
 package com.smallgroup.main;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smallgroup.common.EncryptUtils;
+import com.smallgroup.common.SHA256;
 import com.smallgroup.main.bo.MainBO;
-import com.smallgroup.main.model.FavoriteDto;
 import com.smallgroup.user.model.User;
 @RequestMapping("/main")
 @RestController
 public class MainRestController {
-
+	SHA256 sha256 = new SHA256();
+	
 	@Autowired
 	private MainBO mainBO;
 	
@@ -28,7 +28,7 @@ public class MainRestController {
 			@ModelAttribute User user,
 			HttpSession session 
 			){
-		String encryptUtils = EncryptUtils.md5(user.getPassword());
+		String encryptUtils = sha256.encrypt(user.getPassword());
 		user.setPassword(encryptUtils);
 		
 		int id = (int) session.getAttribute("id");
@@ -49,9 +49,6 @@ public class MainRestController {
 		
 	}
 	
-	@RequestMapping("/category/all")
-	public List<FavoriteDto> getCategoryAll(){
-		return mainBO.getCategory();
-	}
+	
 	
 }

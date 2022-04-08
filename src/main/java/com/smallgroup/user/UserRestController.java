@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.smallgroup.common.EncryptUtils;
+import com.smallgroup.common.SHA256;
 import com.smallgroup.meet.bo.MeetBO;
 import com.smallgroup.meet.model.Meet;
 import com.smallgroup.user.bo.UserBO;
@@ -25,6 +25,8 @@ import com.smallgroup.user.model.User;
 @RestController
 public class UserRestController {
 
+	SHA256 sha256 = new SHA256();
+	
 	@Autowired
 	private UserBO userBO;
 	
@@ -56,7 +58,7 @@ public class UserRestController {
 			HttpSession session){
 		
 		
-		String encryptPassword = EncryptUtils.md5(password);
+		String encryptPassword = sha256.encrypt(password);
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
@@ -73,7 +75,7 @@ public class UserRestController {
 			session.setAttribute("address", memberUser.getAddress());
 			List<Favorite> userFavorites = userBO.selectUserFavorites(memberUser.getId());
 			session.setAttribute("userFavorites", userFavorites);
-			List<Meet> meetList = meetBO.getMeetList(null);
+			List<Meet> meetList = meetBO.getMeetListByMeetFavoriteId(null);
 			session.setAttribute("meetList", meetList);
 		} else {
 			result.put("result", "error");
@@ -91,7 +93,7 @@ public class UserRestController {
 			@ModelAttribute User user,//@Valid
 			HttpSession session){
 		
-		String encryptUtils = EncryptUtils.md5(user.getPassword());
+		String encryptUtils = sha256.encrypt(user.getPassword());
 		user.setPassword(encryptUtils);
 		
 		Map<String, Object> result = new HashMap<>();

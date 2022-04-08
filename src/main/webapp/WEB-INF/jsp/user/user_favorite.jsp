@@ -27,10 +27,6 @@
 <script>
 $(document).ready(function(){
 	
-	/* <c:forEach var="uf" items="${userFavorites}">
-		$('input[value=${uf.favoriteId}]').prop('checked',true);
-	</c:forEach> */
-	
 	$('.favoriteBtn').on('click',function(){
 		//alert("click");
 		if($('input:checkbox[name=checkList]:checked').length > 6){

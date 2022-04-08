@@ -17,7 +17,7 @@
 	 	(
 	 		`userId`
 	 		,`joinName`
-			,`meetfavoriteId`
+			,`favoriteId`
 			,`meetAddress`
 			,`meetName`
 			,`desc`
@@ -31,7 +31,7 @@
 	 	(
 	 		#{userId}
 	 		,#{joinName}
-	 		,#{meetFavoriteId}
+	 		,#{favoriteId}
 	 		,#{meetAddress}
 	 		,#{meetName}
 	 		,#{desc}
@@ -51,13 +51,29 @@
  		WHERE
  			id = #{meetingId}
  	</select>
- 	<select id="selectMeetList" resultType="com.smallgroup.meet.model.Meet">
+ 	<select id="selectMeetListByMeetFavoriteId" resultType="com.smallgroup.meet.model.Meet">
  		SELECT * FROM meet
  		<where>
- 			<if test='meetFavoriteId != null and meetFavoriteId != 0'>
- 				AND meetFavoriteId =#{meetFavoriteId}
+ 			<if test='FavoriteId != null and FavoriteId != 0'>
+ 				AND FavoriteId =#{FavoriteId}
  			</if>
  		</where>
+ 	</select>
+ 	<select id="selectMeetListByMeetAndUserId" resultType="com.smallgroup.meet.model.Meet">
+ 		SELECT * 
+ 		FROM meet as a
+ 		JOIN meet_join as b
+ 		ON a.id = b.meetId
+        where 
+			a.userid = #{userId}
+ 	</select>
+ 	<select id="selectMeetListByJoinAndUserId" resultType="com.smallgroup.meet.model.Meet">
+ 		SELECT * 
+ 		FROM meet as a
+ 		JOIN meet_join as b
+ 		ON a.id = b.meetId
+        where 
+			b.userid = #{userId}
  	</select>
  	<insert id="insertJoin">
 	 	INSERT INTO `meet_join`

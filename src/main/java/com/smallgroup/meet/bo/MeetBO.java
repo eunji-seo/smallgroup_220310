@@ -49,8 +49,15 @@ public class MeetBO {
 		return meetDAO.selectMeetById(meetId);
 	}
 
-	public List<Meet> getMeetList(Integer meetFavoriteId) {
-		return meetDAO.selectMeetList(meetFavoriteId);
+	public List<Meet> getMeetListByMeetFavoriteId(Integer FavoriteId) {
+		return meetDAO.selectMeetListByMeetFavoriteId(FavoriteId);
+	}
+
+	public List<Meet> getMeetListByMeetAndUserId(int userId) {
+		return meetDAO.selectMeetListByMeetAndUserId(userId);
+	}
+	public List<Meet> getMeetListByJoinAndUserId(int userId) {
+		return meetDAO.selectMeetListByJoinAndUserId(userId);
 	}
 	
 	public int addJoin(MeetJoin meetJoin) {

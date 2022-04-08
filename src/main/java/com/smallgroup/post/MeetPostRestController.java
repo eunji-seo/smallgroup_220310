@@ -5,7 +5,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +19,9 @@ import com.smallgroup.post.bo.MeetPostBO;
 import com.smallgroup.post.model.MeetPost;
 
 @RestController
-@RequestMapping("/meet")
+@RequestMapping("/post")
 public class MeetPostRestController {
-
+	private Logger logger = LoggerFactory.getLogger(this.getClass()); // import slf4j 확인 
 	@Autowired
 	private MeetPostBO meetPostBO;
 	
@@ -43,5 +46,25 @@ public class MeetPostRestController {
 		}
 		return result;
 		
+	}
+	
+	@DeleteMapping("/delete")
+	public Map<String, Object> delete(
+			@RequestParam("meetPostId") int meetPostId,
+			HttpSession session){
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		Integer userId = (Integer) session.getAttribute("userId"); // 직접 권한 검사함
+		if(userId == null) {
+			result.put("result", "error");
+			result.put("errorMessage", "로그인후 사용가능합니다.");
+			logger.error("[post delete] 로그인 세션이 없습니다. userId:{}, postId{}", userId , meetPostId); // 데이터 베이스 검증 > 로거에서 요청 주소 찾고 , 로거가 요청했던 단서를 남겨 놓는다.
+			return result;
+		}
+		//postBO;
+		meetPostBO.deletePostByPostIdANDUserId(meetPostId, userId);
+		result.put("result", "success");
+		return result;
 	}
 }

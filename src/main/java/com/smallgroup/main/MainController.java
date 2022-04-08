@@ -30,9 +30,9 @@ public class MainController {
 	private MeetBO meetBO;
 	
 	@RequestMapping("/main_view")
-	public String mainView(Model model, @RequestParam(name = "meetFavoriteId", required = false) Integer meetFavoriteId) {
+	public String mainView(Model model, @RequestParam(name = "FavoriteId", required = false) Integer FavoriteId) {
 		
-		List<Meet> meet = meetBO.getMeetList(meetFavoriteId);
+		List<Meet> meet = meetBO.getMeetListByMeetFavoriteId(FavoriteId);
 		model.addAttribute("meet", meet);
 		model.addAttribute("viewName", "main/main");
 		return "template/layout";
@@ -63,6 +63,19 @@ public class MainController {
 		return "template/layout";
 	}
 	
+	@RequestMapping("/mypage_view")
+	public String mypageView(Model model
+			,HttpSession session) {
+		
+		int userId = (int) session.getAttribute("id");
+		
+		List<Meet> meetUser = meetBO.getMeetListByMeetAndUserId(userId);
+		List<Meet> meetJoin = meetBO.getMeetListByJoinAndUserId(userId);
+		model.addAttribute("viewName", "main/mypage");
+		model.addAttribute("meetUser", meetUser);
+		model.addAttribute("meetJoin", meetJoin);
+		return "template/layout";
+	}
 
 
 

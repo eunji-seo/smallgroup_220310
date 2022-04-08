@@ -31,11 +31,33 @@
 	FROM `meet_post`
 	WHERE
 		meetId = #{meetId}
-	
-	
-	
-		
+		AND id = #{meetPostId}
 	</select>
+	<select id="selectPostByPostIdAndUserId" resultType="com.smallgroup.post.model.MeetPost">
+ 	SELECT
+		`id`
+		,`userId`
+		,`meetId`
+		,`subject`
+		,`contentText`
+		,`postImagePath`
+		,`createdAt`
+		,`updatedAt`
+ 	FROM
+ 		`post`
+ 	WHERE
+ 		`id` = #{meetPostId}
+ 		AND `userId` = #{userId}	
+ 	
+ 	</select>
+ 	<delete id="deletePost" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`meet_post`
+ 		WHERE
+ 			`id` = #{meetPostId}
+ 			AND `userId` = #{userId}
+ 	</delete>
  
  </mapper>
  

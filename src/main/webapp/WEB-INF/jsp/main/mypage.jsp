@@ -36,57 +36,69 @@
 	</div>
 	<div> 
 	<div class="meet-join-list">
+	<!--  내가 가입한 모임-->
 	<h3>내가 가입한 모임</h3>
 		<div class="list d-flex flex-wrap justify-content-center">
+		<c:forEach var="join" items="${meetJoin}">
 			<div class="meet-box">
-				<a href="#">
+				<a href="../meet/detail_view?meetId=${join.id}" data-meet-id="${join.id}">
 					<div class="d-flex">
 						<div class="img-area">
-							<img src="https://cdn.pixabay.com/photo/2020/12/14/15/44/man-5831234__340.jpg" width="100">
+							<c:if test="${empty join.meetImagePath}">
+							<img alt="" src="/static/image/no-photo.png"  width="100">
+							</c:if>
+							<img src="${join.meetImagePath}" width="100">
 						</div>			
 						<div class="">
 							<div class="d-flex">
-								<div class="gu">강북구</div>
+								<div class="gu">${join.meetAddress}</div>
 								<div>
-									<h5>걷기모임</h5>
+									<h5>${join.meetName}</h5>
 								</div>
 							</div>	
-							<p>걸어서 하늘까지</p>
+							<p>${join.desc}</p>
 							<div class="d-flex">
 								<img src="/static/image/person.png" width="25">
-								<div>65</div>
+								<div>${join.personnel}</div>
 							</div>	
 						</div>		
 					</div>
 				</a>
 			</div>
+			</c:forEach>
 		</div>	
 	</div>
 	<div class="meet-create-list">
+	<!--  내가 만든 모임-->
 	<h3>내가 만든 모임</h3>
 		<div class="list d-flex flex-wrap justify-content-center">
+			<c:forEach var="user" items="${meetUser}">
 			<div class="meet-box">
-				<a href="#">
+				<a href="../meet/detail_view?meetId=${user.id}" data-meet-id="${user.id}">
 					<div class="d-flex">
 						<div class="img-area">
-							<img src="https://cdn.pixabay.com/photo/2020/12/14/15/44/man-5831234__340.jpg" width="100">
+							<c:if test="${empty user.meetImagePath}">
+							<img alt="" src="/static/image/no-photo.png"  width="100">
+							</c:if>
+							<img src="${user.meetImagePath}" width="100">
 						</div>			
 						<div class="">
 							<div class="d-flex">
-								<div class="gu">강북구</div>
+								<div class="gu">${user.meetAddress}</div>
 								<div>
-									<h5>걷기모임</h5>
+									<h5>${user.meetName}</h5>
 								</div>
 							</div>	
-							<p>걸어서 하늘까지</p>
+							<p>${user.desc}</p>
 							<div class="d-flex">
 								<img src="/static/image/person.png" width="25">
-								<div>65</div>
+								<div>${user.personnel}</div>
 							</div>	
 						</div>		
 					</div>
 				</a>
 			</div>
+			</c:forEach>
 		</div>	
 	</div>
 	</div>

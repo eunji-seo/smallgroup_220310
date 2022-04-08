@@ -10,7 +10,7 @@
 		      </li>
 		    <c:forEach var="uf" items="${userFavorites}">	
 		      <li class="nav-item active">
-		        <a class="nav-link" href="${pageContext.request.contextPath}/main/main_view?meetFavoriteId=${uf.id}" id="category">${uf.favoriteName}</a>
+		        <a class="nav-link" href="${pageContext.request.contextPath}/main/main_view?FavoriteId=${uf.id}" id="category">${uf.favoriteName}</a>
 		      </li>
 		     </c:forEach>
 	    </ul>

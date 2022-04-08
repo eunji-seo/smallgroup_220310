@@ -27,7 +27,11 @@ public interface MeetDAO {
 	
 	public Meet selectMeetById(int meetId);
 
-	public List<Meet> selectMeetList(Integer meetFavoriteId);
+	public List<Meet> selectMeetListByMeetFavoriteId(Integer FavoriteId);
+	
+	public List<Meet> selectMeetListByMeetAndUserId(int userId);
+	
+	public List<Meet> selectMeetListByJoinAndUserId(int userId);
 	
 	public int insertJoin(MeetJoin meetJoin);
 	

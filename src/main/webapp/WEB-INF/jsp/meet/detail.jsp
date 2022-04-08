@@ -14,7 +14,7 @@
 		        <a class="nav-link" href="${pageContext.request.contextPath}/meet/detail_view?meetId=${meet.id}">정보</a>
 		      </li>
 		      <li class="nav-item active">
-		        <a class="nav-link" href="${pageContext.request.contextPath}/post/meetPost_view?meetId=${meet.id}">게시판</a>
+		        <a class="nav-link" href="${pageContext.request.contextPath}/post/meet_post_view?meetId=${meet.id}">게시판</a>
 		      </li>
 		      <li class="nav-item active">
 		        <a class="nav-link" href="#">채팅</a>
