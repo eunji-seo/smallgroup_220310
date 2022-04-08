@@ -1,6 +1,7 @@
 package com.smallgroup.websocket;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
 
-    private static List<WebSocketSession> list = new ArrayList<>();
+    private static List<WebSocketSession> list = Collections.synchronizedList(new ArrayList<>());
 
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
