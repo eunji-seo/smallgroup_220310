@@ -56,11 +56,11 @@ public class MeetPostController {
 			,Model model
 			,HttpSession session) {
 		
-		Integer userId = (Integer) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("id");
 		
 		System.out.println(meetId);
 		
-	//	List<ContentView> contentViewList = contentViewBO.generateContentViewList(userId, meetPostId, meetId);
+		List<ContentView> contentViewList = contentViewBO.generateContentViewList(meetId, userId);
 		
 		
 	//	List<MeetPost> postList = meetPostBO.getMeetPostList(meetId, meetPostId);
@@ -69,7 +69,7 @@ public class MeetPostController {
 		model.addAttribute("viewName", "post/meetPost");
 		model.addAttribute("meet", meet);
 	//	model.addAttribute("postList", postList);
-	//	model.addAttribute("contentViewList", contentViewList);
+		model.addAttribute("contentViewList", contentViewList);
 		return "template/layout";
 		
 	}

@@ -25,5 +25,9 @@ public class SHA256 {
 	        }
 	        return builder.toString();
 	    }
+	    public static void main(String[] args) {
+	    	SHA256 s = new SHA256();
+	    	System.out.println(s.encrypt("1"));
+		}
 
 }

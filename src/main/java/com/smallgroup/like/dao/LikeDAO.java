@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 public interface LikeDAO {
 
 	public int selectExsistLikePostIdUserId(
-			@Param("postId") int postId, 
+			@Param("meetPostId") int postId, 
 			@Param("userId") Integer userId);
 
 	public void insertLike (

@@ -10,6 +10,7 @@
 				<h3 class="favorite-subject">${meet.meetName}</h3>
 			</div>
 	</div>
+	
 	<nav class="navbar-collapse">
 		<ul class="nav d-flex">
 		      <li class="nav-item active">
@@ -26,7 +27,7 @@
 	</div>
 	<form id="moreListForm">
 	<div class="list">
-	<%-- <c:forEach var="content" items="${contentViewList}"></c:forEach> --%>
+	<c:forEach var="content" items="${contentViewList}">
 		<div class="d-flex flex-wrap justify-content-center">
 					<div class="meet-post-box">
 					    <div class="meet-inner d-flex justify-content-between">
@@ -95,6 +96,7 @@
 					    	</div>	
 					</div>
 			</div>
+		</c:forEach>
 	</div>
 	<div class=" d-flex justify-content-end">
 		<a href="${content.meetPost.updatedAt}/post/post_create_view?meetId=${param.meetId}">

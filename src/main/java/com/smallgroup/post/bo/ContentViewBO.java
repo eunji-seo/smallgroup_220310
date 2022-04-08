@@ -28,12 +28,12 @@ public class ContentViewBO {
 	@Autowired
 	private LikeBO likeBO;
 	
-	public List<ContentView> generateContentViewList(Integer userId, int meetId, int meetPostId){
+	public List<ContentView> generateContentViewList(int meetId, int userId){
 		List<ContentView> contentViewList = new ArrayList<>();
 		
 		
 		// post 목록
-		List<MeetPost> postList = MeetpostBO.getMeetPostList(meetId, meetPostId);
+		List<MeetPost> postList = MeetpostBO.getMeetPostList(meetId);
 		for(MeetPost post: postList) {
 			ContentView content = new ContentView();
 			// 글 정보
@@ -45,12 +45,11 @@ public class ContentViewBO {
 			// 댓글 정보
 			
 			List<CommentView> commentList =  commentBO.generateCommentViewByPostId(post.getId());
-			content.setCommentlist(commentList);
+			content.setCommentList(commentList);
 			
 			// 좋아요 갯수 세팅
 			
-			int likeCount = likeBO.countLikeByPostId(post.getId());
-			content.setLikeCount(likeCount);
+			content.setLikeCount(post.getLikeCnt());
 			
 			// 로그인됨 사용자의 좋아요 여부 세팅
 			boolean filledLike = likeBO.exsistLike(post.getId(), userId);

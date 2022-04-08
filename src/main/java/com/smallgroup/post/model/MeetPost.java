@@ -15,6 +15,15 @@ public class MeetPost {
 	private MultipartFile file;
 	private Date createdAt;
 	private Date updatedAt;
+	private int likeCnt;
+	
+	
+	public int getLikeCnt() {
+		return likeCnt;
+	}
+	public void setLikeCnt(int likeCnt) {
+		this.likeCnt = likeCnt;
+	}
 	public int getId() {
 		return id;
 	}
@@ -73,7 +82,7 @@ public class MeetPost {
 	public String toString() {
 		return "MeetPost [id=" + id + ", userId=" + userId + ", meetId=" + meetId + ", subject=" + subject
 				+ ", contentText=" + contentText + ", postImagePath=" + postImagePath + ", file=" + file
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", likeCnt=" + likeCnt + "]";
 	}
 	
 	

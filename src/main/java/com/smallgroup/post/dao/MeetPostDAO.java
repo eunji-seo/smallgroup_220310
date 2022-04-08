@@ -13,7 +13,7 @@ public interface MeetPostDAO {
 
 	public int insertPost(MeetPost meetPost); 
 	
-	public List<MeetPost> getMeetPostList(@Param("meetId") int meetId, @Param("id") int meetPostId);
+	public List<MeetPost> getMeetPostList(@Param("meetId") int meetId);
 	
 	public MeetPost selectPostByPostIdAndUserId(
 			@Param("id") int meetPostId, 

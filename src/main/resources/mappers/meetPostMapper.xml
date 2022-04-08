@@ -27,12 +27,13 @@
 		)
 	</insert>
 	<select id="getMeetPostList" resultType="com.smallgroup.post.model.MeetPost">
-	SELECT *
-	FROM `meet_post`
-	WHERE
-		meetId = #{meetId}
-		AND id = #{meetPostId}
+		SELECT mp.*,
+		(SELECT COUNT(1) FROM `LIKE` l WHERE mp.id = l.meetpostId) like_cnt
+		FROM `meet_post`mp
+		WHERE
+			meetId = #{meetId}
 	</select>
+	
 	<select id="selectPostByPostIdAndUserId" resultType="com.smallgroup.post.model.MeetPost">
  	SELECT
 		`id`
