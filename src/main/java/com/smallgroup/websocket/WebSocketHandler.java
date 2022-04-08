@@ -15,7 +15,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
 
-    private static List<WebSocketSession> list = Collections.synchronizedList(new ArrayList<>());
+    private static List<WebSocketSession> webSocketSessionList = Collections.synchronizedList(new ArrayList<>());
 
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
@@ -23,20 +23,20 @@ public class WebSocketHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
         log.info("payload : {}",payload);
-        for(WebSocketSession sess: list) {
+        for(WebSocketSession sess: webSocketSessionList) {
             sess.sendMessage(message);
         }
     }
     
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        list.add(session);
+    	webSocketSessionList.add(session);
         log.info("접속 성공 => {}", session);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        list.remove(session);
+    	webSocketSessionList.remove(session);
         log.info("접속 해제=>{}", session);
     }
 }
