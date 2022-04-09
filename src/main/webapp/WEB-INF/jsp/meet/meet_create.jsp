@@ -98,7 +98,7 @@ $(document).ready(function(){
 		formData.append("meetName",meetName)
 		formData.append("desc",desc)
 		formData.append("personnel",personnel)
-		formData.append('meetFavoriteId', favorite);
+		formData.append('FavoriteId', favorite);
 		
 		if( $('#file')[0].files[0]){
 			formData.append("file",$('#file')[0].files[0])

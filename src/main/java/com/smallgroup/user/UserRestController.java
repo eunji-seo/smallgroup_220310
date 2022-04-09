@@ -25,7 +25,8 @@ import com.smallgroup.user.model.User;
 @RestController
 public class UserRestController {
 
-	SHA256 sha256 = new SHA256();
+	@Autowired
+	private SHA256 sha256;
 	
 	@Autowired
 	private UserBO userBO;

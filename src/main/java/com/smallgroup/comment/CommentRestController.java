@@ -54,7 +54,7 @@ public class CommentRestController {
 		
 		Map<String, Object> result = new HashMap<>();
 		
-		Integer userId = (Integer) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("id");
 		
 		if(userId == null ) {
 			result.put("result", "error");

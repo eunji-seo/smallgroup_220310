@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.smallgroup.common.EncryptUtils;
 import com.smallgroup.common.SHA256;
 import com.smallgroup.main.bo.MainBO;
 import com.smallgroup.user.model.User;
 @RequestMapping("/main")
 @RestController
 public class MainRestController {
-	SHA256 sha256 = new SHA256();
-	
+	@Autowired 
+	private SHA256 sha256;
 	@Autowired
 	private MainBO mainBO;
 	

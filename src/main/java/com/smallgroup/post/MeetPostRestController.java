@@ -55,7 +55,7 @@ public class MeetPostRestController {
 		
 		Map<String, Object> result = new HashMap<>();
 		
-		Integer userId = (Integer) session.getAttribute("userId"); // 직접 권한 검사함
+		Integer userId = (Integer) session.getAttribute("id"); // 직접 권한 검사함
 		if(userId == null) {
 			result.put("result", "error");
 			result.put("errorMessage", "로그인후 사용가능합니다.");

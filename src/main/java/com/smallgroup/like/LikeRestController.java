@@ -26,7 +26,7 @@ public class LikeRestController {
 			HttpSession session 
 			){
 		
-		Integer userId = (Integer) session.getAttribute("userId");
+		Integer userId = (Integer) session.getAttribute("id");
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");

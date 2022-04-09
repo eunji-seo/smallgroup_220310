@@ -10,6 +10,7 @@
 				<h3 class="favorite-subject">${meet.meetName}</h3>
 			</div>
 	</div>
+	
 	<nav class="navbar-collapse">
 		<ul class="nav d-flex">
 		      <li class="nav-item active">
@@ -26,7 +27,7 @@
 	</div>
 	<form id="moreListForm">
 	<div class="list">
-	<%-- <c:forEach var="content" items="${contentViewList}"></c:forEach> --%>
+	<c:forEach var="content" items="${contentViewList}">
 		<div class="d-flex flex-wrap justify-content-center">
 					<div class="meet-post-box">
 					    <div class="meet-inner d-flex justify-content-between">
@@ -95,14 +96,10 @@
 					    	</div>	
 					</div>
 			</div>
+		</c:forEach>
 	</div>
 	<div class=" d-flex justify-content-end">
-		<a href="${content.meetPost.updatedAt}/post/post_create_view?meetId=${param.meetId}">
-			<img alt="" src="/static/image/meet_plus.png" width="100">
-		</a>
-	</div>
-	<div class=" d-flex justify-content-end">
-		<a href="${content.meetPost.updatedAt}/post/meet_post_detail?meetPost=${param.id}">
+		<a href="${pageContext.request.contextPath}/post/post_create_view?meetId=${param.meetId}">
 			<img alt="" src="/static/image/meet_plus.png" width="100">
 		</a>
 	</div>
@@ -205,7 +202,7 @@ $('.likeBtn').on('click', function(e){
 $('.more-btn').on('click', function(e){
 	e.preventDefault();
 	
-	let postId = $(this).data('meet-post-id');
+	let meetPostId = $(this).data('meet-post-id');
 	//alert(postId);
 	
 	$('#moreModal').data('meet-post-id', postId);// set data-post-id="1" 같다 

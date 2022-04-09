@@ -62,8 +62,6 @@
  	<select id="selectMeetListByMeetAndUserId" resultType="com.smallgroup.meet.model.Meet">
  		SELECT * 
  		FROM meet as a
- 		JOIN meet_join as b
- 		ON a.id = b.meetId
         where 
 			a.userid = #{userId}
  	</select>

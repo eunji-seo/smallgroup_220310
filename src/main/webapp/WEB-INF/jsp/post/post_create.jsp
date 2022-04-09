@@ -82,7 +82,7 @@ $(document).ready(function(){
          }
 		$.ajax({
 			type: "POST"
-			, url: "/meet/post_create"
+			, url: "/post/post_create"
 			, data: formData
 			, enctype: "multipart/form-data" // 파일업로드를 위한 필수 설정
 			, processData: false // 파일업로드를 위한 필수 설정
