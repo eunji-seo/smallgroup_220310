@@ -6,11 +6,14 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
@@ -19,10 +22,20 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
+	@Autowired
+	private ObjectMapper om;
+	
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
         log.info("payload : {}",payload);
+        ChatMsg cm = om.readValue(payload, ChatMsg.class);
+        log.info("cm =>{}", cm);
+        if(cm.getCmd().equals("open")) {
+        	
+        }else if(cm.getCmd().equals("chat")) {
+        	
+        }
         for(WebSocketSession sess: webSocketSessionList) {
             sess.sendMessage(message);
         }

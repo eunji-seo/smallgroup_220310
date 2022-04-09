@@ -11,7 +11,7 @@ import com.smallgroup.websocket.WebSocketHandler;
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
-
+	
     private final WebSocketHandler webSocketHandler;
     
     @Autowired
