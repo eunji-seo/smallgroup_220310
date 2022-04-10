@@ -2,7 +2,10 @@ package com.smallgroup.websocket;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
 
-    private static List<WebSocketSession> webSocketSessionList = Collections.synchronizedList(new ArrayList<>());
+    private static Map<String, List<WebSocketSession>> sessionMap = Collections.synchronizedMap(new HashMap<>());
 
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
@@ -32,12 +35,16 @@ public class WebSocketHandler extends TextWebSocketHandler {
         log.info("payload : {}",payload);
         ChatMsg cm = om.readValue(payload, ChatMsg.class);
         log.info("cm =>{}", cm);
-        if(cm.getCmd().equals("open")) {
-        	
-        }else if(cm.getCmd().equals("chat")) {
-        	
+       
+        String id = cm.getId(); // meet.id
+        if(!sessionMap.containsKey(id)) {
+        	sessionMap.put(id, new ArrayList<>()); // 불필요한 메모리는 만들지 않고, 그때 생성한다 relagiz loading != free loading(@compoent, @Service, @repository, Map 선언)
         }
-        for(WebSocketSession sess: webSocketSessionList) { // 7
+        List<WebSocketSession> sessionList = sessionMap.get(id);
+        if(cm.getCmd().equals("open")) {
+        	sessionList.add(session);
+        }
+        for(WebSocketSession sess: sessionList) { // 7
             sess.sendMessage(message);
         }
         //if 문 분기문 사용
@@ -45,13 +52,27 @@ public class WebSocketHandler extends TextWebSocketHandler {
     
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception { //2.  접속 세션 들어감
-    	webSocketSessionList.add(session);
+    	//webSocketSessionList.add(session);
         log.info("접속 성공 => {}", session);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-    	webSocketSessionList.remove(session);
-        log.info("접속 해제=>{}", session);
+    	Iterator<String> it = sessionMap.keySet().iterator();
+    	while(it.hasNext()) {
+    		String id = it.next();
+    		List<WebSocketSession> sessionList = sessionMap.get(id);
+    		if(sessionList.contains(session)) {
+    			sessionList.remove(session);
+    		}
+    		
+    		for(WebSocketSession ws : sessionList) {
+    			ChatMsg cm = new ChatMsg();
+    			cm.setCmd("close");
+    			
+    			session.sendMessage(null);
+    		}
+    	}
+    
     }
 }
