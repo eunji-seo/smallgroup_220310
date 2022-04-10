@@ -15,13 +15,13 @@ public class WebSocketConfig implements WebSocketConfigurer {
     private final WebSocketHandler webSocketHandler;
     
     @Autowired
-    public WebSocketConfig(WebSocketHandler webSocketHandler) {
+    public WebSocketConfig(WebSocketHandler webSocketHandler) { // 1) Component
     	this.webSocketHandler = webSocketHandler;
     }
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
     
-        registry.addHandler(webSocketHandler, "ws/chat").setAllowedOrigins("*");
+        registry.addHandler(webSocketHandler, "ws/chat").setAllowedOrigins("*"); // 2) 주
     }
 }
