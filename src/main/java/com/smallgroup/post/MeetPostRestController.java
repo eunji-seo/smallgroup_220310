@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,9 +51,9 @@ public class MeetPostRestController {
 	
 	@DeleteMapping("/delete")
 	public Map<String, Object> delete(
-			@RequestParam("meetPostId") int meetPostId,
+			@RequestBody MeetPost meetPost,
 			HttpSession session){
-		
+		int meetPostId = meetPost.getMeetId();
 		Map<String, Object> result = new HashMap<>();
 		
 		Integer userId = (Integer) session.getAttribute("id"); // 직접 권한 검사함

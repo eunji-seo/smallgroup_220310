@@ -49,7 +49,8 @@
 			var msg = {
 				cmd	: 'msg',
 				msg : $('#chatMsg').val(),
-				chatName : chatName
+				chatName : chatName,
+				id : ${meet.id}
 			}
 			
 			websocket.send(JSON.stringify(msg));
@@ -59,10 +60,12 @@
 		var chatName;
 		function startChat(obj){
 			if(obj.innerText === '종료'){
-				websocket.close();
-				//$('#name').attr('disabled',false);
-				obj.innerText='채팅시작';
-				$('#chatDiv').css('display','');
+				var msg = {
+					cmd	: 'close',
+					chatName : chatName,
+					id : ${meet.id}
+				}
+				websocket.send(JSON.stringify(msg));
 			}else{
 				chatName = $('#name').data('name');
 				/* if(!chatName){
@@ -70,7 +73,7 @@
 					$('#name').focus();
 					return;
 				} */
-				websocket = new WebSocket("ws://192.168.219.101/ws/chat"); //1번
+				websocket = new WebSocket("ws://172.30.2.20//ws/chat"); //1번
 				
 				websocket.onmessage = function(evt){ //6 //9
 					var chatMsg = JSON.parse(evt.data);
@@ -81,17 +84,21 @@
 						$('#chatContent').append(chatMsg.chatName+'님이 입장하셨습니다.\r\n');
 					}else if(chatMsg.cmd==='msg'){
 						$('#chatContent').append('[' + chatMsg.chatName+'] : '+ chatMsg.msg + '\r\n'); 
-
-						// from w3school
-;
-				
+					}else if(chatMsg.cmd==='close'){
+						$('#chatContent').append(chatMsg.chatName+'님이 퇴장하셨습니다.\r\n');
+						if(chatMsg.chatName===chatName){
+							websocket.close();
+							obj.innerText='채팅시작';
+							$('#chatDiv').css('display','');
+						}
 					}
 				};
 				websocket.onopen = function(evt){ // 3번 
 					console.log(evt);
 					var msg = {
 							cmd : 'open',
-							chatName : chatName
+							chatName : chatName,
+							id : ${meet.id}
 					}
 					websocket.send(JSON.stringify(msg)); // 4
 					$('#name').attr('disabled',true);
