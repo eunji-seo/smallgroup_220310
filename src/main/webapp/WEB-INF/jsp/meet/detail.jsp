@@ -17,9 +17,9 @@
 		      <li class="nav-item active">
 		        <a class="nav-link" href="${pageContext.request.contextPath}/post/meet_post_view?meetId=${meet.id}">게시판</a>
 		      </li>
-		      <li class="nav-item active">
-		        <a class="nav-link" href="#">채팅</a>
-		      </li>
+		       <li class="nav-item active">
+			        <a class="nav-link" href="${pageContext.request.contextPath}/chat/chat_view?meetId=${meet.id}">채팅</a>
+			    </li>
 		      </c:if>
 	    </ul>
 	</nav>

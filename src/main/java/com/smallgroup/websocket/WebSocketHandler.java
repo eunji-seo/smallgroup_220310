@@ -23,11 +23,12 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
-	private ObjectMapper om;
+	private ObjectMapper om; //
 	
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        String payload = message.getPayload();
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception { // 메세지가 왔을때 동
+        String payload = message.getPayload(); // 5 //8
+        
         log.info("payload : {}",payload);
         ChatMsg cm = om.readValue(payload, ChatMsg.class);
         log.info("cm =>{}", cm);
@@ -36,13 +37,14 @@ public class WebSocketHandler extends TextWebSocketHandler {
         }else if(cm.getCmd().equals("chat")) {
         	
         }
-        for(WebSocketSession sess: webSocketSessionList) {
+        for(WebSocketSession sess: webSocketSessionList) { // 7
             sess.sendMessage(message);
         }
+        //if 문 분기문 사용
     }
     
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception { //2.  접속 세션 들어감
     	webSocketSessionList.add(session);
         log.info("접속 성공 => {}", session);
     }
