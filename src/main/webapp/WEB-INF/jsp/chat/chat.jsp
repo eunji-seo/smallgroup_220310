@@ -53,6 +53,7 @@
 			}
 			
 			websocket.send(JSON.stringify(msg));
+			document.getElementById("chatContent").scrollTop = document.getElementById("chatContent").scrollHeight;
 		}
 		var websocket;
 		var chatName;
