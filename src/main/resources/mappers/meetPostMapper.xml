@@ -40,14 +40,14 @@
 		,`userId`
 		,`meetId`
 		,`subject`
-		,`contentText`
+		,`contentText` 
 		,`postImagePath`
 		,`createdAt`
 		,`updatedAt`
  	FROM
- 		`post`
+ 		`meet_post`
  	WHERE
- 		`id` = #{meetPostId}
+ 		`id` = #{id}
  		AND `userId` = #{userId}	
  	
  	</select>

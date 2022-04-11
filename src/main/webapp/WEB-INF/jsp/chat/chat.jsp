@@ -61,11 +61,11 @@
 		function startChat(obj){
 			if(obj.innerText === '종료'){
 				var msg = {
-						cmd	: 'close',
-						msg : $('#chatMsg').val(),
-						chatName : chatName,
-						id : ${meet.id}
-					}
+					cmd	: 'close',
+					chatName : chatName,
+					id : ${meet.id}
+				}
+
 				websocket.send(JSON.stringify(msg));
 			}else{
 				chatName = $('#name').data('name');
@@ -74,7 +74,9 @@
 					$('#name').focus();
 					return;
 				} */
+
 				websocket = new WebSocket("ws://172.30.2.25/ws/chat"); //1번
+
 				
 				websocket.onmessage = function(evt){ //6 //9
 					var chatMsg = JSON.parse(evt.data);
@@ -87,10 +89,12 @@
 						$('#chatContent').append('[' + chatMsg.chatName+'] : '+ chatMsg.msg + '\r\n'); 
 					}else if(chatMsg.cmd==='close'){
 						$('#chatContent').append(chatMsg.chatName+'님이 퇴장하셨습니다.\r\n');
+
 						if(chatMsg.chatName === chatName){
 							websocket.close();
 							obj.innerText='채팅시작';
 							$('#chatDiv').css('display','');	
+
 						}
 					}
 				};

@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
 
+
     private static Map<String, List<WebSocketSession>> sessionMap = Collections.synchronizedMap(new HashMap<>());
 
 	private Logger log = LoggerFactory.getLogger(getClass());
@@ -35,10 +36,12 @@ public class WebSocketHandler extends TextWebSocketHandler {
         log.info("payload : {}",payload);
         ChatMsg cm = om.readValue(payload, ChatMsg.class);
         log.info("cm =>{}", cm);
+
        
         String id = cm.getId(); // meet.id
         if(!sessionMap.containsKey(id)) {
         	sessionMap.put(id, new ArrayList<>()); // 불필요한 메모리는 만들지 않고, 그때 생성한다 relagiz loading != free loading(@compoent, @Service, @repository, Map 선언)
+
         }
         List<WebSocketSession> sessionList = sessionMap.get(id);
         if(cm.getCmd().equals("open")) {
@@ -47,7 +50,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
         for(WebSocketSession sess: sessionList) { // 7
             sess.sendMessage(message);
         }
-        //if 문 분기문 사용
     }
     
     @Override
@@ -65,14 +67,13 @@ public class WebSocketHandler extends TextWebSocketHandler {
     		if(sessionList.contains(session)) {
     			sessionList.remove(session);
     		}
-    		
-    		for(WebSocketSession ws : sessionList) {
+
+    		for(WebSocketSession ws:sessionList) {
     			ChatMsg cm = new ChatMsg();
     			cm.setCmd("close");
     			
     			session.sendMessage(null);
     		}
     	}
-    
     }
 }

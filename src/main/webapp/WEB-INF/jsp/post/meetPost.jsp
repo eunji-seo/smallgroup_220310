@@ -205,9 +205,8 @@ $('.more-btn').on('click', function(e){
 	e.preventDefault();
 	
 	let meetPostId = $(this).data('meet-post-id');
-	//alert(postId);
 	
-	$('#moreModal').data('meet-post-id', postId);// set data-post-id="1" 같다 
+	$('#moreModal').data('meet-post-id', meetPostId);// set data-post-id="1" 같다 
 });
 
 
@@ -219,11 +218,11 @@ $('#moreModal .del-post').on('click', function(e){
 	//alert(postId);
 	
 	// 삭제 AJAX DELETE
-	
 	$.ajax({
 		type:"DELETE"
 		,url:"/post/delete"
-		,data:{"meetPostId": meetPostId}
+		,contentType: 'application/json; charset=utf-8'
+		,data:JSON.stringify({"meetPostId": meetPostId})
 		,success: function(data){
 			if(data.result == 'success'){
 				alert("삭제 되었습니다.");
