@@ -29,7 +29,7 @@
 	<select id="getMeetPostList" resultType="com.smallgroup.post.model.MeetPost">
 		SELECT mp.*,
 		(SELECT COUNT(1) FROM `LIKE` l WHERE mp.id = l.meetpostId) like_cnt
-		FROM `meet_post`mp
+		FROM `meet_post` mp
 		WHERE
 			meetId = #{meetId}
 	</select>
@@ -56,7 +56,7 @@
  		FROM
  			`meet_post`
  		WHERE
- 			`id` = #{meetPostId}
+ 			`id` = #{id}
  			AND `userId` = #{userId}
  	</delete>
  

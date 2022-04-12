@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <div class="bg-white d-flex align-items-center p-3">
-			<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
+			<a href="/meet/detail_view?meetId=${meet.id}"><img src="/static/image/arrow.png" width="50"></a>
 			<div class="d-flex justify-content-center">
 				<h3 class="favorite-subject">${meet.meetName}</h3>
 			</div>

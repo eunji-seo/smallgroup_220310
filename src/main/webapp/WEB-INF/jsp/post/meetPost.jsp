@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="main">
 	<div class="bg-white d-flex align-items-center p-3">
-			<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
+			<a href="/meet/detail_view?meetId=${meet.id}"><img src="/static/image/arrow.png" width="50"></a>
 			<div class="d-flex justify-content-center">
 				<h3 class="favorite-subject">${meet.meetName}</h3>
 			</div>
@@ -16,14 +16,13 @@
 		      <li class="nav-item active">
 		        <a class="nav-link" href="${pageContext.request.contextPath}/meet/detail_view?meetId=${meet.id}">정보</a>
 		      </li>
-		       <c:if test="${cnt == 1 or id == meet.userId}">
-		      <li class="nav-item active">
+		       <li class="nav-item active">
 		        <a class="nav-link" href="${pageContext.request.contextPath}/post/meet_post_view?meetId=${meet.id}">게시판</a>
 		      </li>
 		      <li class="nav-item active">
 		        <a class="nav-link" href="#">채팅</a>
 		      </li>
-		      </c:if>
+		     
 	    </ul>
 	</nav>
 	</div>
@@ -41,11 +40,13 @@
 					    	<fmt:formatDate var="resultRegDt" value="${content.meetPost.updatedAt}" pattern="yyyy년 MM월 dd일 HH:mm:ss"/>
 					    	${resultRegDt}
 					    	</div>
-					    	<%-- 클릭할 수 있는 ... 버튼 이미지 --%>
-						<%-- 글쓴사용자와 로그인 사용자가 일치할때만 삭제 가능--%>
-							<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-meet-post-id="${content.meetPost.id}"> 
-								<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
-							</a>
+					    	<c:if test="${loginId eq content.user.loginId}">			
+						    	<%-- 클릭할 수 있는 ... 버튼 이미지 --%>
+							<%-- 글쓴사용자와 로그인 사용자가 일치할때만 삭제 가능--%>
+								<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-meet-post-id="${content.meetPost.id}"> 
+									<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
+								</a>
+							</c:if>
 						</div>
 					    <div class="d-flex justify-content-between">
 					    	<div>
@@ -83,10 +84,12 @@
 											<div class="comment-list">
 												<span class="ml-2"><b>${comment.user.loginId}</b></span>
 												<span>${comment.comment.content}</span>
+												<c:if test="${comment.user.id == id}">
 												<%-- 댓글 삭제버튼 --%>
-													<a href="#" class="commentDelBtn" data-comment-id="">
+													<a href="#" class="commentDelBtn" data-comment-id="${comment.comment.id}">
 														<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
 													</a>
+												</c:if>
 											</div>
 									</c:forEach>
 								</c:if>
@@ -215,7 +218,7 @@ $('#moreModal .del-post').on('click', function(e){
 	e.preventDefault();
 	
 	let meetPostId = $('#moreModal').data('meet-post-id'); // get 꺼내서 사용할수 있게 된다
-	//alert(postId);
+	alert(meetPostId);
 	
 	// 삭제 AJAX DELETE
 	$.ajax({

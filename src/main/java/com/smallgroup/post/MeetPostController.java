@@ -63,12 +63,10 @@ public class MeetPostController {
 		List<ContentView> contentViewList = contentViewBO.generateContentViewList(meetId, userId);
 		
 		
-	//	List<MeetPost> postList = meetPostBO.getMeetPostList(meetId, meetPostId);
 		
 		Meet meet = meetBO.getMeetById(meetId);
 		model.addAttribute("viewName", "post/meetPost");
 		model.addAttribute("meet", meet);
-	//	model.addAttribute("postList", postList);
 		model.addAttribute("contentViewList", contentViewList);
 		return "template/layout";
 		

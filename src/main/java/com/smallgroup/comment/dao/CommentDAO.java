@@ -2,7 +2,6 @@ package com.smallgroup.comment.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.smallgroup.comment.model.Comment;
@@ -16,8 +15,6 @@ public interface CommentDAO {
 	
 	public void deleteCommentsByPostId(int meetPostId); 
 	
-	public void deleteCommentByCommentIdAndUserId(
-			@Param("commentId") int commentId, 
-			@Param("userId") int userId);
+	public int deleteCommentByCommentIdAndUserId(Comment comment);
 	
 }

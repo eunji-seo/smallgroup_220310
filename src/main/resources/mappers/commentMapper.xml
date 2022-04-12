@@ -49,7 +49,7 @@
  		FROM
  			`comment`
  		WHERE
- 			`id` = #{commentId}
+ 			`id` = #{id}
  			AND `meetPostId` = #{meetPostId}
  	</delete>
  </mapper>

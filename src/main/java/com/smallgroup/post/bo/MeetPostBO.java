@@ -48,8 +48,8 @@ public class MeetPostBO {
 		return meetPostDAO.getMeetPostList(meetId);
 	}
 	
-	public MeetPost getPostByPostIdAndUserId(int postId, int userId) {
-		return meetPostDAO.selectPostByPostIdAndUserId(postId, userId);
+	public MeetPost getPostByPostIdAndUserId(int meetPostId, int userId) {
+		return meetPostDAO.selectPostByPostIdAndUserId(meetPostId, userId);
 	}
 	
 	

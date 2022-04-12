@@ -50,11 +50,11 @@ public class CommentBO {
 		 
 	}
 		
-	public void deleteCommentsByPostId(int postId) {
-		commentDAO.deleteCommentsByPostId(postId);
+	public void deleteCommentsByPostId(int meetPostId) {
+		commentDAO.deleteCommentsByPostId(meetPostId);
 	}
 	
-	public void deleteCommentByCommentIdAndUserId(int commentId, int userid) {
-		commentDAO.deleteCommentByCommentIdAndUserId(commentId, userid);
+	public void deleteCommentByCommentIdAndUserId(Comment comment) {
+		commentDAO.deleteCommentByCommentIdAndUserId(comment);
 	}
 }

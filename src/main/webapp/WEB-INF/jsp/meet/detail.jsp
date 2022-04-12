@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="meet-detail">
 	<div class="bg-white d-flex align-items-center p-3">
-			<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
+			<a href="/main/main_view"><img src="/static/image/arrow.png" width="50"></a>
 			<div class="d-flex justify-content-center">
 				<h3 class="favorite-subject">${meet.meetName}</h3>
 			</div>
@@ -228,7 +228,7 @@ $('#moreModalAttend .attendBtn').on('click', function(e){
 		
 		}
 		,error: function(e){
-			alert("가입이 실패하였습니다. 관리자에 문의해주세요.");
+			alert("참석이 실패하였습니다. 관리자에 문의해주세요.");
 		}
 		
 		

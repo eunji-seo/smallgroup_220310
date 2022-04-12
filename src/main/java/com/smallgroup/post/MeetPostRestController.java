@@ -53,6 +53,8 @@ public class MeetPostRestController {
 	public Map<String, Object> delete(
 			@RequestBody MeetPost meetPost,
 			HttpSession session){
+		
+		
 		int meetPostId = meetPost.getMeetId();
 		Map<String, Object> result = new HashMap<>();
 		
