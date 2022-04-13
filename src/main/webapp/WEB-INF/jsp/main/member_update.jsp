@@ -35,9 +35,9 @@
 			<input type="text" id="postcode" class="form-control" placeholder="우편번호">
 			<input type="button" onclick="execDaumPostcode()" class="btn btn-none" value="우편번호 찾기">
 			</div>
-			<input type="text" id="address" class="form-control" placeholder="주소">
 			<div class="d-flex">
-			<input type="text" id="detailAddress"  class="form-control" placeholder="상세주소">
+			<input type="text" id="address" class="form-control" placeholder="주소" value="${user.address}">
+			<!-- <input type="text" id="detailAddress"  class="form-control" placeholder="상세주소"> -->
 			<input type="text" id="extraAddress"  class="form-control" placeholder="참고항목">
 			</div>
 			<div id="isCheckAddress" class="small text-danger d-none">주소를 입력 해주세요.</div>
@@ -106,7 +106,7 @@ function execDaumPostcode() {
             document.getElementById('postcode').value = data.zonecode;
             document.getElementById("address").value = addr;
             // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("detailAddress").focus();
+           /*  document.getElementById("detailAddress").focus(); */
 
             // iframe을 넣은 element를 안보이게 한다.
             // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
