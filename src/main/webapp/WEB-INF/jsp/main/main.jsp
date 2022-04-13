@@ -16,7 +16,12 @@
 	    </ul>
 	    <hr>
 	</div>
-	<form id="moreListForm">
+	<div class="">
+		<div class=" d-flex justify-content-end">
+			<a href="../meet/meet_create_view">
+				<img alt="" src="/static/image/meet_plus.png" width="80">
+			</a>
+		</div>
 		<ul class="content-list d-flex flex-wrap justify-content-center">
 			<c:forEach var="meet" items="${meet}">
 				<a href="../meet/detail_view?meetId=${meet.id}" data-meet-id="${meet.id}">
@@ -47,41 +52,17 @@
 						</div>		
 					</li>
 				</a>
-				<span id="dots"></span>	<span id="more">
+			
 			</c:forEach>
-		</span>
-		
 		</ul>
-	<div class=" d-flex justify-content-end">
-		<a href="../meet/meet_create_view">
-			<img alt="" src="/static/image/meet_plus.png" width="100">
-		</a>
 	</div>
 	<div class="moreView d-flex justify-content-center">
 	
-		<a href="#" onclick="myFunction()" id="myBtn"class="btn">
-		 Read less
-		</a>
+
 	</div>
-	</form>
 </div>
 <script>
 
-function myFunction() {
-  var dots = document.getElementById("dots");
-  var moreText = document.getElementById("more");
-  var btnText = document.getElementById("myBtn");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = "Read more"; 
-    moreText.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "Read less"; 
-    moreText.style.display = "inline";
-  }
-}
 
 
  

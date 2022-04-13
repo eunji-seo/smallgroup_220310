@@ -42,7 +42,7 @@
  		FROM
  			`comment`
  		WHERE
- 			`meetPostId` = #{meetPostId}
+ 			`id` = #{id}
  	</delete>
  	<delete id="deleteCommentByCommentIdAndUserId" parameterType="map">
  		DELETE
@@ -50,6 +50,6 @@
  			`comment`
  		WHERE
  			`id` = #{id}
- 			AND `meetPostId` = #{meetPostId}
+ 			AND `userId` = #{userId}
  	</delete>
  </mapper>

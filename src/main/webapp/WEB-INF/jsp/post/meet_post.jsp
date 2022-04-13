@@ -20,95 +20,94 @@
 		        <a class="nav-link" href="${pageContext.request.contextPath}/post/meet_post_view?meetId=${meet.id}">게시판</a>
 		      </li>
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#">채팅</a>
+		        <a class="nav-link" href="${pageContext.request.contextPath}/chat/chat_view?meetId=${meet.id}">채팅</a>
 		      </li>
 		     
 	    </ul>
 	</nav>
-	</div>
-	<form id="moreListForm">
-	<div class="list">
-	<c:forEach var="content" items="${contentViewList}">
-		<div class="d-flex flex-wrap justify-content-center">
-					<div class="meet-post-box">
-					    <div class="meet-inner d-flex justify-content-between">
-					    	<div>
-					    	<img alt="" src="/static/image/person.png"  width="25">
-					    	<span>${content.user.loginId}</span>
-					    	</div>
-					    	<div>
-					    	<fmt:formatDate var="resultRegDt" value="${content.meetPost.updatedAt}" pattern="yyyy년 MM월 dd일 HH:mm:ss"/>
-					    	${resultRegDt}
-					    	</div>
-					    	<c:if test="${loginId eq content.user.loginId}">			
-						    	<%-- 클릭할 수 있는 ... 버튼 이미지 --%>
-							<%-- 글쓴사용자와 로그인 사용자가 일치할때만 삭제 가능--%>
-								<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-meet-post-id="${content.meetPost.id}"> 
-									<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
-								</a>
-							</c:if>
-						</div>
-					    <div class="d-flex justify-content-between">
-					    	<div>
-						    	<div><b>${content.meetPost.subject}</b></div>
-						    	<div>						    	
-									<p>${content.meetPost.contentText}</p>
-						    	</div>
-					    	</div>
-					    	<div>
-					    		<c:if test="${empty content.meetPost.postImagePath}">
-								<img alt="" src="/static/image/no-photo.png"  width=150>
-								</c:if>
-								<img src="${content.meetPost.postImagePath}" width="200">
-					    	</div>
-					    	</div>
-					    	<div class="">
-					    		<div class="d-flex justify-content-start mt-2 ml-5">
-									<a href="#" class="likeBtn mr-2" data-meet-post-id="${content.meetPost.id}" data-user-id="${content.user.id}">
-											<%-- 좋아요 누름 --%>
-											<c:if test="${content.filledLike eq false}">
-												<img width="18" src="/static/image/notlike.png"/>
-											</c:if>
-											<%-- 좋아요 해제 --%>
-											<c:if test="${content.filledLike eq true}">
-												<img width="18" src="/static/image/like.png"/>
-											</c:if>
-										
-									</a>		
-										<a class=""><b>좋아요${content.likeCount}개</b></a>
-								</div>
-					    		<hr>
-					    		<div class="comment-group m-2 ml-4 mr-4" >
-								<c:if test="${not empty content.commentList}">
-					    			<c:forEach var="comment" items="${content.commentList}">
-											<div class="comment-list">
-												<span class="ml-2"><b>${comment.user.loginId}</b></span>
-												<span>${comment.comment.content}</span>
-												<c:if test="${comment.user.id == id}">
-												<%-- 댓글 삭제버튼 --%>
-													<a href="#" class="commentDelBtn" data-comment-id="${comment.comment.id}">
-														<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
-													</a>
-												</c:if>
-											</div>
-									</c:forEach>
-								</c:if>
-									<div class="cleate-comment-group d-flex justify-content-start mt-2 ">
-										<input type="text" id="commentText${content.meetPost.id}" name="commentText" class="form-control"  placeholder="댓글을 입력해주세요.">
-										<button type="button" id="commentBtn" class="commentBtn btn btn-none"  data-meet-post-id="${content.meetPost.id}" data-meet-id="${meet.id}">게시</button>
-									</div>	
-					    		</div>
-					    	</div>	
+</div>
+<div class="list d-flex justify-content-center">
+	<div class="mr-5">
+		<c:forEach var="content" items="${contentViewList}">
+			<div class="d-flex flex-wrap justify-content-center">
+				<div class="meet-post-box">
+				    <div class="meet-inner d-flex justify-content-between">
+				    	<div>
+				    	<img alt="" src="/static/image/person.png"  width="25">
+				    	<span>${content.user.loginId}</span>
+				    	</div>
+				    	<div>
+				    	<fmt:formatDate var="resultRegDt" value="${content.meetPost.updatedAt}" pattern="yyyy년 MM월 dd일 HH:mm:ss"/>
+				    	${resultRegDt}
+				    	</div>
+				    	<c:if test="${loginId eq content.user.loginId}">			
+					    	<%-- 클릭할 수 있는 ... 버튼 이미지 --%>
+						<%-- 글쓴사용자와 로그인 사용자가 일치할때만 삭제 가능--%>
+							<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-meet-post-id="${content.meetPost.id}"> 
+								<img src="https://www.iconninja.com/files/860/824/939/more-icon.png" width="30">
+							</a>
+						</c:if>
 					</div>
+				    <div class="d-flex justify-content-between">
+				    	<div>
+					    	<div><b>${content.meetPost.subject}</b></div>
+					    	<div>						    	
+								<p>${content.meetPost.contentText}</p>
+					    	</div>
+				    	</div>
+				    	<div>
+				    		<c:if test="${empty content.meetPost.postImagePath}">
+							<img alt="" src="/static/image/no-photo.png"  width=150>
+							</c:if>
+							<img src="${content.meetPost.postImagePath}" width="200">
+				    	</div>
+				    </div>
+			    	<div class="">
+			    		<div class="d-flex justify-content-start mt-2 ml-5">
+							<a href="#" class="likeBtn mr-2" data-meet-post-id="${content.meetPost.id}" data-user-id="${content.user.id}">
+								<%-- 좋아요 누름 --%>
+								<c:if test="${content.filledLike eq false}">
+									<img width="18" src="/static/image/notlike.png"/>
+								</c:if>
+								<%-- 좋아요 해제 --%>
+								<c:if test="${content.filledLike eq true}">
+									<img width="18" src="/static/image/like.png"/>
+								</c:if>
+								
+							</a>		
+							<a class=""><b>좋아요${content.likeCount}개</b></a>
+						</div>
+			    		<hr>
+			    		<div class="comment-group m-2 ml-4 mr-4" >
+						<c:if test="${not empty content.commentList}">
+			    			<c:forEach var="comment" items="${content.commentList}">
+									<div class="comment-list">
+										<span class="ml-2"><b>${comment.user.loginId}</b></span>
+										<span>${comment.comment.content}</span>
+										<c:if test="${comment.user.id == id}">
+										<%-- 댓글 삭제버튼 --%>
+											<a href="#" class="commentDelBtn" data-comment-id="${comment.comment.id}">
+												<img src="https://www.iconninja.com/files/603/22/506/x-icon.png" width="10px" height="10px">
+											</a>
+										</c:if>
+									</div>
+							</c:forEach>
+						</c:if>
+							<div class="cleate-comment-group d-flex justify-content-start mt-2 ">
+								<input type="text" id="commentText${content.meetPost.id}" name="commentText" class="form-control"  placeholder="댓글을 입력해주세요.">
+								<button type="button" id="commentBtn" class="commentBtn btn btn-none"  data-meet-post-id="${content.meetPost.id}" data-meet-id="${meet.id}">게시</button>
+							</div>	
+			    		</div>
+			    	</div>	
+				</div>
 			</div>
 		</c:forEach>
 	</div>
 	<div class=" d-flex justify-content-end">
 		<a href="${pageContext.request.contextPath}/post/post_create_view?meetId=${param.meetId}">
-			<img alt="" src="/static/image/meet_plus.png" width="100">
+			<img alt="" src="/static/image/meet_plus.png" width="80">
 		</a>
 	</div>
-	</form>
 </div>
 
 <!-- Modal -->
@@ -177,8 +176,8 @@ $('.likeBtn').on('click', function(e){
 	let	meetPostId = $(this).data('meet-post-id');
 	let userId = $(this).data('user-id');
 	
-	console.log(meetPostId);
-	console.log(userId);
+	//console.log(meetPostId);
+	//console.log(userId);
 	
 	if(userId == ''){
 		alert("로그인후 사용가능합니다.");
@@ -225,7 +224,7 @@ $('#moreModal .del-post').on('click', function(e){
 		type:"DELETE"
 		,url:"/post/delete"
 		,contentType: 'application/json; charset=utf-8'
-		,data:JSON.stringify({"meetPostId": meetPostId})
+		,data:JSON.stringify({"id": meetPostId})
 		,success: function(data){
 			if(data.result == 'success'){
 				alert("삭제 되었습니다.");
@@ -255,7 +254,7 @@ $('.commentDelBtn').on('click',function(e){
 	$.ajax({
 		type:"DELETE"
 		,url:"/comment/delete"
-		,data:{"commentId":commentId}
+		,data:{"id":commentId}
 	
 		,success:function(data){
 			if(data.result == "success"){

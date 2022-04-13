@@ -55,7 +55,8 @@ public class MeetPostRestController {
 			HttpSession session){
 		
 		
-		int meetPostId = meetPost.getMeetId();
+		int meetPostId = meetPost.getId();
+		
 		Map<String, Object> result = new HashMap<>();
 		
 		Integer userId = (Integer) session.getAttribute("id"); // 직접 권한 검사함

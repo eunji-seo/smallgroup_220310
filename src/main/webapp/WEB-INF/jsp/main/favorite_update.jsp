@@ -4,9 +4,9 @@
 <div class="favorite">
 
 	<div class="bg-white d-flex align-items-center p-3">
-		<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
+		<a href="/main/mypage_view"><img src="/static/image/arrow.png" width="50"></a>
 		<div class="d-flex justify-content-center">
-			<h3 class="favorite-subject">관심사 선택</h3>
+			<h3 class="favorite-subject">관심사 선택 수정</h3>
 		</div>
 	</div>
 	<div class="text-danger m-5">* 최대 6개만 선택가능합니다.</div>

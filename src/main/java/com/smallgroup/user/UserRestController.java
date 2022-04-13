@@ -65,16 +65,17 @@ public class UserRestController {
 		result.put("result", "success");
 		
 		
-		User memberUser = userBO.getLoginIdAndPassword(loginId, encryptPassword);
+		User user = userBO.getLoginIdAndPassword(loginId, encryptPassword);
 		
 		
 		
-		if(memberUser != null) {			
-			session.setAttribute("loginId", memberUser.getLoginId());
-			session.setAttribute("id", memberUser.getId());
-			session.setAttribute("name", memberUser.getName());
-			session.setAttribute("address", memberUser.getAddress());
-			List<Favorite> userFavorites = userBO.selectUserFavorites(memberUser.getId());
+		if(user != null) {			
+			session.setAttribute("loginId", user.getLoginId());
+			session.setAttribute("user", user);
+			session.setAttribute("id", user.getId());
+			session.setAttribute("name", user.getName());
+			session.setAttribute("address", user.getAddress());
+			List<Favorite> userFavorites = userBO.selectUserFavorites(user.getId());
 			session.setAttribute("userFavorites", userFavorites);
 			List<Meet> meetList = meetBO.getMeetListByMeetFavoriteId(null);
 			session.setAttribute("meetList", meetList);

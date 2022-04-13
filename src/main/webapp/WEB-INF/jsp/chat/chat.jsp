@@ -75,7 +75,7 @@
 					return;
 				} */
 
-				websocket = new WebSocket("ws://172.30.2.25/ws/chat"); //1번
+				websocket = new WebSocket("ws://172.30.1.6/ws/chat"); //1번
 
 				
 				websocket.onmessage = function(evt){ //6 //9

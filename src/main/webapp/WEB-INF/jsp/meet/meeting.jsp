@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="meetion-create">
 	<div class="bg-white d-flex align-items-center p-3">
-			<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
+			<a href="/meet/detail_view?meetId=${meet.id}"><img src="/static/image/arrow.png" width="50"></a>
 			<div class="d-flex justify-content-center">
 				<h3 class="favorite-subject" data-meet-id="${meet.id}">정모 개설</h3>
 			</div>

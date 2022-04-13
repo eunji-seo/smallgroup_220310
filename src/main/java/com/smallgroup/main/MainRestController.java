@@ -42,6 +42,8 @@ public class MainRestController {
 		if(row < 1) {
 			result.put("result", "error");
 			result.put("errorMessage", "회원수정을 다시 시도해주세요.");
+		} else {
+			session.setAttribute("user", user);
 		}
 		
 		return result;

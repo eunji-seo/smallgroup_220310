@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="meet-create">
 	<div class="bg-white d-flex align-items-center p-3">
-		<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
+		<a href="/main/main_view"><img src="/static/image/arrow.png" width="50"></a>
 		<div class="d-flex justify-content-center">
 			<h3 class="favorite-subject">모임 등록</h3>
 		</div>
@@ -91,6 +91,33 @@ $(document).ready(function(){
 		let desc = $('#desc').val().trim();
 		let personnel = $('#personnel').val().trim();
 		let favorite = $('#favorite').val();
+		
+		if(meetAddress == ''){
+			alert("행정구를 입력해주세요");
+			return false;
+		}
+		if(joinName == ''){
+			alert("방장 이름을 입력해주세요");
+			return false;
+		}
+		if(favorite == ''){
+			alert("관심사 선택을 해주세요");
+			return false;
+		}
+		if(meetName == ''){
+			alert("모임 이름를 입력해주세요");
+			return false;
+		}
+		if(desc == ''){
+			alert("설명을 입력해주세요");
+			return false;
+		}
+		if(personnel == ''){
+			alert("모임 인원을 입력해주세요");
+			return false;
+		}
+		
+		
 		
 		let formData = new FormData();
 		formData.append("meetAddress",meetAddress)

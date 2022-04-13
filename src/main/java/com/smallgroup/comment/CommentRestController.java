@@ -61,6 +61,7 @@ public class CommentRestController {
 			logger.error("[comment error]  로그인 세션이 없습니다. userId:{}, commentId:{} ",userId, comment.getId() );
 			return result;
 		}
+		comment.setUserId(userId);
 		commentBO.deleteCommentByCommentIdAndUserId(comment);
 		
 		

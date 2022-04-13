@@ -3,20 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="meet-create">
 <nav class="navbar-collapse">
-		<ul class="nav d-flex">
-		      <li class="nav-item active">
-		        <a class="nav-link" href="${pageContext.request.contextPath}/meet/detail_view?meetId=${meet.id}">정보</a>
-		      </li>
-		      <li class="nav-item active">
-		        <a class="nav-link" href="${pageContext.request.contextPath}/post/meetPost_view?meetId=${meet.id}">게시판</a>
-		      </li>
-		      <li class="nav-item active">
-		        <a class="nav-link" href="#">채팅</a>
-		      </li>
-	    </ul>
 	</nav>
 	<div class="bg-white d-flex align-items-center p-3">
-		<a href="/user/join_view"><img src="/static/image/arrow.png" width="50"></a>
+		<a href="${pageContext.request.contextPath}/post/meet_post_view?meetId=${meet.id}"><img src="/static/image/arrow.png" width="50"></a>
 		<div class="d-flex justify-content-center">
 			<h3 class="favorite-subject">게시글</h3>
 		</div>
@@ -36,8 +25,7 @@
 					</div>				
 			</div>	
 		</div>
-		${param.meetId}
-		<button type="button" class="createBtn btn btn-primary w-100" data-meet-id="${meet.id}">게시글 등록${meet.id}</button>
+		<button type="button" class="createBtn btn btn-primary w-100" data-meet-id="${meet.id}">게시글 등록</button>
 			
 	</div>
 </div>
@@ -72,6 +60,17 @@ $(document).ready(function(){
 		let contentText = $('#contentText').val().trim();
 		let meetId = $('.createBtn').data('meet-id');
 		
+		if(subject == ''){
+			alert("제목을 입력해주세요");
+			return false;
+			
+		}
+		if(contentText == ''){
+			alert("내용을 입력해주세요");
+			return false;
+			
+		}
+		
 		let formData = new FormData();
 		formData.append("subject",subject)
 		formData.append("contentText",contentText)
@@ -91,7 +90,7 @@ $(document).ready(function(){
 			, success: function(data){ //response
 				if(data.result == 'success'){
 					alert("게시글이 등록 되었습니다.");
-					location.href="/main/main_view";
+					location.href="/post/meet_post_view?meetId=${meet.id}";
 				}else{
 					alert(data.errorMessage);
 				}

@@ -34,6 +34,7 @@
 				<c:if test="${not empty meet.meetImagePath}">
 					<img alt="" src="${meet.meetImagePath}" width="350">
 				</c:if>
+				<hr>
 				<p>${meet.desc}</p>
 			</div> 
 			<c:if test="${cnt ne 1 and id != meet.userId}">
@@ -77,17 +78,7 @@
 				 	</div>
 				 	</c:if>
 				</div>
-				<!-- <div class="attend-list">
-					<div class="d-flex justify-content-between">
-						<h5>참석자 리스트</h5>
-						<a href="#" "> 
-						<button type="button" class="btn btn-success" onclick="showModal('${meeting.id}')">참석</button> 
-						위의 show modal 참고
-						
-							<img alt="" src="/static/image/more_person.png" width="20" height="20">
-						</a>
-					</div>
-				</div> -->
+
 			</c:forEach>
 			<c:if test="${meet.userId == id}">
 				<div class="meeting- mb-3">

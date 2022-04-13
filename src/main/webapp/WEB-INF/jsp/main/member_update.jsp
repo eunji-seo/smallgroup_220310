@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <div class="bg-white d-flex align-items-center p-3">
+			<a href="/main/mypage_view"><img src="/static/image/arrow.png" width="50"></a>
+			<div class="d-flex justify-content-center">
+				<h3 class="favorite-subject">회원정보 수정</h3>
+			</div>
+	</div>
 <div class="d-flex justify-content-center">
+	
 	<div class="mt-3">
 		<div class="mb-3">
 			<div class="d-flex justify-content-between">
@@ -8,8 +15,8 @@
 			</div>
 		</div>
 		<div class="mb-3">
-			<input type="password" id="password" name="password" class="form-control" value="${user.password}" placeholder="*비밀번호">
-			<input type="password" id="passwordConfim" name="passwordConfim" class="form-control" value="${user.password}" placeholder="*비밀번호 확인">
+			<input type="password" id="password" name="password" class="form-control" placeholder="*비밀번호">
+			<input type="password" id="passwordConfim" name="passwordConfim" class="form-control"placeholder="*비밀번호 확인">
 			<div id="isCheckPassword" class="small text-danger d-none">비밀번호를 입력 해주세요.</div>
 			<div id="isCheckPasswordConfim" class="small text-danger d-none">비밀번호가 맞지 않습니다.</div>
 		</div>
@@ -47,6 +54,8 @@ function memberJoin(){
 	let address = $('#address').val().trim();
 	let email = $('#email').val().trim();
 	
+	$('#password').val('');
+    $('#confirmPassword').val('');
 	$('#isCheckPassword').addClass('d-none');
 	$('#isCheckPasswordConfim').addClass('d-none');
 	$('#isCheckName').addClass('d-none');
