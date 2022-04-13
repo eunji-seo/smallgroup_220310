@@ -88,7 +88,7 @@
 			<div class="member-list">
 				<div class="d-flex justify-content-between">
 					<h5>멤버 리스트</h5>
-					<a href="#"><img alt="" src="/static/image/more_person.png" width="20" height="20"></a>
+					
 				</div>
 				<ul>
 					<li class="">${memberName.name}<b class="ml-2">방장</b></li>

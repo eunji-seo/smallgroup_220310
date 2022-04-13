@@ -132,14 +132,14 @@
 $(document).ready(function(){
 	
 $('.commentBtn').on('click',function(){
-	alert("c");
+	//alert("c");
 	let meetPostId= $(this).data('meet-post-id'); 
 	let meetId = $(this).data('meet-id');
 	
-	alert(meetPostId);
+	//alert(meetPostId);
 
 	let content = $('#commentText'+ meetPostId ).val();
-	alert(content);
+	//alert(content);
 	
 	if(content == ''){
 		alert("댓글을 입력해주세요.")
@@ -217,7 +217,7 @@ $('#moreModal .del-post').on('click', function(e){
 	e.preventDefault();
 	
 	let meetPostId = $('#moreModal').data('meet-post-id'); // get 꺼내서 사용할수 있게 된다
-	alert(meetPostId);
+	//alert(meetPostId);
 	
 	// 삭제 AJAX DELETE
 	$.ajax({
