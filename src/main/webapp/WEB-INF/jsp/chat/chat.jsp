@@ -45,6 +45,7 @@
 		</div>	
 	</div>
 	<script>
+	
 		function sendMsg(){ // 7
 			var msg = {
 				cmd	: 'msg',
@@ -69,13 +70,12 @@
 				websocket.send(JSON.stringify(msg));
 			}else{
 				chatName = $('#name').data('name');
-				/* if(!chatName){
-					alert('대화명은 필수 입니다');
-					$('#name').focus();
-					return;
-				} */
+				
+				$(window).bind("beforeunload", function(e) { 
+			        return confirm("채팅이 종료 됩니다. 나가겠습니까?"); 
+			    });
 
-				websocket = new WebSocket("ws://172.30.1.6/ws/chat"); //1번
+				websocket = new WebSocket("ws://172.30.1.5/ws/chat"); //1번
 
 				
 				websocket.onmessage = function(evt){ //6 //9
@@ -89,7 +89,8 @@
 						$('#chatContent').append('[' + chatMsg.chatName+'] : '+ chatMsg.msg + '\r\n'); 
 					}else if(chatMsg.cmd==='close'){
 						$('#chatContent').append(chatMsg.chatName+'님이 퇴장하셨습니다.\r\n');
-
+						
+						
 						if(chatMsg.chatName === chatName){
 							websocket.close();
 							obj.innerText='채팅시작';
@@ -97,7 +98,24 @@
 
 						}
 					}
+					$(window).bind("beforeunload", function() { 
+						if(chatMsg.cmd==='close'){
+							$('#chatContent').append(chatMsg.chatName+'님이 퇴장하셨습니다.\r\n');
+							
+							
+							if(chatMsg.chatName === chatName){
+								websocket.close();
+								obj.innerText='채팅시작';
+								$('#chatDiv').css('display','');	
+
+							}
+						}
+				     	return confirm("채팅이 종료 됩니다. 나가겠습니까?"); 	
+						
+				    });
+					
 				};
+				
 				websocket.onopen = function(evt){ // 3번 
 					console.log(evt);
 					var msg = {
@@ -113,7 +131,19 @@
 				websocket.onclose = function(evt){
 					console.log(evt);
 				};
+				
+				
 			}
 		}
+		/* $(document).ready(function(){
+		    $(window).bind("beforeunload", function() { 
+		        return confirm("채팅이 종료 됩니다. 나가겠습니까?"); 
+		    });
+		    
+		    
+		});  */
+
+
+
 		
 	</script>

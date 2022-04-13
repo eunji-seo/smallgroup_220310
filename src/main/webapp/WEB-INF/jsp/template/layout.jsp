@@ -22,7 +22,7 @@
 
 	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
-<body>
+<body >
 	<div class="container">
 		<header class="">
 			<jsp:include page="../include/gnb.jsp"/>
