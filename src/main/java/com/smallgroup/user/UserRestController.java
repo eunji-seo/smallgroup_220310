@@ -122,7 +122,7 @@ public class UserRestController {
 	 */
 	
 	@GetMapping("/user_favorite")
-	public Map<String, Object> isUserFavorite(
+	public Map<String, Object> UserFavorite(
 			@RequestParam(required = false, value = "favoriteIds") List<Integer> favoriteIds,
 			HttpSession session){
 		if(session.getAttribute("id")==null) {

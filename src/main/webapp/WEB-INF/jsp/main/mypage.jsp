@@ -10,11 +10,11 @@
 			</div>
 			<div class="">
 				<div class="name">
-				${name}
+				${user.name}
 				</div>
 				<div class="address d-flex align-items-center">
 					<img alt="" src="/static/image/location.png" width="30">
-					<div>${address}</div>
+					<div>${user.address}</div>
 				</div>
 			</div>
 		</div>
@@ -25,7 +25,7 @@
 	<div class="faverite-list d-flex justify-content-between">
 		<div class="nav">
 			<ul class="nav d-flex">
-			 	<c:forEach var="uf" items="${userFavorites}">	
+			 	<c:forEach var="uf" items="${userFavoriteList}">	
 			      <li class="nav-item active">
 			        <a class="nav-link" href="#">${uf.favoriteName}</a>
 			      </li>

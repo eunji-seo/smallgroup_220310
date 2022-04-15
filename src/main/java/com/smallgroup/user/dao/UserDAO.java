@@ -26,6 +26,10 @@ public interface UserDAO {
 	public int insertUserFavorite(
 			@Param("userId") int userId, 
 			@Param("favoriteId") int favoriteId);
+
+	public int updateUserFavorite(
+			@Param("userId") int userId, 
+			@Param("favoriteId") int favoriteId);
 	
 	public void deleteUserFavorite(int userId);
 	

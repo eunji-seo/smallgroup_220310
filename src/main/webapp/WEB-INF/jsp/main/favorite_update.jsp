@@ -31,7 +31,7 @@ $(document).ready(function(){
 	</c:forEach>
 	
 	$('.favoriteBtn').on('click',function(){
-		alert("click");
+		//alert("click");
 		if($('input:checkbox[name=checkList]:checked').length > 6){
 			alert("6개까지만 선택 가능합니다.");
 			return;

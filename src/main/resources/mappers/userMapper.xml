@@ -82,6 +82,16 @@
 	 	)
  	</insert>
  	
+ 	<update id="updateUserFavorite" parameterType="map">
+ 	 	UPDATE `user_favorite`
+ 	 	SET
+ 	 		`userId` = 	#{userId}
+			,`favoriteId` = #{favoriteId} 	
+			,`updatedAt` = 	NOW()	 		
+	 	WHERE
+	 		userId = #{userId}
+ 	</update>
+ 	
  	<select id="selectUserFavorites" resultType="com.smallgroup.user.model.Favorite">
  		SELECT * 
  		FROM FAVORITE
@@ -110,6 +120,6 @@
  		FROM
  			`user`
  		WHERE
- 			`id` = #{id}
+ 			`id` = #{userId}
  	</select>
  </mapper>

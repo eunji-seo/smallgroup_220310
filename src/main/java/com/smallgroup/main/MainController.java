@@ -29,6 +29,7 @@ public class MainController {
 	@Autowired
 	private MeetBO meetBO;
 	
+	
 	@RequestMapping("/main_view")
 	public String mainView(Model model, @RequestParam(name = "FavoriteId", required = false) Integer FavoriteId) {
 		
@@ -71,9 +72,14 @@ public class MainController {
 		
 		List<Meet> meetUser = meetBO.getMeetListByMeetAndUserId(userId);
 		List<Meet> meetJoin = meetBO.getMeetListByJoinAndUserId(userId);
+		List<Favorite> userFavoriteList = userBO.selectUserFavorites(userId);
+		User user = userBO.getUserById(userId);
+		
 		model.addAttribute("viewName", "main/mypage");
 		model.addAttribute("meetUser", meetUser);
 		model.addAttribute("meetJoin", meetJoin);
+		model.addAttribute("userFavoriteList", userFavoriteList);
+		model.addAttribute("user", user);
 		return "template/layout";
 	}
 

@@ -51,8 +51,8 @@ public class PermissionInterceptor implements HandlerInterceptor {
 
 		} else {
 			List<Favorite> userFavorites = userBO.selectUserFavorites(userId);
-			if (!uri.startsWith("/main/favorite_update_view") && userFavorites.isEmpty()) {
-				response.sendRedirect("/main/favorite_update_view");
+			if (!uri.startsWith("/user/user_favorite_view") && userFavorites.isEmpty()) {
+				response.sendRedirect("/user/user_favorite_view");
 				return false;
 			}
 		}
