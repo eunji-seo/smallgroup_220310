@@ -21,6 +21,7 @@ https://www.notion.so/c4922a81b35b4d87bd522d90d56c95d5
 
 2022/03/10 → 2022/04/12
 
+## 데모
 ![loginAndMypage](https://user-images.githubusercontent.com/61033957/163568446-4236ea57-708f-404a-8c60-17135309a450.gif)
 
 ![joinAndChat](https://user-images.githubusercontent.com/61033957/163568429-1f7a1af3-78da-49fc-a7c0-03959309440e.gif)
