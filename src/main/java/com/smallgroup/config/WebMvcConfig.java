@@ -21,9 +21,14 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		String path = FileManagerService.fileUploadPath;
+		String os = System.getProperty("os.name");
+		if(os.contains("Windows")) {
+			path = "file:////" + path;
+		}
 		registry
 		.addResourceHandler("/images/**") // http://localhost/images/toma1019_16456453342/sun.png
-		.addResourceLocations("file:///"+FileManagerService.fileUploadPath); // 실제 파일 저장 위치		
+		.addResourceLocations(FileManagerService.fileUploadPath); // 실제 파일 저장 위치		
 	}
 	
 	@Override
