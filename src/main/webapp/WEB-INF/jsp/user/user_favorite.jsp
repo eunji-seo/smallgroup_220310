@@ -45,7 +45,6 @@ $(document).ready(function(){
 			favoriteIds.push($(this).val());
 		}); 
 		
-		console.log(favoriteIds2);
 		$.ajax({
 			Type:"GET"
 			,url:"/user/user_favorite"

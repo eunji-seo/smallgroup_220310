@@ -84,16 +84,16 @@
  	 	
  	<select id="selectUserFavorites" resultType="com.smallgroup.user.model.Favorite">
  		SELECT * 
- 		FROM FAVORITE
- 		JOIN USER_FAVORITE
- 		ON FAVORITE.id = USER_FAVORITE.favoriteId
+ 		FROM favorite
+ 		JOIN user_favorite
+ 		ON favorite.id = user_favorite.favoriteId
  		WHERE 
  		USERID = #{userId}
  	</select>
  	
  	<delete id="deleteUserFavorite">
  		DELETE 
- 		FROM USER_FAVORITE
+ 		FROM user_favorite
  		WHERE USERID=#{userId}
  	</delete>
  	
