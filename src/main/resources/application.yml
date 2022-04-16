@@ -18,4 +18,4 @@ server:
       timeout: 60
 
 file:
-  upload-path : /Users/seoeunji/Library/Containers/com.linearity.vn/Data/Documents/6.spring_project/smallgroup/workspace/images/
+  upload-path : /usr/works/images
