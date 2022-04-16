@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:mysql://database-1.cma1tt2xener.ap-northeast-2.rds.amazonaws.com:3306/smallgroup?serverTimezone=UTC&characterEncoding=UTF-8
-    username: admi
+    username: admin
     password: ss2565226!
     
   mvc:
