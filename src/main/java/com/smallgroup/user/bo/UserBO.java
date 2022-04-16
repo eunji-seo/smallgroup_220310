@@ -47,14 +47,7 @@ public class UserBO {
 		return cnt;
 
 	}
-//	public int updateUserFavorite(int userId, List<Integer> favoriteIds) {
-//		int cnt = 0;
-//		for (int favoriteId : favoriteIds) {
-//			cnt += userDAO.updateUserFavorite(userId, favoriteId);
-//		}
-//		return cnt;
-//		
-//	}
+
 
 	public List<Favorite> selectUserFavorites(int userId) {
 		return userDAO.selectUserFavorites(userId);

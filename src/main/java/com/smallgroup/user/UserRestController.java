@@ -125,9 +125,7 @@ public class UserRestController {
 	public Map<String, Object> UserFavorite(
 			@RequestParam(required = false, value = "favoriteIds") List<Integer> favoriteIds,
 			HttpSession session){
-		if(session.getAttribute("id")==null) {
-			
-		}
+		
 		int userId = (int) session.getAttribute("id");
 		
 		Map<String, Object> result = new HashMap<>();
