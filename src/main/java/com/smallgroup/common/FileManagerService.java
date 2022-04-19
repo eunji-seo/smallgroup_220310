@@ -60,7 +60,7 @@ public class FileManagerService {
 		if(!System.getProperty("os.name").contains("Window")) {
 			fileUploadPath = linuxFileUploadPath;
 		}
-		Path path = Paths.get(fileUploadPath + ㄴImagePath.replace("/images", ""));
+		Path path = Paths.get(fileUploadPath + ImagePath.replace("/images", ""));
 		
 		if (Files.exists(path)) {
 			Files.delete(path);
