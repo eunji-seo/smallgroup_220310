@@ -13,56 +13,64 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileManagerService {
 
-	public static String fileUploadPath;
 
-	@Value("${file.upload-path}")
-	public void setFileUploadPath(String fileUploadPath) {
-		FileManagerService.fileUploadPath = fileUploadPath;
+	public static String windowFileUploadPath;
+	public static String linuxFileUploadPath;
+
+	@Value("${file.window.upload-path}")
+	public void setWindowFileUploadPath(String windowFileUploadPath) {
+		FileManagerService.windowFileUploadPath = windowFileUploadPath;
 	}
-
+	@Value("${file.linux.upload-path}")
+	public void setLinuxFileUploadPath(String linuxFileUploadPath) {
+		FileManagerService.linuxFileUploadPath = linuxFileUploadPath;
+	}
 	
-	//
-	public String saveFile(String loginId, MultipartFile file) {
-		// 파일 디렉토리 경로 예: toma1019_16456453342/sun.png
-		// 파일명이 겹치지 않게 하기 위해 현재시간을 경로에 붙여준다.
-		String directoryName = loginId + "_" + System.currentTimeMillis() + "/";
-		//D:\\서은지_211015\\6_spring-project\\memo\\workspace\\images/toma1019_16456453342/
+	// 파일 업로드
+	public String saveFile(String userLoginId, MultipartFile file) {
+		String directoryName = userLoginId + "_" + System.currentTimeMillis() + "/";
+		String fileUploadPath = windowFileUploadPath;
+		if(!System.getProperty("os.name").contains("Window")) {
+			fileUploadPath = linuxFileUploadPath;
+		}
 		String filePath = fileUploadPath + directoryName;
 		
-		// 디렉토리 만들기
 		File directory = new File(filePath);
-		if(directory.mkdir() == false) {
+		if (directory.mkdir() == false) {
 			return null;
 		}
 		
-		// 파일 업로드 : byte 단위로 업로드 한다.
+		
 		try {
-			byte[] bytes = file.getBytes();
+			byte[] bytes;
+			bytes = file.getBytes();
 			Path path = Paths.get(filePath + file.getOriginalFilename());
 			Files.write(path, bytes);
-		
-			// 이미지 URL을 리턴한다.(WebMvcConfig에서 매핑한 이미지 path)
-			// 예) http://localhost/images/toma1019_16456453342/sun.png
 			
-			return "/images/"+ directoryName + file.getOriginalFilename();
+			return "/images/" + directoryName + file.getOriginalFilename();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 		return null;
 	}
-	public void deleteFile(String imagePath) throws IOException {
-		Path path = Paths.get(fileUploadPath + imagePath.replace("/images/", ""));
-		if(Files.exists(path)) {
+	
+	// 파일 삭제
+	public void deleteFile(String ImagePath) throws IOException {
+		String fileUploadPath = windowFileUploadPath;
+		if(!System.getProperty("os.name").contains("Window")) {
+			fileUploadPath = linuxFileUploadPath;
+		}
+		Path path = Paths.get(fileUploadPath + ㄴImagePath.replace("/images", ""));
+		
+		if (Files.exists(path)) {
 			Files.delete(path);
 		}
 		
-		//디렉토리(폴더)삭제
 		path = path.getParent();
-		if(Files.exists(path)) {
+		
+		if (Files.exists(path)) {
 			Files.delete(path);
 		}
+		
 	}
 }

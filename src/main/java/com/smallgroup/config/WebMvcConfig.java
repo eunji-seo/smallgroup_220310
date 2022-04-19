@@ -1,5 +1,7 @@
 package com.smallgroup.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -11,26 +13,24 @@ import com.smallgroup.interceptor.PermissionInterceptor;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer{
+	private Logger log = LoggerFactory.getLogger(WebMvcConfig.class);
 
 	@Autowired
 	private PermissionInterceptor interceptor;
 	
-	/*
-	 * 웹의 이미지 주소와 실제 파일 경로를 매핑해주는 설정
-	 */
+	
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		String path = FileManagerService.fileUploadPath;
-		String os = System.getProperty("os.name");
-		if(os.contains("Windows")) {
-			path = "file:////" + path;
+		String path = "file:///" + FileManagerService.windowFileUploadPath;
+
+		if(!System.getProperty("os.name").contains("Window")) {
+			path = "file:///" + FileManagerService.linuxFileUploadPath;
 		}
 		registry
-		.addResourceHandler("/images/**") // http://localhost/images/toma1019_16456453342/sun.png
-		.addResourceLocations(FileManagerService.fileUploadPath); // 실제 파일 저장 위치		
+		.addResourceHandler("/images/**") 	// ** 모든 주소
+		.addResourceLocations(path);
 	}
-	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(interceptor)
