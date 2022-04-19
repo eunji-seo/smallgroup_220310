@@ -27,8 +27,8 @@ public class FileManagerService {
 	}
 	
 	// 파일 업로드
-	public String saveFile(String userLoginId, MultipartFile file) {
-		String directoryName = userLoginId + "_" + System.currentTimeMillis() + "/";
+	public String saveFile(String loginId, MultipartFile file) {
+		String directoryName = loginId + "_" + System.currentTimeMillis() + "/";
 		String fileUploadPath = windowFileUploadPath;
 		if(!System.getProperty("os.name").contains("Window")) {
 			fileUploadPath = linuxFileUploadPath;

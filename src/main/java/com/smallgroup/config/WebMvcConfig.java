@@ -22,10 +22,10 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		String path = "file:/" + FileManagerService.windowFileUploadPath;
+		String path = "file:///" + FileManagerService.windowFileUploadPath;
 
 		if(!System.getProperty("os.name").contains("Window")) {
-			path = "file:/" + FileManagerService.linuxFileUploadPath;
+			path = "file:///" + FileManagerService.linuxFileUploadPath;
 		}
 		registry
 		.addResourceHandler("/images/**") 	// ** 모든 주소

@@ -75,7 +75,7 @@
 			        return confirm("채팅이 종료 됩니다. 나가겠습니까?"); 
 			    });
 
-				websocket = new WebSocket("ws://localhost/ws/chat"); //1번
+				websocket = new WebSocket("ws://3.37.178.146/ws/chat"); //1번
 
 				
 				websocket.onmessage = function(evt){ //6 //9
