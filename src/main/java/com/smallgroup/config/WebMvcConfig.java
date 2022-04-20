@@ -12,14 +12,11 @@ import com.smallgroup.common.FileManagerService;
 import com.smallgroup.interceptor.PermissionInterceptor;
 
 @Configuration
-public class WebMvcConfig implements WebMvcConfigurer{
+public class WebMvcConfig implements WebMvcConfigurer {
 	private Logger log = LoggerFactory.getLogger(WebMvcConfig.class);
 
 	@Autowired
 	private PermissionInterceptor interceptor;
-	
-	
-	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		String path = "file:///" + FileManagerService.windowFileUploadPath;
